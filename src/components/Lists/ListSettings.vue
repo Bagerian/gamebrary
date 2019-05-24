@@ -141,6 +141,7 @@ export default {
                 covers: 'fas fa-th-large',
                 wide: 'fas fa-minus',
                 text: 'fas fa-font',
+                grid: 'fas fa-th',
             },
             coversSizes: [3, 4, 5],
             sortOrders: {

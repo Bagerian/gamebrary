@@ -1,12 +1,13 @@
 <template lang="html">
-  <div :class="['list', viewClass, { unique: unique && view !== 'masonry' }]">
+  <div :class="['list', viewClass, { unique: unique && view !== 'masonry', dragging }]">
     <header>
       <span class="list-name">
-        <i
+        <sort-icon
           v-if="autoSortEnabled"
-          class="fas fa-magic"
+          :sort-order="list[listIndex].sortOrder"
           title="List sorted automatically"
         />
+
         {{ list[listIndex].name }} ({{ gameList.length }})
       </span>
 
@@ -34,8 +35,8 @@
       :id="listIndex"
       :move="validateMove"
       v-bind="gameDraggableOptions"
-      @end="end"
-      @start="start"
+      @end="dragEnd"
+      @start="dragStart"
     >
       <component
         v-for="game in sortedGames"
@@ -61,6 +62,7 @@ import GameCardGrid from '@/components/GameCards/GameCardGrid';
 import GameCardWide from '@/components/GameCards/GameCardWide';
 import GameCardText from '@/components/GameCards/GameCardText';
 import AddGameModal from '@/components/Lists/AddGameModal';
+import SortIcon from '@/components/SortIcon';
 import { mapState } from 'vuex';
 
 export default {
@@ -73,6 +75,7 @@ export default {
     GameCardWide,
     GameCardText,
     AddGameModal,
+    SortIcon,
     ListSettingsModal,
     draggable,
   },
@@ -114,7 +117,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['user', 'gameLists', 'platform', 'settings', 'games']),
+    ...mapState(['user', 'gameLists', 'platform', 'settings', 'games', 'dragging', 'progresses']),
 
     autoSortEnabled() {
       const list = this.list[this.listIndex];
@@ -126,9 +129,27 @@ export default {
       const sortOrder = this.list[this.listIndex].sortOrder || 'sortByCustom';
       const { gameList } = this;
 
+      // TODO: use lodash to clean things up a bit here
+
       switch (sortOrder) {
       case 'sortByCustom':
         return gameList;
+      case 'sortByProgress':
+        return gameList.sort((a, b) => {
+          const gameA = this.games[a] && this.progresses[this.platform.code][this.games[a].id]
+            ? Number(this.progresses[this.platform.code][this.games[a].id])
+            : 0;
+
+          const gameB = this.games[b] && this.progresses[this.platform.code][this.games[b].id]
+            ? Number(this.progresses[this.platform.code][this.games[b].id])
+            : 0;
+
+          if (gameA > gameB) {
+            return -1;
+          }
+
+          return gameA < gameB ? 1 : 0;
+        });
       case 'sortByRating':
         return gameList.sort((a, b) => {
           const gameA = this.games[a] && this.games[a].rating
@@ -240,13 +261,14 @@ export default {
       return !validMove;
     },
 
-    start({ item }) {
-      this.dragging = true;
+    dragStart({ item }) {
+      this.$store.commit('SET_DRAGGING_STATUS', true);
       this.draggingId = item.id;
     },
 
-    end() {
-      this.$emit('end');
+    dragEnd() {
+      this.$store.commit('SET_DRAGGING_STATUS', false);
+      this.$emit('dragEnd');
     },
   },
 };
@@ -265,6 +287,19 @@ export default {
     overflow: hidden;
     margin-right: $gp;
     max-height: calc(100vh - 100px);
+
+    @media($small) {
+      &:not(.dragging) {
+        .games {
+          scroll-snap-type: y mandatory;
+          scroll-padding: $gp / 2;
+
+          .game-card {
+            scroll-snap-align: start;
+          }
+        }
+      }
+    }
 
     &.unique {
       @media($small) {
@@ -312,10 +347,6 @@ export default {
         align-items: center;
         justify-content: center;
         border: 1px dashed #a5a2a2;
-      }
-
-      @media($small) {
-        scroll-snap-align: center;
       }
     }
 

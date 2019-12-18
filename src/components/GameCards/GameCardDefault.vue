@@ -16,8 +16,15 @@
 
       <i class="fas fa-grip-vertical game-drag-handle" />
 
+      <progress
+        v-if="gameProgress"
+        max="100"
+        :value="gameProgress"
+        @click="openDetails"
+      />
+
       <game-rating
-        v-if="showGameRatings && list.view !== 'covers'"
+        v-if="showGameRatings"
         :rating="game.rating"
         small
         @click.native="openDetails"

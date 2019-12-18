@@ -3,11 +3,12 @@
     <h3>Game notes</h3>
 
     <div v-if="hasNote && !showNoteField" class="note">
-      <div class="markdown">
+      <div class="markdown" v-if="localNote.text">
         <vue-markdown :source="localNote.text" />
       </div>
 
       <button class="primary" @click="editNote">
+        <i class="fas fa-pen" />
         Edit note
       </button>
     </div>
@@ -37,6 +38,7 @@
         </button>
 
         <button class="danger" @click="deleteNote">
+          <i class="fas fa-trash-alt" />
           Delete note
         </button>
       </footer>

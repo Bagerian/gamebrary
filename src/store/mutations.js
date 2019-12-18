@@ -49,8 +49,32 @@ export default {
     state.tags = tags;
   },
 
+  SET_DRAGGING_STATUS(state, status) {
+    state.dragging = status;
+  },
+
   SET_NOTES(state, notes) {
     state.notes = notes;
+  },
+
+  SET_PROGRESSES(state, progresses) {
+    state.progresses = progresses;
+  },
+
+  REMOVE_GAME_PROGRESS({ game, progresses, platform }) {
+    const progressExists = game && progresses[platform.code] && progresses[platform.code][game.id];
+
+    if (progressExists) {
+      Vue.delete(progresses[platform.code], game.id);
+    }
+  },
+
+  SET_GAME_PROGRESS(state, value) {
+    if (!state.progresses[state.platform.code]) {
+      state.progresses[state.platform.code] = {};
+    }
+
+    state.progresses[state.platform.code][state.game.id] = value;
   },
 
   ADD_GAME_TAG(state, { tagName, gameId }) {
@@ -123,11 +147,11 @@ export default {
     state.settings[key] = value;
   },
 
-  // MOVE_LIST(state, { from, to }) {
-  //     const cutOut = state.gameLists[state.platform.code].splice(from, 1)[0];
-  //
-  //     state.gameLists[state.platform.code].splice(to, 0, cutOut);
-  // },
+  MOVE_LIST(state, { from, to }) {
+    const cutOut = state.gameLists[state.platform.code].splice(from, 1)[0];
+
+    state.gameLists[state.platform.code].splice(to, 0, cutOut);
+  },
 
   REMOVE_LIST(state, index) {
     state.gameLists[state.platform.code].splice(index, 1);

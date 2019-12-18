@@ -1,56 +1,54 @@
 <template lang="html">
-  <div
-    v-if="gameId && games[gameId]"
-    :class="gameCardClass"
->
+  <div v-if="gameId && games[gameId]" :class="gameCardClass">
     <img
       :src="coverUrl"
       :alt="game.name"
       @click="openDetails"
     >
 
-    <div :class="{ 'game-info': showGameInfo }" >
-      <a
-        v-if="showGameInfo && list.view !== 'covers'"
-        v-text="game.name"
-        @click="openDetails"
-      />
-
-      <i class="fas fa-grip-vertical game-drag-handle" />
-
-      <game-rating
-        v-if="showGameInfo && showGameRatings && list.view !== 'covers'"
-        :rating="game.rating"
-        small
-        @click.native="openDetails"
-      />
-
-      <i
-        v-if="showGameInfo && note"
-        :title="note"
-        class="fas fa-sticky-note note"
-        @click="openDetails"
-      />
-
-      <div v-if="showGameInfo && hasTags" class="game-tags">
-
-      <div
-        v-for="({ games, hex, tagTextColor }, name) in tags"
-        v-if="showGameInfo && games.includes(game.id)"
-        :key="name"
-      >
-        <tag
-          v-if="games.includes(game.id)"
-          :label="name"
-          :hex="hex"
-          :text-hex="tagTextColor"
-          readonly
-          @action="openTags"
+    <div class="game-info" v-if="!list.hideGameInfo">
+        <a
+          v-text="game.name"
+          @click="openDetails"
         />
+
+        <game-rating
+          v-if="showGameRatings"
+          :rating="game.rating"
+          small
+          @click.native="openDetails"
+        />
+
+        <progress
+          v-if="gameProgress"
+          max="100"
+          :value="gameProgress"
+          @click="openDetails"
+        />
+
+        <i
+          v-if="note"
+          :title="note"
+          class="fas fa-sticky-note note"
+          @click="openDetails"
+        />
+
+        <i class="fas fa-grip-vertical game-drag-handle" />
+
+        <div v-if="hasTags" class="game-tags">
+          <tag
+            v-for="({ games, hex, tagTextColor }, name) in tags"
+            v-if="games.includes(game.id)"
+            :key="name"
+            :label="name"
+            :hex="hex"
+            :text-hex="tagTextColor"
+            readonly
+            @action="openTags"
+          />
+      </div>
     </div>
   </div>
-</div>
-</div>
 </template>
 
 <script>
@@ -95,6 +93,10 @@ export default {
     display: flex;
     align-self: center;
     cursor: pointer;
+  }
+
+  progress {
+    max-width: 100%;
   }
 
   .game-info {
@@ -142,6 +144,26 @@ export default {
       cursor: pointer;
       margin-right: $gp / 2;
       color: var(--game-card-text-color);
+    }
+
+    .title-progress {
+      display: grid;
+      grid-template: auto auto / auto auto;
+
+      a {
+        grid-column: 1;
+      }
+
+      .game-rating {
+        grid-column: 1;
+        grid-row: 2;
+      }
+
+      .game-progresses {
+        justify-self: end;
+        grid-column: 2;
+        grid-row: span 2;
+      }
     }
   }
 

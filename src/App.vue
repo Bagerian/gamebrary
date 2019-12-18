@@ -168,6 +168,7 @@ export default {
     },
 
     syncData() {
+      // TODO: track progresses anod notes as well
       // TODO: move to actions
       db.collection('lists').doc(this.user.uid)
         .onSnapshot((doc) => {
@@ -205,6 +206,16 @@ export default {
             const notes = doc.data();
 
             this.$store.commit('SET_NOTES', notes);
+          }
+        });
+
+      // TODO: move to actions
+      db.collection('progresses').doc(this.user.uid)
+        .onSnapshot((doc) => {
+          if (doc.exists) {
+            const progresses = doc.data();
+
+            this.$store.commit('SET_PROGRESSES', progresses);
           }
         });
     },

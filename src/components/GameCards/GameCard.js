@@ -13,15 +13,18 @@ export default {
   },
 
   computed: {
-    ...mapState(['settings', 'games', 'gameLists', 'platform', 'user', 'tags', 'activeList', 'notes']),
+    ...mapState(['settings', 'games', 'gameLists', 'platform', 'user', 'tags', 'activeList', 'notes', 'progresses']),
     ...mapGetters(['hasTags']),
 
     showGameRatings() {
       return this.game.rating && this.list && !this.list.hideGameRatings;
     },
 
-    showGameInfo() {
-      return this.game.name && this.list && !this.list.hideGameInfo;
+    gameProgress() {
+      return this.game
+        && this.platform
+        && this.progresses[this.platform.code]
+        && this.progresses[this.platform.code][this.game.id];
     },
 
     gameCardClass() {
@@ -37,6 +40,10 @@ export default {
 
     note() {
       return this.notes && this.notes[this.gameId] && this.notes[this.gameId].text;
+    },
+
+    progress() {
+      return this.progresses && this.progresses[this.gameId] && this.progresses[this.gameId].number;
     },
 
     list() {

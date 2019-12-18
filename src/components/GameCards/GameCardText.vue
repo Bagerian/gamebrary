@@ -11,6 +11,13 @@
         @click.native="openDetails"
       />
 
+      <progress
+        v-if="gameProgress"
+        max="100"
+        :value="gameProgress"
+        @click="openDetails"
+      />
+
       <i
         v-if="note"
         :title="note"

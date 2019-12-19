@@ -22,10 +22,9 @@
           <h2>{{ games[id].name }}</h2>
           <h4>{{ platform.name }}</h4>
 
-          <progress
+          <game-progress
             v-if="gameProgress"
-            max="100"
-            :value="gameProgress"
+            :progress="gameProgress"
           />
 
           <game-rating v-if="games[id].rating" :rating="games[id].rating" />

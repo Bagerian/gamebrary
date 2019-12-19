@@ -22,20 +22,10 @@
           <h2>{{ games[id].name }}</h2>
           <h4>{{ platform.name }}</h4>
 
-          <div class="game-progress">
-            <progress
-              v-if="gameProgress"
-              max="100"
-              :value="gameProgress"
-            />
-
-            <span
-              v-if="gameProgress"
-              class="progress-bar-label"
-            >
-              {{ gameProgress }}%
-            </span>
-          </div>
+          <game-progress
+            v-if="gameProgress"
+            :progress="gameProgress"
+          />
 
           <game-rating v-if="games[id].rating" :rating="games[id].rating" />
           <game-tags />
@@ -98,6 +88,7 @@ import { mapState, mapGetters } from 'vuex';
 import GameScreenshots from '@/components/GameDetail/GameScreenshots';
 import GameNotes from '@/components/GameDetail/GameNotes';
 import GameProgressModal from '@/components/GameDetail/GameProgressModal';
+import GameProgress from '@/components/GameDetail/GameProgress';
 import GameTags from '@/components/GameDetail/GameTags';
 import GameRating from '@/components/GameDetail/GameRating';
 import GameLinks from '@/components/GameDetail/GameLinks';
@@ -117,6 +108,7 @@ export default {
     Placeholder,
     GameScreenshots,
     GameNotes,
+    GameProgress,
     GameProgressModal,
     GameTags,
     GameVideos,
@@ -285,16 +277,5 @@ aside {
 
 .game-placeholder {
   margin-top: $gp;
-}
-
-.game-progress {
-  display: flex;
-  align-items: center;
-}
-
-.progress-bar-label {
-  margin-left: $gp / 2;
-  font-size: $font-size;
-  font-weight: bold;
 }
 </style>

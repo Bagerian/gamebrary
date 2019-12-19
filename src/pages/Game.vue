@@ -54,7 +54,7 @@
               {{ $t('list.addGame') }}
             </button>
 
-            <game-progress />
+            <game-progress-modal />
 
             <div v-if="hasTags" class="tags">
               <button class="primary" @click="openTags">
@@ -97,7 +97,7 @@
 import { mapState, mapGetters } from 'vuex';
 import GameScreenshots from '@/components/GameDetail/GameScreenshots';
 import GameNotes from '@/components/GameDetail/GameNotes';
-import GameProgress from '@/components/GameDetail/GameProgress';
+import GameProgressModal from '@/components/GameDetail/GameProgressModal';
 import GameTags from '@/components/GameDetail/GameTags';
 import GameRating from '@/components/GameDetail/GameRating';
 import GameLinks from '@/components/GameDetail/GameLinks';
@@ -117,7 +117,7 @@ export default {
     Placeholder,
     GameScreenshots,
     GameNotes,
-    GameProgress,
+    GameProgressModal,
     GameTags,
     GameVideos,
     GameDetails,

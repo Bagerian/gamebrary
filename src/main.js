@@ -6,6 +6,8 @@ import axios from 'axios';
 import VueAnalytics from 'vue-analytics';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
+import 'buefy/dist/buefy.css';
+import Buefy from 'buefy';
 import App from './App';
 import messages from './i18n/';
 import store from './store/';
@@ -21,6 +23,9 @@ Object.defineProperties(Vue.prototype, {
   },
 });
 
+Vue.use(Buefy, {
+  defaultIconPack: 'fas',
+});
 Vue.use(VueAnalytics, { id: 'UA-120053966-1', router });
 Vue.use(VueAxios, axios);
 Vue.use(VueFire);

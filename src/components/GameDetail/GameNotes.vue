@@ -97,11 +97,11 @@ export default {
 
       await this.$store.dispatch('SAVE_NOTES_NO_MERGE')
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'There was an error deleting your note', type: 'error' });
+          this.$buefy.toast.open({ message: 'There was an error deleting your note', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
 
-      this.$bus.$emit('TOAST', { message: 'Note deleted' });
+      this.$buefy.toast.open({ message: 'Note deleted', type: 'is-success' });
       this.$refs.notesModal.close();
     },
 
@@ -114,11 +114,12 @@ export default {
 
       await this.$store.dispatch('SAVE_NOTES')
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'There was an error saving your note', type: 'error' });
+          this.$buefy.toast.open({ message: 'There was an error saving your note', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
 
-      this.$bus.$emit('TOAST', { message: 'Note saved' });
+      this.$buefy.toast.open({ message: 'Note saved', type: 'is-success' });
+
       this.$refs.notesModal.close();
     },
   },

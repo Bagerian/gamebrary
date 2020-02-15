@@ -125,12 +125,13 @@ export default {
 
   methods: {
     save() {
+      // TODO: make async
       this.$store.dispatch('SAVE_SETTINGS', this.localSettings)
         .then(() => {
-          this.$bus.$emit('TOAST', { message: 'Settings saved' });
+          this.$buefy.toast.open({ message: 'Settings saved', type: 'is-success' });
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'There was an error saving your settings', type: 'error' });
+          this.$buefy.toast.open({ message: 'There was an error saving your settings', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },
@@ -145,16 +146,16 @@ export default {
         // TODO: move to actions
           db.collection('lists').doc(this.user.uid).delete()
             .then(() => {
-              this.$bus.$emit('TOAST', { message: 'Account deleted' });
+              this.$buefy.toast.open({ message: 'Account deleted', type: 'is-success' });
               this.exit();
             })
             .catch(() => {
-              this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+              this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
               this.$router.push({ name: 'sessionExpired' });
             });
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },
@@ -164,8 +165,8 @@ export default {
         .then(() => {
           this.exit();
         })
-        .catch((error) => {
-          this.$bus.$emit('TOAST', { message: error, type: 'error' });
+        .catch((message) => {
+          this.$buefy.toast.open({ message, type: 'is-danger' });
         });
     },
 

@@ -97,48 +97,48 @@ export default {
     async saveTags() {
       await this.$store.dispatch('SAVE_TAGS', this.tags)
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'There was an error saving your tag', type: 'error' });
+          this.$buefy.toast.open({ message: 'There was an error saving your tag', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
 
-      this.$bus.$emit('TOAST', { message: 'Tags updated' });
+      this.$buefy.toast.open({ message: 'Tags updated', type: 'is-success' });
     },
   },
 };
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@import '~styles/styles';
-
-h3 {
-  margin: $gp 0;
-}
-
-.game-tags {
-}
-
-.tag {
-  margin-right: $gp / 2;
-}
-
-.settings-message {
-  margin-top: $gp * 3;
-  border-top: 1px solid var(--modal-text-color);
-  display: flex;
-  align-items: center;
-  padding-top: $gp;
-
-  @media($small) {
-    padding: $gp;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin: 0;
-    width: 100%;
-  }
-
-  p {
-    margin: 0 $gp 0 0;
-  }
-}
+// @import '~styles/styles';
+//
+// h3 {
+//   margin: $gp 0;
+// }
+//
+// .game-tags {
+// }
+//
+// .tag {
+//   margin-right: $gp / 2;
+// }
+//
+// .settings-message {
+//   margin-top: $gp * 3;
+//   border-top: 1px solid var(--modal-text-color);
+//   display: flex;
+//   align-items: center;
+//   padding-top: $gp;
+//
+//   @media($small) {
+//     padding: $gp;
+//     position: absolute;
+//     bottom: 0;
+//     left: 0;
+//     margin: 0;
+//     width: 100%;
+//   }
+//
+//   p {
+//     margin: 0 $gp 0 0;
+//   }
+// }
 </style>

@@ -130,8 +130,8 @@ export default {
 
       this.$store.dispatch('SAVE_LIST', this.gameLists)
         .then(() => {
-          this.$bus.$emit('TOAST', { message: 'List added' });
-          this.$refs.listAddModal.close();
+          this.$buefy.toast.open({ message: 'List added', type: 'is-success' });
+          this.open = false;
           this.scroll();
         });
     },

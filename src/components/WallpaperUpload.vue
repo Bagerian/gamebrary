@@ -115,21 +115,20 @@ export default {
       this.saveSettings();
     },
 
-    saveSettings() {
+    async saveSettings() {
       const settings = {
         ...this.settings,
         wallpapers: this.wallpapers,
       };
 
-      this.$store.dispatch('SAVE_SETTINGS', settings)
-        .then(() => {
-          this.$bus.$emit('TOAST', { message: 'Settings saved' });
-          this.loading = false;
-        })
+      await this.$store.dispatch('SAVE_SETTINGS', settings)
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'There was an error saving your settings', type: 'error' });
+          this.$buefy.toast.open({ message: 'There was an error saving your settings', type: 'is-danger' });
           this.loading = false;
         });
+
+      this.$buefy.toast.open({ message: 'Settings saved', type: 'is-success' });
+      this.loading = false;
     },
 
     handleUpload(e) {

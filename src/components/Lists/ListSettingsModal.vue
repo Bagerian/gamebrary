@@ -246,10 +246,10 @@ export default {
 
       this.$store.dispatch('SAVE_LIST', this.gameLists)
         .then(() => {
-          this.$bus.$emit('TOAST', { message: 'List deleted' });
+          this.$buefy.toast.open({ message: 'List deleted', type: 'is-success' });
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },
@@ -263,10 +263,10 @@ export default {
       setTimeout(() => {
         this.$store.dispatch('SAVE_LIST', gameLists)
           .then(() => {
-            this.$bus.$emit('TOAST', { message: 'List saved' });
+            this.$buefy.toast.open({ message: 'List saved', type: 'is-success' });
           })
           .catch(() => {
-            this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+            this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
             this.$router.push({ name: 'sessionExpired' });
           });
       }, 500);
@@ -277,11 +277,11 @@ export default {
 
       await this.$store.dispatch('SAVE_LIST', this.gameLists)
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
 
-      this.$bus.$emit('TOAST', { message: 'List saved' });
+      this.$buefy.toast.open({ message: 'List saved', type: 'is-success' });
     },
 
     open() {

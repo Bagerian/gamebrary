@@ -8,14 +8,12 @@
     <nav-header />
     <router-view v-if="user" />
     <authorizing v-else />
-    <toast />
   </div>
 </template>
 
 <script>
 import NavHeader from '@/components/NavHeader';
 import Authorizing from '@/pages/Authorizing';
-import Toast from '@/components/Toast';
 import firebase from 'firebase/app';
 import { mapState } from 'vuex';
 import 'firebase/auth';
@@ -40,7 +38,6 @@ export default {
   components: {
     NavHeader,
     Authorizing,
-    Toast,
   },
 
   computed: {
@@ -167,10 +164,7 @@ export default {
 
       firebase.auth().signInWithRedirect(firebaseAuthProvider)
         .catch((message) => {
-          this.$bus.$emit('TOAST', {
-            message,
-            type: 'error',
-          });
+          this.$buefy.toast.open({ message, type: 'is-danger' });
         });
     },
 
@@ -248,16 +242,17 @@ export default {
       // TODO: move to actions
       const docRef = db.collection('settings').doc(this.user.uid);
 
-      docRef.get().then((doc) => {
-        const hasData = doc && doc.exists;
+      docRef.get()
+        .then((doc) => {
+          const hasData = doc && doc.exists;
 
-        return hasData
-          ? this.$store.commit('SET_SETTINGS', doc.data())
-          : this.initSettings();
-      }).catch(() => {
-        this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
-        this.$router.push({ name: 'sessionExpired' });
-      });
+          return hasData
+            ? this.$store.commit('SET_SETTINGS', doc.data())
+            : this.initSettings();
+        }).catch(() => {
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
+          this.$router.push({ name: 'sessionExpired' });
+        });
     },
 
     loadLists() {
@@ -272,7 +267,7 @@ export default {
           }
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },
@@ -287,7 +282,7 @@ export default {
           }
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },
@@ -299,7 +294,7 @@ export default {
           this.loadLists();
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },
@@ -311,7 +306,7 @@ export default {
           this.loadSettings();
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },

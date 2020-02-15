@@ -153,7 +153,7 @@ export default {
           }
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Error loading game', type: 'error' });
+          this.$buefy.toast.open({ message: 'Error loading game', type: 'is-danger' });
         });
     },
   },

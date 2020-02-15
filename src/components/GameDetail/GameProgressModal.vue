@@ -76,11 +76,11 @@ export default {
 
       await this.$store.dispatch('SAVE_PROGRESSES_NO_MERGE')
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'There was an error deleting your progress', type: 'error' });
+          this.$buefy.toast.open({ message: 'There was an error deleting your progress', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
 
-      this.$bus.$emit('TOAST', { message: 'Progress deleted' });
+      this.$buefy.toast.open({ message: 'Progress deleted', type: 'is-success' });
       this.$refs.progressModal.close();
     },
 
@@ -91,10 +91,10 @@ export default {
 
         this.$store.dispatch('SAVE_PROGRESSES')
           .then(() => {
-            this.$bus.$emit('TOAST', { message: 'Progress updated' });
+            this.$buefy.toast.open({ message: 'Progress updated', type: 'is-success' });
           })
           .catch(() => {
-            this.$bus.$emit('TOAST', { message: 'There was an error saving your progress', type: 'error' });
+            this.$buefy.toast.open({ message: 'There was an error saving your progress', type: 'is-danger' });
             this.$router.push({ name: 'sessionExpired' });
           });
       }, 300),

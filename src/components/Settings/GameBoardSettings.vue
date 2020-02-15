@@ -158,7 +158,7 @@ export default {
           this.$router.push({ name: 'platforms' });
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },

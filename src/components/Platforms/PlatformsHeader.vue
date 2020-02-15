@@ -133,14 +133,13 @@ export default {
 
     },
 
-    saveSettings() {
-      this.$store.dispatch('SAVE_SETTINGS', this.settings)
-        .then(() => {
-          this.$bus.$emit('TOAST', { message: 'Settings saved' });
-        })
+    async saveSettings() {
+      await this.$store.dispatch('SAVE_SETTINGS', this.settings)
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'There was an error saving your settings', type: 'error' });
+          this.$buefy.toast.open({ message: 'There was an error saving your settings', type: 'is-danger' });
         });
+
+      this.$buefy.toast.open({ message: 'Settings saved', type: 'is-success' });
     },
 
     setFilter(value) {

@@ -80,10 +80,10 @@ export default {
       this.$store
         .dispatch('SAVE_LIST', this.gameLists)
         .then(() => {
-          this.$bus.$emit('TOAST', { message: 'List updated' });
+          this.$buefy.toast.open({ message: 'List updated', type: 'is-success' });
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },
@@ -114,7 +114,7 @@ export default {
             this.loading = false;
           })
           .catch(() => {
-            this.$bus.$emit('TOAST', { message: 'Error loading games', type: 'error' });
+            this.$buefy.toast.open({ message: 'Error loading games', type: 'is-danger' });
           });
       }
     },

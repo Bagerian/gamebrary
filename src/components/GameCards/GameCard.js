@@ -112,13 +112,10 @@ export default {
 
       this.$store.dispatch('SAVE_LIST', this.gameLists)
         .then(() => {
-          this.$bus.$emit('TOAST', {
-            message: `Added ${this.game.name} to list ${this.list.name}`,
-            imageUrl: this.coverUrl,
-          });
+          this.$buefy.toast.open({ message: `Added ${this.game.name} to list ${this.list.name}`, type: 'is-success' });
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },
@@ -131,11 +128,11 @@ export default {
     async saveTags() {
       await this.$store.dispatch('SAVE_TAGS', this.tags)
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'There was an error saving your tag', type: 'error' });
+          this.$buefy.toast.open({ message: 'There was an error saving your tag', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
 
-      this.$bus.$emit('TOAST', { message: 'Tags updated' });
+      this.$buefy.toast.open({ message: 'Tags updated', type: 'is-success' });
     },
   },
 };

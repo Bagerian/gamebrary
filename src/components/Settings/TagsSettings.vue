@@ -202,11 +202,11 @@ export default {
 
       await this.$store.dispatch(action, this.localTags)
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'There was an error saving your tag', type: 'error' });
+          this.$buefy.toast.open({ message: 'There was an error saving your tag', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
 
-      this.$bus.$emit('TOAST', { message: 'Tags updated' });
+      this.$buefy.toast.open({ message: 'Tags updated', type: 'is-success' });
       this.reset();
     },
 

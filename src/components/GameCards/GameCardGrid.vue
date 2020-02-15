@@ -25,10 +25,11 @@
           @click="openDetails"
         />
 
-        <game-rating
+        <b-rate
           v-if="showGameRatings"
-          :rating="game.rating"
-          small
+          :value="roundedRating"
+          size="is-small"
+          disabled
           class="drag-filter"
           @click.native="openDetails"
         />
@@ -67,14 +68,12 @@
 </template>
 
 <script>
-import GameRating from '@/components/GameDetail/GameRating';
 import GameProgress from '@/components/GameDetail/GameProgress';
 import GameCardUtils from '@/components/GameCards/GameCard';
 import Tag from '@/components/Tag';
 
 export default {
   components: {
-    GameRating,
     GameProgress,
     Tag,
   },
@@ -153,11 +152,6 @@ export default {
       position: absolute;
       bottom: $gp * 1.5;
       right: $gp / 4;
-    }
-
-    .game-rating, a {
-      display: inline-flex;
-      font-weight: bold;
     }
 
     &:hover {

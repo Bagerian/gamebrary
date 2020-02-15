@@ -4,10 +4,11 @@
       <a v-text="game.name" class="drag-filter" @click="openDetails"/>
       <i class="fas fa-grip-vertical draggable-icon game-drag-handle" />
 
-      <game-rating
-        v-if="showGameRatings && list.view !== 'covers'"
-        :rating="game.rating"
-        small
+      <b-rate
+        v-if="showGameRatings"
+        :value="roundedRating"
+        size="is-small"
+        disabled
         class="drag-filter"
         @click.native="openDetails"
       />
@@ -51,14 +52,12 @@
 </template>
 
 <script>
-import GameRating from '@/components/GameDetail/GameRating';
 import GameProgress from '@/components/GameDetail/GameProgress';
 import GameCardUtils from '@/components/GameCards/GameCard';
 import Tag from '@/components/Tag';
 
 export default {
   components: {
-    GameRating,
     GameProgress,
     Tag,
   },

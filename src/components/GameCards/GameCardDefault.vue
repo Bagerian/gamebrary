@@ -25,11 +25,11 @@
         @click.native="openDetails"
       />
 
-      <game-rating
+      <b-rate
         v-if="showGameRatings"
-        :rating="game.rating"
-        small
-        class="drag-filter"
+        :value="roundedRating"
+        size="is-small"
+        disabled
         @click.native="openDetails"
       />
 
@@ -61,14 +61,12 @@
 </template>
 
 <script>
-import GameRating from '@/components/GameDetail/GameRating';
 import GameProgress from '@/components/GameDetail/GameProgress';
 import GameCardUtils from '@/components/GameCards/GameCard';
 import Tag from '@/components/Tag';
 
 export default {
   components: {
-    GameRating,
     GameProgress,
     Tag,
   },

@@ -16,10 +16,11 @@
 
       <i class="fas fa-grip-vertical draggable-icon game-drag-handle" />
 
-      <game-rating
+      <b-rate
         v-if="showGameRatings"
-        :rating="game.rating"
-        small
+        :value="roundedRating"
+        size="is-small"
+        disabled
         class="drag-filter"
         @click.native="openDetails"
       />
@@ -39,36 +40,29 @@
         @click="openDetails"
       />
 
-      <div v-if="hasTags" class="game-tags drag-filter">
-        <div
+      <!-- TODO: use array function -->
+      <b-taglist v-if="hasTags" class="drag-filter">
+        <b-tag
           v-for="({ games, hex, tagTextColor }, name) in tags"
           v-if="games.includes(game.id)"
           :key="name"
+          :style="`background-color: ${hex}; color: ${tagTextColor}`"
+          @click.native="openTags"
         >
-          <tag
-            v-if="games.includes(game.id)"
-            :label="name"
-            :hex="hex"
-            :text-hex="tagTextColor"
-            readonly
-            @action="openTags"
-            @close="removeTag(name)"
-          />
-        </div>
-      </div>
+          {{ name }}
+        </b-tag>
+      </b-taglist>
     </div>
   </div>
 </template>
 
 <script>
-import GameRating from '@/components/GameDetail/GameRating';
 import GameProgress from '@/components/GameDetail/GameProgress';
 import GameCardUtils from '@/components/GameCards/GameCard';
 import Tag from '@/components/Tag';
 
 export default {
   components: {
-    GameRating,
     GameProgress,
     Tag,
   },
@@ -80,7 +74,7 @@ export default {
 <style lang="scss" rel="stylesheet/scss" scoped>
   @import "~styles/styles";
 
-  .game-card {
+  .card {
     background: var(--game-card-background);
     margin-bottom: $gp / 2;
     position: relative;
@@ -132,11 +126,6 @@ export default {
         position: absolute;
         bottom: $gp * 1.5;
         right: $gp / 4;
-      }
-
-      .game-rating, a {
-        display: inline-flex;
-        font-weight: bold;
       }
 
       &:hover {

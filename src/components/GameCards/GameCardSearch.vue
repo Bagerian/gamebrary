@@ -6,10 +6,12 @@
     <div class="game-info">
       <a @click="openDetails" v-text="game.name" />
 
-      <game-rating
-        v-if="showGameRatings && list.view !== 'covers'"
-        :rating="game.rating"
-        small
+      <b-rate
+        v-if="showGameRatings"
+        :value="roundedRating"
+        size="is-small"
+        disabled
+        class="drag-filter"
         @click.native="openDetails"
       />
 
@@ -24,14 +26,9 @@
 </template>
 
 <script>
-import GameRating from '@/components/GameDetail/GameRating';
 import GameCardUtils from '@/components/GameCards/GameCard';
 
 export default {
-  components: {
-    GameRating,
-  },
-
   mixins: [GameCardUtils],
 };
 </script>
@@ -70,11 +67,6 @@ $gameCoverWidth: 80px;
 
     a {
       color: var(--game-card-text-color);
-    }
-
-    .game-rating, a {
-      display: inline-flex;
-      font-weight: bold;
     }
   }
 }

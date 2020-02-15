@@ -20,6 +20,12 @@ export default {
       return this.game.rating && this.list && !this.list.hideGameRatings;
     },
 
+    roundedRating() {
+      return this.game && this.game.rating
+        ? Math.round((this.game.rating / 20) * 2) / 2
+        : 0;
+    },
+
     showGameInfo() {
       return this.list && !this.list.hideGameInfo;
     },

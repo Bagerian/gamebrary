@@ -26,7 +26,13 @@
           :progress="gameProgress"
         />
 
-        <game-rating v-if="games[id].rating" :rating="games[id].rating" />
+        <b-rate
+          v-if="games[id].rating"
+          :value="Math.round((games[id].rating / 20) * 2) / 2"
+          disabled
+          class="drag-filter"
+        />
+
         <game-tags />
 
         <!-- TODO: set list id to store instead of passing it around -->
@@ -69,7 +75,6 @@ import VueMarkdown from 'vue-markdown';
 import GameProgress from '@/components/GameDetail/GameProgress';
 import GameActions from '@/components/GameDetail/GameActions';
 import GameTags from '@/components/GameDetail/GameTags';
-import GameRating from '@/components/GameDetail/GameRating';
 import GameLinks from '@/components/GameDetail/GameLinks';
 import GameDescription from '@/components/GameDetail/GameDescription';
 import GameVideos from '@/components/GameDetail/GameVideos';
@@ -81,7 +86,6 @@ import GameDetailPlaceholder from '@/components/GameDetail/GameDetailPlaceholder
 export default {
   components: {
     IgdbCredit,
-    GameRating,
     GameLinks,
     GameDescription,
     Placeholder,

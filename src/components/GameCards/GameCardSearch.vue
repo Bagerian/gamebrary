@@ -15,12 +15,12 @@
         @click.native="openDetails"
       />
 
-      <button
-        class="primary small add-game-button"
+      <b-button
+        class="is-primary is-small"
         @click="addGame"
       >
         {{ $t('list.addGame') }}
-      </button>
+      </b-button>
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
 
 $gameCoverWidth: 80px;
 
-.game-card {
+.card {
   background: var(--game-card-background);
   position: relative;
   display: grid;

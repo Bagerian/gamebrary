@@ -47,7 +47,7 @@ export default {
         : '';
 
       return [
-        'game-card',
+        'card',
         this.list.view,
         badge,
       ];

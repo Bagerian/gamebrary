@@ -1,11 +1,14 @@
 <template lang="html">
   <modal :title="$t('list.addGames', { listName })" @open="clear">
-    <button
+    <!-- <b-button
       :title="$t('list.addGames', { listName })"
-      class="add-game-button small secondary"
+      expanded
     >
       <i class="fas fa-plus" />
-    </button>
+    </b-button> -->
+    <b-dropdown-item aria-role="listitem">
+      Add game
+    </b-dropdown-item>
 
     <template slot="content">
       <form @submit.prevent="search" class="search-form">
@@ -157,7 +160,6 @@ export default {
 
     added() {
       this.$emit('added');
-      this.$bus.$emit('GAMES_ADDED');
 
       if (this.filteredResults.length === 1) {
         this.clear();
@@ -184,14 +186,6 @@ export default {
 
 <style lang="scss" rel="stylesheet/scss" scoped>
   @import "~styles/styles";
-
-  .add-game-button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    border-bottom-left-radius: 0;
-    border-top-right-radius: 0;
-  }
 
   .search-form {
     display: flex;

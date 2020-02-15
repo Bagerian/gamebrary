@@ -1,16 +1,25 @@
 <template lang="html">
   <nav>
     <router-link
-      :to="{ name: logoRoute }"
-      tag="button"
+      :to="{ path: '/platforms' }"
+      tag="img"
       class="logo"
+      src="/static/gamebrary-logo.png"
+    />
+
+    <!-- <router-link
+      :to="{ name: 'settings' }"
+      v-if="user"
+      tag="button"
+      class="button is-primary"
     >
-      <img src="/static/gamebrary-logo.png" >
-
-      <span>{{ title }}</span>
-    </router-link>
-
-    <settings v-if="user" />
+      <i class="fas fa-cog" />
+    </router-link> -->
+    <b-button
+      class="is-primary"
+      icon-right="cog"
+      @click="$router.push({ name: 'settings' })"
+    />
   </nav>
 </template>
 
@@ -57,35 +66,15 @@ export default {
 
 <style lang="scss" rel="stylesheet/scss" scoped>
   @import "~styles/styles";
+
   nav {
-    user-select: none;
-    width: 100vw;
-    height: $navHeight;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 $gp;
-    color: var(--header-text-color);
+    justify-content: space-between;
+    padding: $gp / 2;
 
     .logo {
-      height: $navHeight;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      margin-left: -$gp;
-      text-transform: capitalize;
-
-      > span {
-        text-shadow: -1px -1px 0 var(--body-background),
-          1px -1px 0 var(--body-background),
-          -1px 1px 0 var(--body-background),
-          1px 1px 0 var(--body-background);
-      }
-
-      img {
-        height: 24px;
-        margin-right: $gp / 4;
-      }
+      height: 30px;
     }
   }
 </style>

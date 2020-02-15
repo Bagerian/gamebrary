@@ -85,7 +85,7 @@ export default {
 <style lang="scss" rel="stylesheet/scss" scoped>
 @import "~styles/styles";
 
-.game-card {
+.card {
   display: flex;
   flex-direction: column;
   position: relative;

@@ -1,16 +1,25 @@
 <template lang="html">
-  <modal
+  <b-modal :active.sync="gameDetailId" has-modal-card trap-focus aria-role="dialog" aria-modal>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">{{ gameDetailId }}</p>
+      </header>
+
+      <div class="modal-card-body" v-if="gameDetailId">
+        <game
+          :id="gameDetailId"
+          :list-id="gameDetailListIndex"
+        />
+      </div>
+    </div>
+  </b-modal>
+  <!-- <modal
     ref="game"
     large
     @close="closeGame"
-  >
-    <game
-      v-if="gameDetailId"
-      slot="content"
-      :id="gameDetailId"
-      :list-id="gameDetailListIndex"
-    />
-  </modal>
+  > -->
+
+  <!-- </modal> -->
 </template>
 
 <script>

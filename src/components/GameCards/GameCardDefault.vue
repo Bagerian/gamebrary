@@ -40,22 +40,18 @@
         @click="openDetails"
       />
 
-      <div v-if="hasTags" class="game-tags drag-filter">
-        <div
+      <!-- TODO: use array function -->
+      <b-taglist v-if="hasTags" class="drag-filter">
+        <b-tag
           v-for="({ games, hex, tagTextColor }, name) in tags"
           v-if="games.includes(game.id)"
           :key="name"
+          :style="`background-color: ${hex}; color: ${tagTextColor}`"
+          @click.native="openTags"
         >
-          <tag
-            v-if="games.includes(game.id)"
-            :label="name"
-            :hex="hex"
-            :text-hex="tagTextColor"
-            readonly
-            @action="openTags"
-          />
-      </div>
-    </div>
+          {{ name }}
+        </b-tag>
+      </b-taglist>
   </div>
 </div>
 </template>
@@ -63,12 +59,10 @@
 <script>
 import GameProgress from '@/components/GameDetail/GameProgress';
 import GameCardUtils from '@/components/GameCards/GameCard';
-import Tag from '@/components/Tag';
 
 export default {
   components: {
     GameProgress,
-    Tag,
   },
 
   mixins: [GameCardUtils],
@@ -80,7 +74,7 @@ export default {
 
   $gameCoverWidth: 80px;
 
-  .game-card {
+  .card {
     background: var(--game-card-background);
     margin-bottom: $gp / 2;
     position: relative;
@@ -118,29 +112,6 @@ export default {
       flex-direction: column;
       align-items: flex-start;
 
-      .game-tags {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        margin-top: $gp / 4;
-      }
-
-      .tag {
-        margin-right: $gp / 4;
-      }
-
-      i.tags {
-        position: absolute;
-        bottom: $gp * 1.5;
-        right: $gp / 4;
-      }
-
-      .game-progress,
-      .game-rating, a {
-        display: inline-flex;
-        font-weight: bold;
-      }
-
       &:hover {
         a {
           text-decoration: underline;
@@ -164,10 +135,6 @@ export default {
       &:hover {
         color: #a5a2a2;
       }
-    }
-
-    .game-tag {
-      margin-bottom: $gp / 3;
     }
   }
 

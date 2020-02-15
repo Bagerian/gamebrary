@@ -137,7 +137,7 @@ export default {
   user-select: none;
   display: flex;
   align-items: flex-start;
-  height: calc(100vh - 48px);
+  height: calc(100vh - 52px);
   padding: 0 $gp;
   box-sizing: border-box;
   overflow-x: auto;

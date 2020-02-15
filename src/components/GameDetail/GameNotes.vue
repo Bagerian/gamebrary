@@ -1,9 +1,9 @@
 <!-- TODO: when file management is in place, allow to insert image from your files -->
 <template lang="html">
   <modal title="Game notes" ref="notesModal" @open="reset">
-    <button class="primary" :title="$t('notes.addNote')">
+    <b-button class="is-warning" :title="$t('notes.addNote')">
       <i class="fas fa-sticky-note" />
-    </button>
+  </b-button>
 
     <div slot="content" v-if="game" class="game-notes">
       <h3>Add note for {{ game.name }}</h3>

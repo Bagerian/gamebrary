@@ -1,15 +1,5 @@
 <template lang="html">
   <section>
-    <!-- <div class="setting">
-    <i class="fas fa-users" />
-    <h5>{{ $t('settings.public') }}</h5>
-
-    <toggle-switch
-    id="public"
-    v-model="value[platform.code].public"
-    />
-  </div> -->
-
     <h3>Theme</h3>
 
     <wallpaper-upload />
@@ -18,7 +8,11 @@
       <i class="fas fa-palette" />
       <h5>Theme</h5>
 
-      <select v-model="value[platform.code].theme" @change="$emit('save')">
+      <b-select
+        placeholder="Select a theme"
+        v-model="value[platform.code].theme"
+        @input="$emit('save')"
+      >
         <option
           v-for="{ id, name } in themes"
           :key="id"
@@ -26,14 +20,14 @@
         >
           {{ name }}
         </option>
-      </select>
+      </b-select>
     </div>
 
     <div class="setting">
       <i class="fas fa-bars" />
       <h5>Header position (only affects mobile)</h5>
 
-      <select v-model="value[platform.code].position" @change="$emit('save')">
+      <b-select v-model="value[platform.code].position" @input="$emit('save')">
         <option
           v-for="{ id, name } in positions"
           :key="id"
@@ -41,18 +35,14 @@
         >
           {{ name }}
         </option>
-      </select>
+      </b-select>
     </div>
 
     <div class="setting">
       <i class="fas fa-shapes" />
       <h5>Border Radius</h5>
 
-      <toggle-switch
-        id="borderRadius"
-        @change="$emit('save')"
-        v-model="value[platform.code].borderRadius"
-      />
+      <b-switch v-model="value[platform.code].borderRadius" @input="$emit('save')" />
     </div>
 
     <h3>Gameboard</h3>
@@ -60,18 +50,18 @@
       <i class="fas fa-heading" />
       <h5>Show amount of games next to list title</h5>
 
-      <toggle-switch
-        id="showGameCount"
-        @change="$emit('save')"
-        v-model="value[platform.code].showGameCount"
-      />
+      <b-switch v-model="value[platform.code].showGameCount" @input="$emit('save')" />
     </div>
 
     <div class="setting">
       <i class="fas fa-exclamation-triangle" />
       <h5>{{ $t('gameBoard.settings.dangerZone') }}</h5>
 
-      <modal
+      <b-button type="is-danger" @click="deleteBoard">
+        Delete collection
+      </b-button>
+
+      <!-- <modal
         :message="`Your ${platform.name} collection will be deleted forever.`"
         :title="`Delete ${platform.name} collection`"
         action-text="Delete forever"
@@ -85,7 +75,7 @@
           <i class="far fa-trash-alt" />
           Delete {{ platform.name }} collection
         </button>
-      </modal>
+      </modal> -->
     </div>
   </section>
 </template>
@@ -96,13 +86,11 @@ import themes from '@/themes';
 import positions from '@/positions';
 import Modal from '@/components/Modal';
 import WallpaperUpload from '@/components/WallpaperUpload';
-import ToggleSwitch from '@/components/ToggleSwitch';
 
 export default {
   components: {
     WallpaperUpload,
     Modal,
-    ToggleSwitch,
   },
 
   props: {
@@ -150,6 +138,15 @@ export default {
   },
 
   methods: {
+    deleteBoard() {
+      this.$buefy.dialog.confirm({
+        title: 'Delete board?',
+        message: 'All data will be lost',
+        type: 'is-warning',
+        onConfirm: () => this.deletePlatform(),
+      });
+    },
+
     deletePlatform() {
       this.$store.commit('REMOVE_PLATFORM');
 

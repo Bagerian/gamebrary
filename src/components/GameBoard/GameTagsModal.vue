@@ -1,62 +1,79 @@
 <template lang="html">
-  <modal
-    ref="tag"
-    :title="$t('tags.editTags' )"
-    :message="$t('tags.message', { gameName: game && game.name })"
-  >
-    <div slot="content" class="game-tags">
-      <h3>All tags</h3>
+  <b-modal :active.sync="open" has-modal-card trap-focus aria-role="dialog" aria-modal>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        {{ $t('tags.editTags') }}
+      </header>
 
-      <tag
-        v-for="(tag, name) in tags"
-        v-if="!tag.platform"
-        :key="name"
-        :label="name"
-        :hex="tag.hex"
-        :text-hex="tag.tagTextColor"
-        :readonly="!tag.games.includes(gameTagsId)"
-        @action="tryAdd(tag.games, name)"
-        @close="removeTag(name)"
-      />
+      <section class="modal-card-body">
+        <h2 class="subtitle">
+          All tags
+        </h2>
 
-      <h3>{{ platform.name }} tags</h3>
+        <b-taglist>
+          <b-tag
+            v-for="(tag, name) in tags"
+            :key="name"
+            v-if="tag.games.includes(gameTagsId)"
+            closable
+            aria-close-label="Close tag"
+            :style="`background-color: ${tag.hex}; color: ${tag.tagTextColor}`"
+            @click.native="tryAdd(tag.games, name)"
+            @close="removeTag(name)"
+          >
+            {{ name }}
+          </b-tag>
+        </b-taglist>
 
-      <tag
-        v-for="(tag, name) in tags"
-        v-if="tag.platform && tag.platform === platform.id"
-        :key="name"
-        :label="name"
-        :hex="tag.hex"
-        :text-hex="tag.tagTextColor"
-        :readonly="!tag.games.includes(gameTagsId)"
-        @action="tryAdd(tag.games, name)"
-        @close="removeTag(name)"
-      />
+        <tag
+          v-for="(tag, name) in tags"
+          v-if="!tag.platform"
+          :key="name"
+          :label="name"
+          :hex="tag.hex"
+          :text-hex="tag.tagTextColor"
+          :readonly="!tag.games.includes(gameTagsId)"
+          @action="tryAdd(tag.games, name)"
+          @close="removeTag(name)"
+        />
 
-      <div class="settings-message">
-        <p>{{ $t('tags.settingsMessage') }}</p>
-        <settings />
-      </div>
+        <h3>{{ platform.name }} tags</h3>
+
+        <tag
+          v-for="(tag, name) in tags"
+          v-if="tag.platform && tag.platform === platform.id"
+          :key="name"
+          :label="name"
+          :hex="tag.hex"
+          :text-hex="tag.tagTextColor"
+          :readonly="!tag.games.includes(gameTagsId)"
+          @action="tryAdd(tag.games, name)"
+          @close="removeTag(name)"
+        />
+      </section>
+
+      <footer class="modal-card-foot">
+        footer
+      </footer>
     </div>
-  </modal>
+  </b-modal>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import Tag from '@/components/Tag';
 import Modal from '@/components/Modal';
-import Settings from '@/pages/Settings';
 
 export default {
   components: {
     Tag,
     Modal,
-    Settings,
   },
 
   data() {
     return {
       gameTagsId: null,
+      open: false,
     };
   },
 
@@ -75,7 +92,8 @@ export default {
   methods: {
     openTags(id) {
       this.gameTagsId = id;
-      this.$refs.tag.open(id);
+      this.open = true;
+      // this.$refs.tag.open(id);
     },
 
     tryAdd(games, tagName) {

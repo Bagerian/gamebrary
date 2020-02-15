@@ -1,3 +1,6 @@
+<!-- TODO: all modals component based -->
+<!-- TODO: set buefy defaults (e.g. font pack, etc and clean up props) -->
+<!-- TODO: clean up css -->
 <template>
   <div
     id="app"

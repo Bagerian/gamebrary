@@ -4,32 +4,32 @@
     <game-notes />
 
     <div v-if="hasTags" class="tags">
-      <button
-        class="primary"
+      <b-button
+        class="is-primary"
         :title="$t('tags.addTag')"
         @click="openTags"
       >
         <i class="fas fa-tag" />
-      </button>
+    </b-button>
     </div>
 
-    <button
+    <b-button
       v-if="game && !list.games.includes(game.id)"
-      class="primary"
+      class="is-primary"
       :title="$t('list.addGame')"
       @click="addGame"
     >
       <i class="fas fa-plus" />
-    </button>
+  </b-button>
 
-    <button
+    <b-button
       v-else
-      class="danger"
+      class="is-danger"
       :title="$t('gameDetail.removeFromList')"
       @click="removeGame"
     >
       <i class="far fa-trash-alt" />
-    </button>
+  </b-button>
   </div>
 </template>
 
@@ -81,13 +81,10 @@ export default {
       this.$store
         .dispatch('SAVE_LIST', this.gameLists)
         .then(() => {
-          this.$bus.$emit('TOAST', {
-            message: `Removed ${this.game.name} from list ${this.list.name}`,
-            imageUrl: this.coverUrl,
-          });
+          this.$buefy.toast.open({ message: `Removed ${this.game.name} from list ${this.list.name}`, type: 'is-success' });
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },
@@ -110,13 +107,10 @@ export default {
 
       this.$store.dispatch('SAVE_LIST', this.gameLists)
         .then(() => {
-          this.$bus.$emit('TOAST', {
-            message: `Added ${this.game.name} to list ${this.list.name}`,
-            imageUrl: this.coverUrl,
-          });
+          this.$buefy.toast.open({ message: `Added ${this.game.name} to list ${this.list.name}`, type: 'is-success' });
         })
         .catch(() => {
-          this.$bus.$emit('TOAST', { message: 'Authentication error', type: 'error' });
+          this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });
           this.$router.push({ name: 'sessionExpired' });
         });
     },

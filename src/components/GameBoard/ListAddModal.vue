@@ -1,50 +1,61 @@
 <template lang="html">
-  <modal
-    ref="listAddModal"
-    :title="title"
-    class="list-add-modal"
-    @open="open"
-  >
-    <button
-      :title="$t('list.add')"
-      class="small primary add-list-button"
-      ref="addList"
-    >
-      <i class="fas fa-plus" />
-    </button>
+    <div class="list-add-modal">
+        <b-modal :active.sync="open" has-modal-card trap-focus aria-role="dialog" aria-modal>
+            <form @submit.prevent="addList" class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">{{ title }}</p>
+            </header>
 
-    <div slot="content">
-      <!-- <div v-if="isEmptyBoard">
-        <h3>Get started with a preset</h3>
+            <section class="modal-card-body">
+              <!-- <div v-if="isEmptyBoard">
+                <h3>Get started with a preset</h3>
 
-        <button class="secondary">Minimalist (Owned / Wishlist)</button>
-        <button class="secondary">Completionist (Owned / Wishlist / Completed)</button>
+                <button class="secondary">Minimalist (Owned / Wishlist)</button>
+                <button class="secondary">Completionist (Owned / Wishlist / Completed)</button>
 
-        <h3>Or create your first list</h3>
-      </div> -->
+                <h3>Or create your first list</h3>
+              </div> -->
 
-      <form @submit.prevent="addList">
-        <input
-          ref="listNameInput"
-          v-model.trim="listName"
-          :placeholder="$t('list.placeholder')"
-          type="text"
-          autofocus
-          required
-        >
 
-        <button
-          :disabled="disabled"
-          class="primary"
-          type="submit"
-        >
-          {{ buttonLabel }}
-        </button>
+                  <b-field label="Name">
+                      <b-input
+                        ref="listNameInput"
+                        v-model.trim="listName"
+                        :placeholder="$t('list.placeholder')"
+                        type="text"
+                        autofocus
+                        required
+                      />
+                  </b-field>
 
-        <small v-if="isDuplicate">{{ $t('list.duplicateWarning') }}</small>
-      </form>
+
+                  <b-message type="is-warning" v-if="isDuplicate">
+                    {{ $t('list.duplicateWarning') }}
+                  </b-message>
+            </section>
+
+            <footer class="modal-card-foot">
+              <button
+                :disabled="isDuplicate"
+                class="button is-primary"
+                type="submit"
+              >
+                {{ buttonLabel }}
+              </button>
+
+              <button class="button" type="button" @click="open = false">
+                Close
+              </button>
+            </footer>
+          </form>
+        </b-modal>
+
+        <b-button
+          class="is-primary"
+          icon-right="plus"
+          @click="openModal"
+        />
     </div>
-  </modal>
 </template>
 
 <script>
@@ -58,6 +69,7 @@ export default {
 
   data() {
     return {
+      open: false,
       listName: '',
     };
   },
@@ -98,14 +110,11 @@ export default {
 
       return newList || emptyList;
     },
-
-    disabled() {
-      return this.isDuplicate || !this.listName;
-    },
   },
 
   methods: {
-    open() {
+    openModal() {
+      this.open = true;
       this.listName = '';
       this.focusInput();
     },
@@ -117,10 +126,6 @@ export default {
     },
 
     addList() {
-      if (this.disabled) {
-        return;
-      }
-
       const list = {
         games: [],
         name: this.listName,

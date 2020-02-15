@@ -18,8 +18,8 @@
 
     <main>
       <div class="game-title">
-        <h2>{{ games[id].name }}</h2>
-        <h4>{{ platform.name }}</h4>
+        <h1 class="title">{{ games[id].name }}</h1>
+        <h2 class="subtitle">{{ platform.name }}</h2>
 
         <game-progress
           v-if="gameProgress"

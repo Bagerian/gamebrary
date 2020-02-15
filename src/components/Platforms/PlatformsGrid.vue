@@ -3,7 +3,7 @@
     <div
       v-for="platform in platforms"
       :key="platform.name"
-      :class="['platform', platform.code]"
+      :class="['platform', 'card', platform.code]"
       :style="`background-color: ${platform.hex || '#fff'}`"
       @click="changePlatform(platform)"
     >

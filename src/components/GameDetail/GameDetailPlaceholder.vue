@@ -8,7 +8,12 @@
 
         <div>
           <h2>{{ gamePreviewData.name }}</h2>
-          <game-rating :rating="gamePreviewData.rating" />
+          <b-rate
+            :value="Math.round((gamePreviewData.rating / 20) * 2) / 2"
+            size="is-small"
+            disabled
+          />
+          <!-- <game-rating :rating="gamePreviewData.rating" /> -->
           <placeholder :lines="3" />
         </div>
 
@@ -19,12 +24,10 @@
 
 <script>
 import { mapState } from 'vuex';
-import GameRating from '@/components/GameDetail/GameRating';
 import Placeholder from '@/components/Placeholder';
 
 export default {
   components: {
-    GameRating,
     Placeholder,
   },
 

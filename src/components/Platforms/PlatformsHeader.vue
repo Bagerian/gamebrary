@@ -1,18 +1,18 @@
 <template lang="html">
   <header>
-    <button @click="toggleView" class="primary small">
+    <b-button @click="toggleView" class="is-primary small">
       <i :class="viewIcon" />
-    </button>
+    </b-button>
 
     <modal
       ref="listAddModal"
       title="Filter and sort platforms"
     >
-      <button class="primary small filter-button">
+      <b-button class="primary small filter-button">
 
         <i class="fas fa-filter" :class="{ 'filter-active': filterField }" />
         <span class="indicator" v-if="ownedListsOnly" />
-      </button>
+      </b-button>
 
       <div slot="content">
         <section>

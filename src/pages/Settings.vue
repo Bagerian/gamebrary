@@ -1,45 +1,54 @@
 <template lang="html">
-  <modal title="Settings">
-    <gravatar :email="user.email" class="avatar" v-if="user && user.email" />
-
-    <div
-      slot="content"
-      class="settings"
-    >
-      <game-board-settings v-model="localSettings" @save="save" v-if="isGameBoard" />
-
-      <h3>Global</h3>
-      <tags-settings v-model="localSettings" />
-
-      <div class="setting">
-        <i class="fas fa-sign-out-alt" />
-        {{ $t('settings.signOut') }}
-
-        <button
-          class="secondary"
-          @click="signOut"
-        >
-          {{ $t('settings.signOut') }}
-        </button>
-      </div>
-
-      <modal
-        :message="$t('settings.deleteAccount.message')"
-        :title="$t('settings.deleteAccount.title')"
-        :action-text="$t('settings.deleteAccount.button')"
-        @action="deleteAccount"
-      >
-        <div class="setting">
-          <i class="fas fa-exclamation-triangle" />
-          {{ $t('settings.deleteAccount.button') }}
-
-          <button class="danger">
-            {{ $t('settings.deleteAccount.button') }}
-          </button>
+  <div class="container">
+    <header class="hero is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Board Settings
+          </h1>
+          <h2 class="subtitle">
+            Primary subtitle
+          </h2>
         </div>
-      </modal>
+      </div>
+    </header>
+
+    <section>
+      <h1>Settings</h1>
+
+    </section>
+
+
+    <h3>Global</h3>
+    <tags-settings v-model="localSettings" />
+    <game-board-settings v-model="localSettings" @save="save" />
+
+    <div class="setting">
+      <i class="fas fa-sign-out-alt" />
+      {{ $t('settings.signOut') }}
+
+      <b-button class="is-light" @click="signOut">
+        {{ $t('settings.signOut') }}
+      </b-button>
     </div>
-  </modal>
+
+
+    <!-- <modal
+    :message="$t('settings.deleteAccount.message')"
+    :title="$t('settings.deleteAccount.title')"
+    :action-text="$t('settings.deleteAccount.button')"
+    @action="deleteAccount"
+    >
+    <div class="setting">
+      <i class="fas fa-exclamation-triangle" />
+      {{ $t('settings.deleteAccount.button') }}
+
+      <button class="danger">
+        {{ $t('settings.deleteAccount.button') }}
+      </button>
+    </div>
+  </modal> -->
+  </div>
 </template>
 
 <script>

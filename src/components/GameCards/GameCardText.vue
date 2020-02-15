@@ -28,25 +28,18 @@
         @click="openDetails"
       />
 
-      <div
-        v-if="hasTags"
-        class="game-tags drag-filter"
->
-        <div
+      <!-- TODO: use array function -->
+      <b-taglist v-if="hasTags" class="drag-filter">
+        <b-tag
           v-for="({ games, hex, tagTextColor }, name) in tags"
           v-if="games.includes(game.id)"
           :key="name"
+          :style="`background-color: ${hex}; color: ${tagTextColor}`"
+          @click.native="openTags"
         >
-          <tag
-            v-if="games.includes(game.id)"
-            :label="name"
-            :hex="hex"
-            :text-hex="tagTextColor"
-            readonly
-            @action="openTags"
-          />
-        </div>
-      </div>
+          {{ name }}
+        </b-tag>
+      </b-taglist>
     </div>
   </div>
 </template>
@@ -71,7 +64,7 @@ export default {
 
   $gameCoverWidth: 80px;
 
-  .game-card {
+  .card {
     background: var(--game-card-background);
     margin-bottom: $gp / 2;
     position: relative;

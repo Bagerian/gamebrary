@@ -1,6 +1,6 @@
 <template lang="html">
   <div :class="['list', viewClass, { unique: unique && view !== 'masonry', dragging }]">
-    <header>
+    <div class="list-header">
       <span class="list-name">
         <sort-icon
           v-if="autoSortEnabled"
@@ -8,7 +8,8 @@
           title="List sorted automatically"
         />
 
-        {{ list[listIndex].name }}
+        <h2 class="is-small">{{ list[listIndex].name }}</h2>
+
         <span
           v-if="showGameCount"
         >
@@ -16,8 +17,25 @@
         </span>
       </span>
 
-      <list-settings-modal :list-index="listIndex" />
-    </header>
+      <div>
+        <b-button
+          class="is-primary"
+          icon-right="plus"
+        />
+
+        <b-dropdown aria-role="list" position="is-bottom-left" :mobile-modal="false">
+          <b-button
+            class="is-light"
+            icon-right="ellipsis-h"
+            slot="trigger"
+          />
+
+          <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>
+          <add-game-modal :list-id="listIndex" />
+          <list-settings-modal :list-index="listIndex" />
+        </b-dropdown>
+      </div>
+    </div>
 
     <draggable
       v-if="view === 'masonry'"
@@ -63,8 +81,6 @@
       <i class="fas fa-hand-pointer fa-2x hand-drag" />
       <p><i class="fas fa-grip-vertical" /> Drag games here</p>
     </div>
-
-    <add-game-modal :list-id="listIndex" />
   </div>
 </template>
 
@@ -114,7 +130,7 @@ export default {
     return {
       masonry: null,
       gameDraggableOptions: {
-        handle: '.game-card',
+        handle: '.card',
         ghostClass: 'card-placeholder',
         filter: '.drag-filter',
         delay: 100,
@@ -266,7 +282,7 @@ export default {
         this.$nextTick(() => {
           // eslint-disable-next-line
             this.masonry = new Masonry(`.game-masonry-${this.listIndex}`, {
-            itemSelector: '.game-card',
+            itemSelector: '.card',
             gutter: 4,
             percentPosition: true,
           });
@@ -308,8 +324,6 @@ export default {
     cursor: default;
     position: relative;
     width: 300px;
-    background: var(--list-background);
-    border-radius: var(--border-radius);
     margin-right: $gp;
     max-height: calc(100vh - 100px);
 
@@ -336,25 +350,25 @@ export default {
       }
     }
 
-    header {
-      align-items: center;
-      background: var(--list-header-background);
-      color: var(--list-header-text-color);
-      display: flex;
-      height: $list-header-height;
-      justify-content: space-between;
-      padding-left: $gp / 2;
-      position: absolute;
-      border-radius: var(--border-radius);
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+    .list-header {
+      padding: $gp / 2;
       width: 100%;
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffffD9;
+      // backdrop-filter: grayscale(10%) blur(2px);
     }
 
     .list-name {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
     }
 
     .games {
@@ -364,14 +378,14 @@ export default {
       max-height: calc(100vh - 150px);
       min-height: 120px;
       overflow-y: auto;
-      margin-top: $list-header-height;
-      padding: $gp / 2 $gp / 2 0;
+      padding: 0 $gp / 2;
       width: 100%;
+      padding-top: 52px;
     }
 
     &.grid {
       .games {
-        padding: $gp / 2;
+        padding: 52px $gp / 2 0;
         grid-template-columns: 1fr 1fr;
         grid-gap: $gp / 2;
 
@@ -414,9 +428,9 @@ export default {
     max-height: calc(100vh - 154px);
     min-height: 80px;
     overflow-y: auto;
-    margin-top: $list-header-height;
     padding: 4px;
     width: 100%;
+    padding-top: 52px;
   }
 
   .empty-list {

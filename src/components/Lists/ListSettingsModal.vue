@@ -62,7 +62,10 @@
               <b-switch v-model="localList.hideGameInfo" @input="save" />
             </section>
 
-            <section :class="{ disabled: !localList.hideGameInfo }" v-if="localList.view === 'grid'">
+            <section
+              :class="{ disabled: !localList.hideGameInfo }"
+              v-if="localList.view === 'grid'"
+            >
               <h4>Hide game info on top of game covers</h4>
 
               <toggle-switch

@@ -41,14 +41,17 @@ export default {
   },
 
   computed: {
-    // TODO: pass game as prop, component should not be aware of data source, just render whatever is given
+    // TODO: pass game as prop
+    // component should not be aware of data source, just render whatever is given
     ...mapState(['game']),
 
     screenshots() {
       // eslint-disable-next-line
       return this.game.screenshots
         ? this.game.screenshots.map((image) => {
-          return `https://images.igdb.com/igdb/image/upload/t_screenshot_huge/${image.image_id}.jpg`;
+          const url = 'https://images.igdb.com/igdb/image/upload/t_screenshot_huge/';
+
+          return `${url}${image.image_id}.jpg`;
         })
         : null;
     },

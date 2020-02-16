@@ -1,68 +1,55 @@
 <template lang="html">
-  <modal :title="$t('list.addGames', { listName })" @open="clear">
-    <!-- <b-button
-      :title="$t('list.addGames', { listName })"
-      expanded
+  <div class="modal-card">
+    <form @submit.prevent="search" class="search-form">
+      <input
+        ref="searchInput"
+        v-model="searchText"
+        :placeholder="$t('gameSearch.inputPlaceholder')"
+        type="text"
+      >
+
+      <button class="primary" @click="search">
+        <i :class="searchIcon" />
+      </button>
+    </form>
+
+    <small
+      v-if="gamesInList.length > 0"
+      class="games-in-list"
+      :title="gamesInListNames"
     >
-      <i class="fas fa-plus" />
-    </b-button> -->
-    <b-dropdown-item aria-role="listitem">
-      Add game
-    </b-dropdown-item>
+      <strong>{{ gamesInListMessage }}</strong>
+      {{ $t('gameSearch.alreadyInList') }}
+    </small>
 
-    <template slot="content">
-      <form @submit.prevent="search" class="search-form">
-        <input
-          ref="searchInput"
-          v-model="searchText"
-          :placeholder="$t('gameSearch.inputPlaceholder')"
-          type="text"
-        >
+    <div
+      v-if="filteredResults.length > 0"
+      ref="searchResults"
+      class="search-results"
+    >
+      <game-card-search
+        v-for="{ id } in filteredResults"
+        :key="id"
+        :game-id="id"
+        :list-id="listId"
+        search-result
+        @added="added"
+      />
 
-        <button class="primary" @click="search">
-          <i :class="searchIcon" />
-        </button>
-      </form>
+      <igdb-credit linkable />
+    </div>
 
-      <small
-        v-if="gamesInList.length > 0"
-        class="games-in-list"
-        :title="gamesInListNames"
-      >
-        <strong>{{ gamesInListMessage }}</strong>
-        {{ $t('gameSearch.alreadyInList') }}
-      </small>
-
-      <div
-        v-if="filteredResults.length > 0"
-        ref="searchResults"
-        class="search-results"
-      >
-        <game-card-search
-          v-for="{ id } in filteredResults"
-          :key="id"
-          :game-id="id"
-          :list-id="listId"
-          search-result
-          @added="added"
-        />
-
-        <igdb-credit linkable />
-      </div>
-
-      <span
-        v-if="noResults"
-        class="no-results"
-      >
-        {{ $t('gameSearch.noResultsFound') }}
-      </span>
-    </template>
-  </modal>
+    <span
+      v-if="noResults"
+      class="no-results"
+    >
+      {{ $t('gameSearch.noResultsFound') }}
+    </span>
+  </div>
 </template>
 
 <script>
 import GameCardSearch from '@/components/GameCards/GameCardSearch';
-import Modal from '@/components/Modal';
 import IgdbCredit from '@/components/IgdbCredit';
 import { debounce } from 'lodash';
 import { mapState } from 'vuex';
@@ -71,7 +58,6 @@ export default {
   components: {
     GameCardSearch,
     IgdbCredit,
-    Modal,
   },
 
   props: {
@@ -159,8 +145,6 @@ export default {
     },
 
     added() {
-      this.$emit('added');
-
       if (this.filteredResults.length === 1) {
         this.clear();
       }

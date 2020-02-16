@@ -1,133 +1,123 @@
 <template lang="html">
-  <div>
-    <b-modal :active.sync="modalOpen" has-modal-card trap-focus aria-role="dialog" aria-modal>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title">{{ $t('list.settings') }}</p>
-        </header>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{{ $t('list.settings') }}</p>
+    </header>
 
-        <div class="modal-card-body" v-if="localList">
-            <section>
-              <h4>List name</h4>
+    <div class="modal-card-body" v-if="localList">
+        <section>
+          <h4>List name</h4>
 
-              <b-input ref="input" v-model="localList.name" />
+          <b-input ref="input" v-model="localList.name" />
 
-              <b-button
-                :title="$t('global.save')"
-                class="is-primary"
-                type="button"
-                @click="save"
-              >
-                {{ $t('global.save') }}
-              </b-button>
-            </section>
-
-            <section>
-              <h4>{{ $t('list.view') }}</h4>
-
-              <b-field>
-                <b-radio-button
-                  v-for="(icon, view) in views"
-                  :key="view"
-                  :native-value="view"
-                  @input="save"
-                  v-model="localList.view"
-                >
-                  <b-icon pack="fas" :icon="icon" />
-                  <span>{{ $t(`list.views.${view}`) }}</span>
-                </b-radio-button>
-              </b-field>
-            </section>
-
-            <section v-if="hasMultipleGames">
-              <h4>{{ $t('list.sortList') }}</h4>
-
-              <b-field>
-                <b-radio-button
-                  v-for="(icon, sortOrder) in sortOrders"
-                  :key="sortOrder"
-                  :native-value="sortOrder"
-                  @input="save"
-                  v-model="localList.sortOrder"
-                >
-                  <b-icon pack="fas" :icon="icon" />
-                  <span>{{ $t(`list.${sortOrder}`) }}</span>
-                </b-radio-button>
-              </b-field>
-            </section>
-
-            <section v-if="localList.view === 'grid'">
-              <h4>Compact grid view</h4>
-
-              <b-switch v-model="localList.hideGameInfo" @input="save" />
-            </section>
-
-            <section
-              :class="{ disabled: !localList.hideGameInfo }"
-              v-if="localList.view === 'grid'"
-            >
-              <h4>Hide game info on top of game covers</h4>
-
-              <toggle-switch
-                id="hideGameInfoOnCover"
-                @change="save"
-                v-model="localList.hideGameInfoOnCover"
-              />
-            </section>
-
-            <section>
-              <h4>Move list</h4>
-
-              <b-button
-                class="is-primary"
-                :title="$t('list.moveLeft')"
-                :disabled="isFirst"
-                @click="moveList(listIndex, listIndex - 1)"
-              >
-                <i class="fas fa-arrow-left" />
-
-                {{ $t('list.moveLeft') }}
-              </b-button>
-
-              <b-button
-                class="is-primary"
-                :title="$t('list.moveRight')"
-                :disabled="isLast"
-                @click="moveList(listIndex, listIndex + 1)"
-              >
-                {{ $t('list.moveRight') }}
-                <i class="fas fa-arrow-right" />
-              </b-button>
-            </section>
-
-            <section :class="{ disabled: localList.view === 'masonry' }">
-              <h4>Hide game ratings</h4>
-
-              <b-switch
-                v-model="localList.hideGameRatings"
-                @input="save"
-              />
-            </section>
-        </div>
-
-      <footer class="modal-card-foot">
           <b-button
-            :title="$t('list.delete')"
-            class="is-danger"
-            @click="tryDelete"
+            :title="$t('global.save')"
+            class="is-primary"
+            type="button"
+            @click="save"
           >
-            <i class="far fa-trash-alt" />
-            {{ $t('list.delete') }}
+            {{ $t('global.save') }}
           </b-button>
-        </footer>
-      </div>
-    </b-modal>
+        </section>
 
-    <!-- TODO: trigger modal and pass component -->
+        <section>
+          <h4>{{ $t('list.view') }}</h4>
 
-    <b-dropdown-item aria-role="listitem" @click.native="open">
-      Settings
-    </b-dropdown-item>
+          <b-field>
+            <b-radio-button
+              v-for="(icon, view) in views"
+              :key="view"
+              :native-value="view"
+              @input="save"
+              v-model="localList.view"
+            >
+              <b-icon pack="fas" :icon="icon" />
+              <span>{{ $t(`list.views.${view}`) }}</span>
+            </b-radio-button>
+          </b-field>
+        </section>
+
+        <section v-if="hasMultipleGames">
+          <h4>{{ $t('list.sortList') }}</h4>
+
+          <b-field>
+            <b-radio-button
+              v-for="(icon, sortOrder) in sortOrders"
+              :key="sortOrder"
+              :native-value="sortOrder"
+              @input="save"
+              v-model="localList.sortOrder"
+            >
+              <b-icon pack="fas" :icon="icon" />
+              <span>{{ $t(`list.${sortOrder}`) }}</span>
+            </b-radio-button>
+          </b-field>
+        </section>
+
+        <section v-if="localList.view === 'grid'">
+          <h4>Compact grid view</h4>
+
+          <b-switch v-model="localList.hideGameInfo" @input="save" />
+        </section>
+
+        <section
+          :class="{ disabled: !localList.hideGameInfo }"
+          v-if="localList.view === 'grid'"
+        >
+          <h4>Hide game info on top of game covers</h4>
+
+          <toggle-switch
+            id="hideGameInfoOnCover"
+            @change="save"
+            v-model="localList.hideGameInfoOnCover"
+          />
+        </section>
+
+        <section>
+          <h4>Move list</h4>
+
+          <b-button
+            class="is-primary"
+            :title="$t('list.moveLeft')"
+            :disabled="isFirst"
+            @click="moveList(listIndex, listIndex - 1)"
+          >
+            <i class="fas fa-arrow-left" />
+
+            {{ $t('list.moveLeft') }}
+          </b-button>
+
+          <b-button
+            class="is-primary"
+            :title="$t('list.moveRight')"
+            :disabled="isLast"
+            @click="moveList(listIndex, listIndex + 1)"
+          >
+            {{ $t('list.moveRight') }}
+            <i class="fas fa-arrow-right" />
+          </b-button>
+        </section>
+
+        <section :class="{ disabled: localList.view === 'masonry' }">
+          <h4>Hide game ratings</h4>
+
+          <b-switch
+            v-model="localList.hideGameRatings"
+            @input="save"
+          />
+        </section>
+    </div>
+
+    <footer class="modal-card-foot">
+      <b-button
+        :title="$t('list.delete')"
+        class="is-danger"
+        @click="tryDelete"
+      >
+        <i class="far fa-trash-alt" />
+        {{ $t('list.delete') }}
+      </b-button>
+    </footer>
   </div>
 </template>
 

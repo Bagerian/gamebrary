@@ -21,6 +21,7 @@
         <b-button
           class="is-primary"
           icon-right="plus"
+          @click="addGame"
         />
 
         <b-dropdown aria-role="list" position="is-bottom-left" :mobile-modal="false">
@@ -30,9 +31,9 @@
             slot="trigger"
           />
 
-          <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>
-          <add-game-modal :list-id="listIndex" />
-          <list-settings-modal :list-index="listIndex" />
+          <b-dropdown-item aria-role="listitem" @click="openListSettings">
+            Settings
+          </b-dropdown-item>
         </b-dropdown>
       </div>
     </div>
@@ -277,6 +278,26 @@ export default {
   },
 
   methods: {
+    addGame() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: AddGameModal,
+        props: {
+          listId: this.listIndex,
+        },
+      });
+    },
+
+    openListSettings() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: ListSettingsModal,
+        props: {
+          listIndex: this.listIndex,
+        },
+      });
+    },
+
     initMasonry() {
       if (this.view === 'masonry') {
         this.$nextTick(() => {

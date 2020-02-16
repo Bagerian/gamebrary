@@ -17,11 +17,13 @@
 
 <script>
 import Tag from '@/components/Tag';
+import GameTagsModal from '@/components/GameBoard/GameTagsModal';
 import { mapState, mapGetters } from 'vuex';
 
 export default {
   components: {
     Tag,
+    GameTagsModal,
   },
 
   computed: {
@@ -36,7 +38,14 @@ export default {
     },
 
     openTags() {
-      this.$bus.$emit('OPEN_TAGS', this.game.id);
+      this.$buefy.modal.open({
+        parent: this,
+        component: GameTagsModal,
+        props: {
+          gameTagsId: this.game.id,
+        },
+        trapFocus: true,
+      });
     },
 
     async saveTags() {

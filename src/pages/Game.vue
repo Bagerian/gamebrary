@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="game">
+  <div class="game modal-card">
     <header>
       <img :src="coverUrl" :alt="games[id].name" class="game-cover" />
 

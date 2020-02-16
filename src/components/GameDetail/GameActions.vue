@@ -36,11 +36,13 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import GameNotes from '@/components/GameDetail/GameNotes';
+import GameTagsModal from '@/components/GameBoard/GameTagsModal';
 import GameProgressModal from '@/components/GameDetail/GameProgressModal';
 
 export default {
   components: {
     GameNotes,
+    GameTagsModal,
     GameProgressModal,
   },
 
@@ -67,7 +69,14 @@ export default {
 
   methods: {
     openTags() {
-      this.$bus.$emit('OPEN_TAGS', this.game.id);
+      this.$buefy.modal.open({
+        parent: this,
+        component: GameTagsModal,
+        props: {
+          gameTagsId: this.game.id,
+        },
+        trapFocus: true,
+      });
     },
 
     removeGame() {

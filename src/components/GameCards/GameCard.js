@@ -1,9 +1,11 @@
 import { mapState, mapGetters } from 'vuex';
 import Game from '@/pages/Game';
+import GameTagsModal from '@/components/GameBoard/GameTagsModal';
 
 export default {
   components: {
     Game,
+    GameTagsModal,
   },
 
   props: {
@@ -107,7 +109,14 @@ export default {
     },
 
     openTags() {
-      this.$bus.$emit('OPEN_TAGS', this.game.id);
+      this.$buefy.modal.open({
+        parent: this,
+        component: GameTagsModal,
+        props: {
+          gameTagsId: this.game.id,
+        },
+        trapFocus: true,
+      });
     },
 
     addGame() {

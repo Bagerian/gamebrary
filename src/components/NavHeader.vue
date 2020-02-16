@@ -18,7 +18,7 @@
     <b-button
       class="is-primary"
       icon-right="cog"
-      @click="$router.push({ name: 'settings' })"
+      @click="openSettings"
     />
   </nav>
 </template>
@@ -60,6 +60,18 @@ export default {
 
       return null;
     },
+  },
+
+  methods: {
+      openSettings() {
+        this.$buefy.modal.open({
+          parent: this,
+          component: Settings,
+          props: {
+            listId: this.listIndex,
+          },
+        });
+      },
   },
 };
 </script>

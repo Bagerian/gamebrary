@@ -1,37 +1,29 @@
 <template lang="html">
-  <div class="container">
-    <header class="hero is-light">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">
-            Board Settings
-          </h1>
-          <h2 class="subtitle">
-            Primary subtitle
-          </h2>
-        </div>
-      </div>
+  <div class="modal-card" style="width: auto">
+    <header class="modal-card-head">
+        <p class="modal-card-title">
+          Board Settings
+        </p>
     </header>
+    <section class="modal-card-body">
+      <b-button class="is-primary" @click="openTags">
+        Manage tags
+      </b-button>
 
-    <section>
-      <h1>Settings</h1>
+      <!-- <tags-settings v-model="localSettings" /> -->
+      <game-board-settings v-model="localSettings" @save="save" />
 
+      <div class="setting">
+        <i class="fas fa-sign-out-alt" />
+        {{ $t('settings.signOut') }}
+      </div>
     </section>
-
-
-    <h3>Global</h3>
-    <tags-settings v-model="localSettings" />
-    <game-board-settings v-model="localSettings" @save="save" />
-
-    <div class="setting">
-      <i class="fas fa-sign-out-alt" />
-      {{ $t('settings.signOut') }}
-
-      <b-button class="is-light" @click="signOut">
+    <footer class="modal-card-foot">
+      <b-button @click="signOut">
         {{ $t('settings.signOut') }}
       </b-button>
-    </div>
-
+    </footer>
+</div>
 
     <!-- <modal
     :message="$t('settings.deleteAccount.message')"
@@ -48,7 +40,6 @@
       </button>
     </div>
   </modal> -->
-  </div>
 </template>
 
 <script>
@@ -133,6 +124,13 @@ export default {
   },
 
   methods: {
+    openTags() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: TagsSettings,
+      });
+    },
+
     save() {
       // TODO: make async
       this.$store.dispatch('SAVE_SETTINGS', this.localSettings)

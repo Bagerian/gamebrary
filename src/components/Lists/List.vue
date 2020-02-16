@@ -348,22 +348,6 @@ export default {
     margin-right: $gp;
     max-height: calc(100vh - 100px);
 
-    @media($small) {
-      max-height: calc(100vh - 80px);
-      min-height: calc(100vh - 80px);
-
-      &:not(.dragging) {
-        .games {
-          scroll-snap-type: x mandatory;
-          scroll-padding: $gp / 2;
-
-          .game-card {
-            scroll-snap-align: start;
-          }
-        }
-      }
-    }
-
     &.unique {
       @media($small) {
         min-width: 300px;
@@ -375,13 +359,8 @@ export default {
       padding: $gp / 2;
       width: 100%;
       display: flex;
-      position: absolute;
-      top: 0;
-      left: 0;
       justify-content: space-between;
       align-items: center;
-      background-color: #ffffffD9;
-      // backdrop-filter: grayscale(10%) blur(2px);
     }
 
     .list-name {
@@ -396,17 +375,16 @@ export default {
       display: grid;
       height: 100%;
       overflow: hidden;
-      max-height: calc(100vh - 150px);
+      max-height: calc(100vh - 200px);
       min-height: 120px;
       overflow-y: auto;
       padding: 0 $gp / 2;
       width: 100%;
-      padding-top: 52px;
     }
 
     &.grid {
       .games {
-        padding: 52px $gp / 2 0;
+        padding: 0 $gp / 2;
         grid-template-columns: 1fr 1fr;
         grid-gap: $gp / 2;
 
@@ -451,7 +429,6 @@ export default {
     overflow-y: auto;
     padding: 4px;
     width: 100%;
-    padding-top: 52px;
   }
 
   .empty-list {

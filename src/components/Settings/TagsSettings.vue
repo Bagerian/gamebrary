@@ -1,114 +1,112 @@
 <template lang="html">
-  <div>
-    <modal title="Manage tags" @open="reset">
-      <div class="setting">
-        <i class="fas fa-tags" />
-        <h5>Tags</h5>
+  <div class="modal-card" style="width: auto">
+    <header class="modal-card-head">
+      <p class="modal-card-title">
+        Tags
+      </p>
+    </header>
 
-        <button class="primary">
-          Manage tags
-        </button>
-      </div>
+    <section class="modal-card-body">
+      <form class="add-tag" @submit.prevent="createTag">
+        <h3>Add a tag</h3>
+        <div class="tag-input">
+          <input
+            ref="tagInput"
+            v-model="tagName"
+            required
+            maxlength="20"
+            :placeholder="$t('tags.inputPlaceholder')"
+            type="text"
+          >
 
-      <div slot="content">
-        <form class="add-tag" @submit.prevent="createTag">
-          <h3>Add a tag</h3>
-          <div class="tag-input">
-            <input
-              ref="tagInput"
-              v-model="tagName"
-              required
-              maxlength="20"
-              :placeholder="$t('tags.inputPlaceholder')"
-              type="text"
-            >
+          <swatches
+            v-model="tagHex"
+            show-fallback
+            popover-to="left"
+            swatch-size="32"
+            colors="basic"
+          />
 
-            <swatches
-              v-model="tagHex"
-              show-fallback
-              popover-to="left"
-              swatch-size="32"
-              colors="basic"
-            />
+          <swatches
+            v-model="tagTextColor"
+            show-fallback
+            popover-to="left"
+            swatch-size="32"
+            colors="basic"
+          />
 
-            <swatches
-              v-model="tagTextColor"
-              show-fallback
-              popover-to="left"
-              swatch-size="32"
-              colors="basic"
-            />
-
-            <div class="preview">
-              <small>Tag preview</small>
-              <tag
-                :label="tagName || 'Preview'"
-                :hex="tagHex"
-                :textHex="tagTextColor"
-              />
-            </div>
-          </div>
-
-          <div class="exclusive-toggle">
-            Exclusive to {{ platform.name }}
-
-            <toggle-switch
-              id="global"
-              v-model="exclusive"
-            />
-          </div>
-
-          <div class="tag-actions">
-            <button
-              :disabled="!tagName"
-              class="secondary"
-              @click="reset"
-            >
-              <i class="fas fa-redo" />
-            </button>
-
-            <button
-              :disabled="isDuplicate"
-              class="primary"
-              type="submit"
-            >
-              {{ $t('global.save') }}
-            </button>
-          </div>
-        </form>
-
-        <div v-if="hasTags" class="tags">
-          <!-- TODO: use computed properties for filtering out tags -->
-          <section>
-            <h3>All tags</h3>
-
+          <div class="preview">
+            <small>Tag preview</small>
             <tag
-              v-for="(tag, name) in localTags"
-              v-if="!tag.platform"
-              :key="name"
-              :label="name"
-              :hex="tag.hex"
-              :text-hex="tag.tagTextColor"
-              @close="deleteTag(name)"
+              :label="tagName || 'Preview'"
+              :hex="tagHex"
+              :textHex="tagTextColor"
             />
-          </section>
-
-          <section>
-            <h3>{{ platform.name }} tags</h3>
-
-            <tag
-              v-for="(tag, name) in localTags"
-              v-if="tag.platform && tag.platform === platform.id"
-              :key="name"
-              :label="name"
-              :hex="tag.hex"
-              :text-hex="tag.tagTextColor"
-              @close="deleteTag(name)"
-            />
-          </section>
+          </div>
         </div>
+
+        <div class="exclusive-toggle">
+          Exclusive to {{ platform.name }}
+
+          <toggle-switch
+            id="global"
+            v-model="exclusive"
+          />
+        </div>
+
+        <div class="tag-actions">
+          <button
+            :disabled="!tagName"
+            class="secondary"
+            @click="reset"
+          >
+            <i class="fas fa-redo" />
+          </button>
+
+          <button
+            :disabled="isDuplicate"
+            class="primary"
+            type="submit"
+          >
+            {{ $t('global.save') }}
+          </button>
+        </div>
+      </form>
+
+      <div v-if="hasTags" class="tags">
+        <!-- TODO: use computed properties for filtering out tags -->
+        <section>
+          <h3>All tags</h3>
+
+          <tag
+            v-for="(tag, name) in localTags"
+            v-if="!tag.platform"
+            :key="name"
+            :label="name"
+            :hex="tag.hex"
+            :text-hex="tag.tagTextColor"
+            @close="deleteTag(name)"
+          />
+        </section>
+
+        <section>
+          <h3>{{ platform.name }} tags</h3>
+
+          <tag
+            v-for="(tag, name) in localTags"
+            v-if="tag.platform && tag.platform === platform.id"
+            :key="name"
+            :label="name"
+            :hex="tag.hex"
+            :text-hex="tag.tagTextColor"
+            @close="deleteTag(name)"
+          />
+        </section>
       </div>
-    </modal>
+    </section>
+
+    <footer class="modal-card-foot">
+    </footer>
   </div>
 </template>
 

@@ -8,15 +8,6 @@
         </header>
 
         <section class="modal-card-body">
-          <!-- <div v-if="isEmptyBoard">
-            <h3>Get started with a preset</h3>
-
-            <button class="secondary">Minimalist (Owned / Wishlist)</button>
-            <button class="secondary">Completionist (Owned / Wishlist / Completed)</button>
-
-            <h3>Or create your first list</h3>
-          </div> -->
-
           <b-field label="Name">
               <b-input
                 ref="listNameInput"

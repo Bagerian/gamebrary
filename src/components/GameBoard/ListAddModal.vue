@@ -1,72 +1,67 @@
 <template lang="html">
-    <div class="list-add-modal">
-        <b-modal :active.sync="open" has-modal-card trap-focus aria-role="dialog" aria-modal>
-            <form @submit.prevent="addList" class="modal-card">
-            <header class="modal-card-head">
-              <p class="modal-card-title">{{ title }}</p>
-            </header>
+  <!-- TODO: change to prompt -->
+  <div class="list-add-modal">
+    <b-modal :active.sync="open" has-modal-card trap-focus aria-role="dialog" aria-modal>
+        <form @submit.prevent="addList" class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">{{ title }}</p>
+        </header>
 
-            <section class="modal-card-body">
-              <!-- <div v-if="isEmptyBoard">
-                <h3>Get started with a preset</h3>
+        <section class="modal-card-body">
+          <!-- <div v-if="isEmptyBoard">
+            <h3>Get started with a preset</h3>
 
-                <button class="secondary">Minimalist (Owned / Wishlist)</button>
-                <button class="secondary">Completionist (Owned / Wishlist / Completed)</button>
+            <button class="secondary">Minimalist (Owned / Wishlist)</button>
+            <button class="secondary">Completionist (Owned / Wishlist / Completed)</button>
 
-                <h3>Or create your first list</h3>
-              </div> -->
+            <h3>Or create your first list</h3>
+          </div> -->
+
+          <b-field label="Name">
+              <b-input
+                ref="listNameInput"
+                v-model.trim="listName"
+                :placeholder="$t('list.placeholder')"
+                type="text"
+                autofocus
+                required
+              />
+          </b-field>
 
 
-                  <b-field label="Name">
-                      <b-input
-                        ref="listNameInput"
-                        v-model.trim="listName"
-                        :placeholder="$t('list.placeholder')"
-                        type="text"
-                        autofocus
-                        required
-                      />
-                  </b-field>
+          <b-message type="is-warning" v-if="isDuplicate">
+            {{ $t('list.duplicateWarning') }}
+          </b-message>
+        </section>
 
+        <footer class="modal-card-foot">
+          <button
+            :disabled="isDuplicate"
+            class="button is-primary"
+            type="submit"
+          >
+            {{ buttonLabel }}
+          </button>
 
-                  <b-message type="is-warning" v-if="isDuplicate">
-                    {{ $t('list.duplicateWarning') }}
-                  </b-message>
-            </section>
+          <button class="button" type="button" @click="open = false">
+            Close
+          </button>
+        </footer>
+      </form>
+    </b-modal>
 
-            <footer class="modal-card-foot">
-              <button
-                :disabled="isDuplicate"
-                class="button is-primary"
-                type="submit"
-              >
-                {{ buttonLabel }}
-              </button>
-
-              <button class="button" type="button" @click="open = false">
-                Close
-              </button>
-            </footer>
-          </form>
-        </b-modal>
-
-        <b-button
-          class="is-primary"
-          icon-right="plus"
-          @click="openModal"
-        />
-    </div>
+    <b-button
+      class="is-primary"
+      icon-right="plus"
+      @click="openModal"
+    />
+  </div>
 </template>
 
 <script>
-import Modal from '@/components/Modal';
 import { mapState } from 'vuex';
 
 export default {
-  components: {
-    Modal,
-  },
-
   data() {
     return {
       open: false,

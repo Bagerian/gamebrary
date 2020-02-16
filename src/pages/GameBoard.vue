@@ -13,7 +13,6 @@
     />
 
     <list-add-modal ref="listAddModal" />
-    <game-modal />
     <game-tags-modal />
   </div>
 </template>
@@ -22,7 +21,6 @@
 import GameBoardPlaceholder from '@/components/GameBoard/GameBoardPlaceholder';
 import ListAddModal from '@/components/GameBoard/ListAddModal';
 import GameTagsModal from '@/components/GameBoard/GameTagsModal';
-import GameModal from '@/components/GameBoard/GameModal';
 import List from '@/components/Lists/List';
 import { chunk } from 'lodash';
 import { mapState } from 'vuex';
@@ -35,7 +33,6 @@ export default {
     GameBoardPlaceholder,
     ListAddModal,
     GameTagsModal,
-    GameModal,
   },
 
   data() {

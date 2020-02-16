@@ -1,6 +1,11 @@
 import { mapState, mapGetters } from 'vuex';
+import Game from '@/pages/Game';
 
 export default {
+  components: {
+    Game,
+  },
+
   props: {
     gameId: Number,
     listId: Number,
@@ -90,9 +95,14 @@ export default {
 
   methods: {
     openDetails() {
-      this.$bus.$emit('OPEN_GAME', {
-        id: this.game.id,
-        listId: this.listId,
+      this.$buefy.modal.open({
+        parent: this,
+        component: Game,
+        props: {
+          id: this.gameId,
+          listId: this.listId,
+        },
+        trapFocus: true,
       });
     },
 

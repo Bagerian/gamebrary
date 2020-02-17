@@ -51,13 +51,11 @@ import GameBoardSettings from '@/components/Settings/GameBoardSettings';
 import SettingsGlobal from '@/components/Settings/SettingsGlobal';
 import AboutSettings from '@/components/Settings/AboutSettings';
 import TagsSettings from '@/components/Settings/TagsSettings';
-import Modal from '@/components/Modal';
 import moment from 'moment';
 import firebase from 'firebase/app';
 
 export default {
   components: {
-    Modal,
     GameBoardSettings,
     SettingsGlobal,
     AboutSettings,

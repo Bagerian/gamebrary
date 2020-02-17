@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="modal-card" style="width: auto">
+  <form class="modal-card" @submit.prevent="createTag">
     <header class="modal-card-head">
       <p class="modal-card-title">
         Tags
@@ -7,17 +7,16 @@
     </header>
 
     <section class="modal-card-body">
-      <form class="add-tag" @submit.prevent="createTag">
         <h3>Add a tag</h3>
         <div class="tag-input">
-          <input
+          <b-input
             ref="tagInput"
             v-model="tagName"
             required
             maxlength="20"
             :placeholder="$t('tags.inputPlaceholder')"
             type="text"
-          >
+          />
 
           <swatches
             v-model="tagHex"
@@ -54,15 +53,6 @@
           />
         </div>
 
-        <button
-          :disabled="isDuplicate"
-          class="primary"
-          type="submit"
-        >
-          {{ $t('global.save') }}
-        </button>
-      </form>
-
       <div v-if="hasTags" class="tags">
         <!-- TODO: use computed properties for filtering out tags -->
         <section>
@@ -96,8 +86,15 @@
     </section>
 
     <footer class="modal-card-foot">
+      <b-button
+        :disabled="isDuplicate"
+        class="is-primary"
+        type="submit"
+      >
+        {{ $t('global.save') }}
+      </b-button>
     </footer>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -222,16 +219,6 @@ export default {
 <style lang="scss" rel="stylesheet/scss">
   @import "~styles/styles";
 
-  .add-tag {
-    .vue-swatches__wrapper {
-      width: 200px !important;
-    }
-
-    .vue-swatches__fallback__wrapper {
-      width: 100%;
-      margin: 0 $gp / 2 !important;
-    }
-  }
 </style>
 
 <style lang="scss" rel="stylesheet/scss" scoped>

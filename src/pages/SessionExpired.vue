@@ -1,18 +1,20 @@
 <template lang="html">
   <div class="session-expired">
-    <h2>{{ $t('sessionExpired.title') }}</h2>
+    <b-message type="is-warning">
+      {{ $t('sessionExpired.title') }}
+    </b-message>
 
     <div class="actions">
-      <button
-        class="success"
+      <b-button
+        class="is-primary"
         @click="login"
       >
         {{ $t('sessionExpired.login') }}
-      </button>
+      </b-button>
 
       <a
         :href="exitUrl"
-        class="link primary"
+        class="button"
       >
         {{ $t('sessionExpired.exit') }}
       </a>

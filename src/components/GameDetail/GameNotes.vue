@@ -120,7 +120,7 @@ export default {
         });
 
       this.$buefy.toast.open({ message: 'Note saved', type: 'is-success' });
-      this.$parent.close()
+      this.$parent.close();
     },
   },
 };

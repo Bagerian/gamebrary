@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="modal-card" style="width: auto">
+  <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">
         {{ $t('progresses.modalTitle') }}
@@ -9,20 +9,17 @@
     <section class="modal-card-body">
       <h2>{{ localProgress }}%</h2>
 
-      <input
+      <b-slider
         v-model="localProgress"
-        type="range"
-        max="100"
-        step="5"
+        type="is-success"
         @change="saveProgress"
-      >
-
-      <b-button class="is-danger" @click="deleteProgress">
-        {{ $t('progresses.deleteProgress') }}
-      </b-button>
+      />
     </section>
 
     <footer class="modal-card-foot">
+      <b-button class="is-danger" @click="deleteProgress">
+        {{ $t('progresses.deleteProgress') }}
+      </b-button>
     </footer>
   </div>
 </template>

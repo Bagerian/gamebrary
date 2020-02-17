@@ -43,10 +43,6 @@ export default {
     };
   },
 
-  mounted() {
-    this.focusInput();
-  },
-
   computed: {
     ...mapState(['gameLists', 'platform']),
 
@@ -83,6 +79,10 @@ export default {
 
       return newList || emptyList;
     },
+  },
+
+  mounted() {
+    this.focusInput();
   },
 
   methods: {

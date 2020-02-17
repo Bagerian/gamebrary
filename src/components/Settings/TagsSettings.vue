@@ -47,10 +47,7 @@
         <div class="exclusive-toggle">
           Exclusive to {{ platform.name }}
 
-          <toggle-switch
-            id="global"
-            v-model="exclusive"
-          />
+          <b-switch v-model="exclusive" />
         </div>
 
       <div v-if="hasTags" class="tags">
@@ -98,18 +95,14 @@
 </template>
 
 <script>
-import ToggleSwitch from '@/components/ToggleSwitch';
 import Swatches from 'vue-swatches';
 import Tag from '@/components/Tag';
-import Modal from '@/components/Modal';
 import { mapState } from 'vuex';
 import 'vue-swatches/dist/vue-swatches.min.css';
 
 export default {
   components: {
     Tag,
-    Modal,
-    ToggleSwitch,
     Swatches,
   },
 

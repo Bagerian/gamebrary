@@ -1,10 +1,12 @@
 <template lang="html">
-  <modal :title="$t('progresses.modalTitle')" ref="progressModal">
-    <b-button class="is-primary" :title="buttonLabel">
-      <i class="fas fa-clock" />
-    </b-button>
+  <div class="modal-card" style="width: auto">
+    <header class="modal-card-head">
+      <p class="modal-card-title">
+        {{ $t('progresses.modalTitle') }}
+      </p>
+    </header>
 
-    <div slot="content">
+    <section class="modal-card-body">
       <h2>{{ localProgress }}%</h2>
 
       <input
@@ -18,20 +20,18 @@
       <b-button class="is-danger" @click="deleteProgress">
         {{ $t('progresses.deleteProgress') }}
       </b-button>
-    </div>
-  </modal>
+    </section>
+
+    <footer class="modal-card-foot">
+    </footer>
+  </div>
 </template>
 
 <script>
-import Modal from '@/components/Modal';
 import { debounce } from 'lodash';
 import { mapGetters } from 'vuex';
 
 export default {
-  components: {
-    Modal,
-  },
-
   data() {
     return {
       localProgress: {},
@@ -45,12 +45,6 @@ export default {
       return {
         value: 0,
       };
-    },
-
-    buttonLabel() {
-      return this.gameProgress
-        ? this.$t('progresses.updateProgress')
-        : this.$t('progresses.addProgress');
     },
   },
 

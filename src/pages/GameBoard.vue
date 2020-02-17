@@ -12,7 +12,12 @@
       @dragEnd="dragEnd"
     />
 
-    <list-add-modal ref="listAddModal" />
+    <!-- <list-add-modal ref="listAddModal" /> -->
+    <b-button
+      class="is-primary"
+      icon-right="plus"
+      @click="addList"
+    />
   </div>
 </template>
 
@@ -65,6 +70,13 @@ export default {
   },
 
   methods: {
+    addList() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: ListAddModal,
+      });
+    },
+
     dragEnd() {
       this.draggingId = null;
       this.updateLists();

@@ -18,51 +18,47 @@
         <section>
           <h3>Show</h3>
 
-          <button
-            class="primary small"
-            :class="{ secondary: !ownedListsOnly }"
+          <b-button
+            :class="{ 'is-primary': !ownedListsOnly }"
             @click="setOwned(false)"
           >
             All
-          </button>
+          </b-button>
 
-          <button
-            class="primary small"
-            :class="{ secondary: ownedListsOnly }"
+          <b-button
+            :class="{ 'is-primary': ownedListsOnly }"
             @click="setOwned(true)"
           >
             Mine
-          </button>
+          </b-button>
         </section>
 
         <section>
           <h3>Filter by</h3>
 
-          <button
-            class="primary small"
-            :class="{ secondary: filter === filterField }"
+          <b-button
+            :class="{ 'is-primary': filter === filterField }"
             v-for="filter in availableFilters"
             :key="filter"
             @click="setFilter(filter)"
           >
             <span v-if="filter">{{ $t(`platforms.${filter}`) }}</span>
             <span v-else>All</span>
-          </button>
+          </b-button>
         </section>
 
         <section>
           <h3>Sort by</h3>
 
-          <button
-            class="primary small"
-            :class="{ secondary: field === sortField }"
+          <b-button
+            :class="{ 'is-primary': field === sortField }"
             v-for="field in availableSortFields"
             :key="field"
             @click="setSortField(field)"
           >
             <span v-if="field">{{ $t(`platforms.${field}`) }}</span>
             <span v-else><i class="fas fa-times" /> Clear field</span>
-          </button>
+          </b-button>
         </section>
       </div>
     </modal>

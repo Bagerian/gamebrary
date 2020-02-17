@@ -1,52 +1,36 @@
 <template lang="html">
-  <!-- TODO: change to prompt -->
-  <div class="list-add-modal">
-    <b-modal :active.sync="open" has-modal-card trap-focus aria-role="dialog" aria-modal>
-        <form @submit.prevent="addList" class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title">{{ title }}</p>
-        </header>
+  <form @submit.prevent="addList" class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{{ title }}</p>
+    </header>
 
-        <section class="modal-card-body">
-          <b-field label="Name">
-              <b-input
-                ref="listNameInput"
-                v-model.trim="listName"
-                :placeholder="$t('list.placeholder')"
-                type="text"
-                autofocus
-                required
-              />
-          </b-field>
+    <section class="modal-card-body">
+      <b-field label="Name">
+        <b-input
+          ref="listNameInput"
+          v-model.trim="listName"
+          :placeholder="$t('list.placeholder')"
+          type="text"
+          autofocus
+          required
+        />
+      </b-field>
 
+      <b-message type="is-warning is-small" v-if="isDuplicate">
+        {{ $t('list.duplicateWarning') }}
+      </b-message>
+    </section>
 
-          <b-message type="is-warning" v-if="isDuplicate">
-            {{ $t('list.duplicateWarning') }}
-          </b-message>
-        </section>
-
-        <footer class="modal-card-foot">
-          <button
-            :disabled="isDuplicate"
-            class="button is-primary"
-            type="submit"
-          >
-            {{ buttonLabel }}
-          </button>
-
-          <button class="button" type="button" @click="open = false">
-            Close
-          </button>
-        </footer>
-      </form>
-    </b-modal>
-
-    <b-button
-      class="is-primary"
-      icon-right="plus"
-      @click="openModal"
-    />
-  </div>
+    <footer class="modal-card-foot">
+      <b-button
+        :disabled="isDuplicate"
+        class="is-primary"
+        native-type="submit"
+      >
+        {{ buttonLabel }}
+      </b-button>
+    </footer>
+  </form>
 </template>
 
 <script>
@@ -55,9 +39,12 @@ import { mapState } from 'vuex';
 export default {
   data() {
     return {
-      open: false,
       listName: '',
     };
+  },
+
+  mounted() {
+    this.focusInput();
   },
 
   computed: {
@@ -99,12 +86,6 @@ export default {
   },
 
   methods: {
-    openModal() {
-      this.open = true;
-      this.listName = '';
-      this.focusInput();
-    },
-
     focusInput() {
       setTimeout(() => {
         this.$refs.listNameInput.focus();
@@ -122,7 +103,7 @@ export default {
       this.$store.dispatch('SAVE_LIST', this.gameLists)
         .then(() => {
           this.$buefy.toast.open({ message: 'List added', type: 'is-success' });
-          this.open = false;
+          this.$parent.close();
           this.scroll();
         });
     },

@@ -1,19 +1,20 @@
 <!-- TODO: when file management is in place, allow to insert image from your files -->
 <template lang="html">
-  <modal title="Game notes" ref="notesModal" @open="reset">
-    <b-button class="is-warning" :title="$t('notes.addNote')">
-      <i class="fas fa-sticky-note" />
-  </b-button>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">
+        Add note for {{ game.name }}
+      </p>
+    </header>
 
-    <div slot="content" v-if="game" class="game-notes">
-      <h3>Add note for {{ game.name }}</h3>
-
-      <textarea
-        v-model.trim="localNote.text"
-        placeholder="Type note here"
-        cols="30"
-        rows="10"
-      />
+    <section class="modal-card-body">
+      <b-field label="Message">
+        <b-input
+          type="textarea"
+          v-model.trim="localNote.text"
+          placeholder="Type note here"
+        />
+      </b-field>
 
       <small>
         <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">
@@ -29,42 +30,42 @@
           <vue-markdown :source="localNote.text" />
         </div>
       </div>
+    </section>
 
-      <div class="actions">
-        <button
-          class="primary save"
-          :disabled="isEmptyNote"
-          @click="saveNote"
-        >
-          {{ $t('global.save') }}
-        </button>
+    <footer class="modal-card-foot">
+      <b-button
+        class="is-primary save"
+        :disabled="isEmptyNote"
+        @click="saveNote"
+      >
+        {{ $t('global.save') }}
+      </b-button>
 
-        <button
-          class="primary"
-          v-if="localNote.text"
-          @click="togglePreview"
-        >
-          <i :class="`far fa-eye${showPreview ? '-slash' : ''}`" />
-          Toggle preview
-        </button>
+      <b-button
+        v-if="localNote.text"
+        @click="togglePreview"
+      >
+        <i :class="`far fa-eye${showPreview ? '-slash' : ''}`" />
+        Toggle preview
+      </b-button>
 
-        <button class="danger" @click="deleteNote">
-          <i class="fas fa-trash-alt" />
-        </button>
-      </div>
-    </div>
-  </modal>
+      <!-- TODO: Add confirmation -->
+      <b-button
+        type="is-danger"
+        icon-right="trash"
+        @click="deleteNote"
+      />
+    </footer>
+  </div>
 </template>
 
 <script>
 import VueMarkdown from 'vue-markdown';
-import Modal from '@/components/Modal';
 import { mapState, mapGetters } from 'vuex';
 
 export default {
   components: {
     VueMarkdown,
-    Modal,
   },
 
   data() {
@@ -119,8 +120,7 @@ export default {
         });
 
       this.$buefy.toast.open({ message: 'Note saved', type: 'is-success' });
-
-      this.$refs.notesModal.close();
+      this.$parent.close()
     },
   },
 };
@@ -136,19 +136,4 @@ export default {
       margin-bottom: $gp;
     }
   }
-
-  .actions {
-    display: flex;
-    align-items: center;
-    margin-top: $gp;
-
-    .save {
-      margin-right: $gp / 2;
-    }
-
-    .danger {
-      margin-left: auto;
-    }
-  }
-
 </style>

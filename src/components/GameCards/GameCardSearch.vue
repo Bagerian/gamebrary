@@ -45,6 +45,7 @@ $gameCoverWidth: 80px;
   grid-template-columns: $gameCoverWidth auto;
   border-radius: var(--border-radius);
   overflow: hidden;
+  margin-bottom: $gp / 2;
 
   img {
     width: $gameCoverWidth;

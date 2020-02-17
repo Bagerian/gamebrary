@@ -1,50 +1,68 @@
-<template lang="html">
+<template lang="html">  
   <div class="modal-card">
-    <form @submit.prevent="search" class="search-form">
-      <input
-        ref="searchInput"
-        v-model="searchText"
-        :placeholder="$t('gameSearch.inputPlaceholder')"
-        type="text"
+    <header class="modal-card-head">
+      <p class="modal-card-title">
+      </p>
+    </header>
+
+    <section class="modal-card-body">
+      <form @submit.prevent="search">
+        <b-field>
+          <b-input
+           placeholder="Search..."
+           type="search"
+           icon="search"
+           :loading="loading"
+           v-model="searchText"
+           @input="search"
+          />
+
+          <p class="control">
+            <b-button
+              class="is-primary"
+              icon-right="search"
+              @click="search"
+            />
+          </p>
+        </b-field>
+      </form>
+
+      <b-message type="is-warning is-small" v-if="gamesInList.length > 0">
+        <b-tooltip
+          :label="gamesInListNames"
+          position="is-bottom"
+          multilined
+          size="is-small"
+        >
+          <p>{{ `${gamesInListMessage} ${$t('gameSearch.alreadyInList')}` }}</p>
+        </b-tooltip>
+      </b-message>
+
+      <div
+        v-if="filteredResults.length > 0"
+        ref="searchResults"
       >
+        <game-card-search
+          v-for="{ id } in filteredResults"
+          :key="id"
+          :game-id="id"
+          :list-id="listId"
+          search-result
+          @added="added"
+        />
+      </div>
 
-      <button class="primary" @click="search">
-        <i :class="searchIcon" />
-      </button>
-    </form>
+      <span
+        v-if="!noResults"
+        class="no-results"
+      >
+        {{ $t('gameSearch.noResultsFound') }}
+      </span>
+    </section>
 
-    <small
-      v-if="gamesInList.length > 0"
-      class="games-in-list"
-      :title="gamesInListNames"
-    >
-      <strong>{{ gamesInListMessage }}</strong>
-      {{ $t('gameSearch.alreadyInList') }}
-    </small>
-
-    <div
-      v-if="filteredResults.length > 0"
-      ref="searchResults"
-      class="search-results"
-    >
-      <game-card-search
-        v-for="{ id } in filteredResults"
-        :key="id"
-        :game-id="id"
-        :list-id="listId"
-        search-result
-        @added="added"
-      />
-
+    <footer class="modal-card-foot">
       <igdb-credit linkable />
-    </div>
-
-    <span
-      v-if="noResults"
-      class="no-results"
-    >
-      {{ $t('gameSearch.noResultsFound') }}
-    </span>
+    </footer>
   </div>
 </template>
 
@@ -82,12 +100,6 @@ export default {
       return !this.loading
         && this.filteredResults.length === 0
         && this.searchText.trim().length > 0;
-    },
-
-    searchIcon() {
-      return this.loading
-        ? 'fas fa-circle-notch fast-spin'
-        : 'fas fa-search';
     },
 
     list() {
@@ -171,39 +183,7 @@ export default {
 <style lang="scss" rel="stylesheet/scss" scoped>
   @import "~styles/styles";
 
-  .search-form {
-    display: flex;
-    align-items: center;
+  form {
     margin-bottom: $gp;
-
-    input {
-      margin-bottom: 0;
-    }
-
-    button {
-      margin-left: $gp;
-    }
-  }
-
-  .games-in-list {
-    margin-bottom: $gp;
-    display: flex;
-    align-items: center;
-
-    strong {
-      margin-right: .2rem;
-    }
-  }
-
-  .search-results {
-    max-height: calc(100vh - 300px);
-    overflow-y: auto;
-    border-radius: var(--border-radius);
-    display: grid;
-    grid-gap: $gp / 2;
-
-    @media($small) {
-      max-height: calc(100vh - 200px);
-    }
   }
 </style>

@@ -1,7 +1,18 @@
 <template lang="html">
   <div class="game-actions">
-    <game-progress-modal />
-    <game-notes />
+
+    <b-button
+      class="is-primary"
+      icon-right="clock"
+      @click="openProgress"
+    />
+
+    <b-button
+      class="is-primary"
+      :title="$t('notes.addNote')"
+      icon-right="sticky-note"
+      @click="openNotes"
+    />
 
     <div v-if="hasTags" class="tags">
       <b-button
@@ -68,6 +79,20 @@ export default {
   },
 
   methods: {
+    openProgress() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: GameProgressModal,
+      });
+    },
+
+    openNotes() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: GameNotes,
+      });
+    },
+
     openTags() {
       this.$buefy.modal.open({
         parent: this,

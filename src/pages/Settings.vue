@@ -54,12 +54,10 @@ import TagsSettings from '@/components/Settings/TagsSettings';
 import Modal from '@/components/Modal';
 import moment from 'moment';
 import firebase from 'firebase/app';
-import Releases from '@/components/Releases/Releases';
 
 export default {
   components: {
     Modal,
-    Releases,
     GameBoardSettings,
     SettingsGlobal,
     AboutSettings,

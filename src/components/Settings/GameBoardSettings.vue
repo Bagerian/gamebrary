@@ -58,24 +58,8 @@
       <h5>{{ $t('gameBoard.settings.dangerZone') }}</h5>
 
       <b-button type="is-danger" @click="deleteBoard">
-        Delete collection
+        Delete board
       </b-button>
-
-      <!-- <modal
-        :message="`Your ${platform.name} collection will be deleted forever.`"
-        :title="`Delete ${platform.name} collection`"
-        action-text="Delete forever"
-        action-button-class="danger"
-        @action="deletePlatform"
-      >
-        <button
-          :title="$t('list.delete')"
-          class="small warning"
-        >
-          <i class="far fa-trash-alt" />
-          Delete {{ platform.name }} collection
-        </button>
-      </modal> -->
     </div>
   </section>
 </template>
@@ -140,8 +124,8 @@ export default {
   methods: {
     deleteBoard() {
       this.$buefy.dialog.confirm({
-        title: 'Delete board?',
-        message: 'All data will be lost',
+        title: `Delete ${platform.name} collection`,
+        message: `Your ${this.platform.name} collection will be deleted forever.`,
         type: 'is-warning',
         onConfirm: () => this.deletePlatform(),
       });

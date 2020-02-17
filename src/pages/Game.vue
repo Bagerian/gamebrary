@@ -1,70 +1,83 @@
 <template lang="html">
-  <div class="game modal-card">
-    <header>
-      <img :src="coverUrl" :alt="games[id].name" class="game-cover" />
-
-      <!-- <div
-        v-if="game && game.age_ratings"
-        class="game-rating"
-      >
-        <img
-          v-for="{ rating, synopsis, id } in game.age_ratings"
-          :key="id"
-          :src="`/static/img/age-ratings/${ageRatings[rating]}.png`"
-          :alt="synopsis"
-        >
-      </div> -->
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">
+        Game detail
+      </p>
     </header>
 
-    <main>
-      <div class="game-title">
-        <h1 class="title">{{ games[id].name }}</h1>
-        <h2 class="subtitle">{{ platform.name }}</h2>
+    <section class="modal-card-body">
+      <div class="game">
+        <header>
+          <img :src="coverUrl" :alt="games[id].name" class="game-cover" />
 
-        <game-progress
-          v-if="gameProgress"
-          :progress="gameProgress"
-        />
+          <!-- <div
+            v-if="game && game.age_ratings"
+            class="game-rating"
+          >
+            <img
+              v-for="{ rating, synopsis, id } in game.age_ratings"
+              :key="id"
+              :src="`/static/img/age-ratings/${ageRatings[rating]}.png`"
+              :alt="synopsis"
+            >
+          </div> -->
+        </header>
 
-        <b-rate
-          v-if="games[id].rating"
-          :value="Math.round((games[id].rating / 20) * 2) / 2"
-          disabled
-          class="drag-filter"
-        />
+        <main>
+          <div class="game-title">
+            <h1 class="title">{{ games[id].name }}</h1>
+            <h2 class="subtitle">{{ platform.name }}</h2>
 
-        <game-tags />
-
-        <!-- TODO: set list id to store instead of passing it around -->
-        <game-actions :list-id="listId" />
-      </div>
-
-      <div class="details" v-if="game">
-        <game-description />
-        <div class="markdown" v-if="hasNote">
-          <vue-markdown :source="notes[game.id].text" />
-        </div>
-        <game-details />
-        <game-links />
-        <game-videos />
-        <game-screenshots />
-        <igdb-credit gray />
-
-        <!-- <section v-if="gamePlatforms && gamePlatforms.length > 0">
-          <h4>{{ $t('gameDetail.gamePlatforms') }}</h4>
-
-          <div class="platforms">
-            <platform
-              v-for="platform in gamePlatforms"
-              :key="platform.name"
-              :platform="platform"
+            <game-progress
+              v-if="gameProgress"
+              :progress="gameProgress"
             />
-          </div>
-        </section> -->
-      </div>
 
-      <placeholder v-else :lines="3" class="game-placeholder" />
-    </main>
+            <b-rate
+              v-if="games[id].rating"
+              :value="Math.round((games[id].rating / 20) * 2) / 2"
+              disabled
+              class="drag-filter"
+            />
+
+            <game-tags />
+
+            <!-- TODO: set list id to store instead of passing it around -->
+            <game-actions :list-id="listId" />
+          </div>
+
+          <div class="details" v-if="game">
+            <game-description />
+            <div class="markdown" v-if="hasNote">
+              <vue-markdown :source="notes[game.id].text" />
+            </div>
+            <game-details />
+            <game-links />
+            <game-videos />
+            <game-screenshots />
+            <igdb-credit gray />
+
+            <!-- <section v-if="gamePlatforms && gamePlatforms.length > 0">
+              <h4>{{ $t('gameDetail.gamePlatforms') }}</h4>
+
+              <div class="platforms">
+                <platform
+                  v-for="platform in gamePlatforms"
+                  :key="platform.name"
+                  :platform="platform"
+                />
+              </div>
+            </section> -->
+          </div>
+
+          <placeholder v-else :lines="3" class="game-placeholder" />
+        </main>
+      </div>
+    </section>
+
+    <footer class="modal-card-foot">
+    </footer>
   </div>
 </template>
 

@@ -54,23 +54,13 @@
           />
         </div>
 
-        <div class="tag-actions">
-          <button
-            :disabled="!tagName"
-            class="secondary"
-            @click="reset"
-          >
-            <i class="fas fa-redo" />
-          </button>
-
-          <button
-            :disabled="isDuplicate"
-            class="primary"
-            type="submit"
-          >
-            {{ $t('global.save') }}
-          </button>
-        </div>
+        <button
+          :disabled="isDuplicate"
+          class="primary"
+          type="submit"
+        >
+          {{ $t('global.save') }}
+        </button>
       </form>
 
       <div v-if="hasTags" class="tags">
@@ -246,66 +236,66 @@ export default {
 
 <style lang="scss" rel="stylesheet/scss" scoped>
   @import "~styles/styles";
-
-  .tag-input {
-    display: grid;
-    grid-template-columns: 1fr 40px 40px 100px;
-    grid-gap: $gp;
-  }
-
-  h3 {
-    margin-bottom: $gp / 2;
-  }
-
-  input {
-    margin: 0;
-  }
-
-  .tag {
-    margin: 0 $gp / 2 $gp / 2 0;
-  }
-
-  .tags {
-    display: grid;
-    grid-gap: $gp / 2;
-
-    h3 {
-      margin-bottom: $gp / 2;
-    }
-  }
-
-  .exclusive-toggle {
-    display: flex;
-    align-items: center;
-  }
-
-  .preview {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-direction: column;
-
-    small {
-      font-size: 10px;
-      margin-bottom: $gp / 4;
-    }
-
-    .tag {
-      margin: 0;
-    }
-  }
-
-  .add-tag {
-    padding: $gp;
-    border: 1px dashed var(--modal-text-color);
-    border-radius: $gp;
-    margin-bottom: $gp;
-  }
-
-  .tag-actions {
-    display: flex;
-    margin-top: $gp;
-    justify-content: space-between;
-  }
+  //
+  // .tag-input {
+  //   display: grid;
+  //   grid-template-columns: 1fr 40px 40px 100px;
+  //   grid-gap: $gp;
+  // }
+  //
+  // h3 {
+  //   margin-bottom: $gp / 2;
+  // }
+  //
+  // input {
+  //   margin: 0;
+  // }
+  //
+  // .tag {
+  //   margin: 0 $gp / 2 $gp / 2 0;
+  // }
+  //
+  // .tags {
+  //   display: grid;
+  //   grid-gap: $gp / 2;
+  //
+  //   h3 {
+  //     margin-bottom: $gp / 2;
+  //   }
+  // }
+  //
+  // .exclusive-toggle {
+  //   display: flex;
+  //   align-items: center;
+  // }
+  //
+  // .preview {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //
+  //   flex-direction: column;
+  //
+  //   small {
+  //     font-size: 10px;
+  //     margin-bottom: $gp / 4;
+  //   }
+  //
+  //   .tag {
+  //     margin: 0;
+  //   }
+  // }
+  //
+  // .add-tag {
+  //   padding: $gp;
+  //   border: 1px dashed var(--modal-text-color);
+  //   border-radius: $gp;
+  //   margin-bottom: $gp;
+  // }
+  //
+  // .tag-actions {
+  //   display: flex;
+  //   margin-top: $gp;
+  //   justify-content: space-between;
+  // }
 </style>

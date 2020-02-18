@@ -54,6 +54,16 @@
           </b-field>
         </section>
 
+        <section>
+          <h4>Hide days until release</h4>
+
+          <toggle-switch
+            id="releaseDates"
+            @change="save"
+            v-model="localList.hideReleaseDates"
+          />
+        </section>
+
         <section v-if="localList.view === 'grid'">
           <h4>Compact grid view</h4>
 

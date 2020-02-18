@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { mapState, mapGetters } from 'vuex';
 import Game from '@/pages/Game';
 import GameTagsModal from '@/components/GameBoard/GameTagsModal';
@@ -33,6 +34,10 @@ export default {
         : 0;
     },
 
+    showReleaseDates() {
+      return this.releaseDate && this.list && !this.list.hideReleaseDates;
+    },
+
     showGameInfo() {
       return this.list && !this.list.hideGameInfo;
     },
@@ -46,6 +51,42 @@ export default {
         && this.platform
         && this.progresses[this.platform.code]
         && this.progresses[this.platform.code][this.game.id];
+    },
+
+    releaseDate() {
+      const releaseDate = this.game
+        && this.game.release_dates
+        && this.game.release_dates.find(
+          ({ platform }) => this.platform.id === platform,
+        );
+
+      let daysUntilRelease = releaseDate.date
+        ? Math.ceil(moment.unix(releaseDate.date).diff(moment(), 'days', true))
+        : this.$t('releaseDates.ToBeAnnounced');
+
+      daysUntilRelease = daysUntilRelease < 0
+        ? ''
+        : daysUntilRelease;
+
+      daysUntilRelease = daysUntilRelease >= 0 && daysUntilRelease === 0
+        ? this.$t('releaseDates.Today')
+        : daysUntilRelease;
+
+      return daysUntilRelease;
+    },
+
+    releaseDateText() {
+      if (this.releaseDate >= 1) {
+        return this.releaseDate === 1
+          ? this.$t('releaseDates.ReleasesTomorrow')
+          : this.$t('releaseDates.ReleasesInXDays', { days: this.releaseDate });
+      } else if (this.releaseDate === this.$t('releaseDates.Today')) {
+        return new Date().getHours() < 15
+          ? this.$t('releaseDates.ReleasesToday')
+          : this.$t('releaseDates.ReleasedToday');
+      }
+
+      return this.releaseDate;
     },
 
     gameCardClass() {

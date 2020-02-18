@@ -15,6 +15,11 @@
       />
 
       <i class="fas fa-grip-vertical draggable-icon game-drag-handle" />
+      <span
+        v-if="showReleaseDates && releaseDate"
+        v-text="releaseDateText"
+        class="release-date drag-filter"
+      />
 
       <b-rate
         v-if="showGameRatings"
@@ -126,6 +131,11 @@ export default {
         position: absolute;
         bottom: $gp * 1.5;
         right: $gp / 4;
+      }
+
+      .release-date {
+        color: var(--accent-color);
+        margin: $gp / 4 0;
       }
 
       &:hover {

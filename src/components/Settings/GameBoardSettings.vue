@@ -122,7 +122,7 @@ export default {
   methods: {
     deleteBoard() {
       this.$buefy.dialog.confirm({
-        title: `Delete ${platform.name} collection`,
+        title: `Delete ${this.platform.name} collection`,
         message: `Your ${this.platform.name} collection will be deleted forever.`,
         type: 'is-warning',
         onConfirm: () => this.deletePlatform(),

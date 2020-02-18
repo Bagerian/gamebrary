@@ -57,9 +57,9 @@
         <section>
           <h4>Hide days until release</h4>
 
-          <toggle-switch
+          <b-switch
             id="releaseDates"
-            @change="save"
+            @input="save"
             v-model="localList.hideReleaseDates"
           />
         </section>

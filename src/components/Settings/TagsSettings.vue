@@ -64,6 +64,7 @@
             <b-tag
               v-for="(tag, name) in localTags"
               v-if="!tag.platform"
+              :key="name"
               closable
               aria-close-label="Close tag"
               :style="`background-color: ${tag.hex}; color: ${tag.tagTextColor}`"

@@ -63,15 +63,15 @@ export default {
   },
 
   methods: {
-      openSettings() {
-        this.$buefy.modal.open({
-          parent: this,
-          component: Settings,
-          props: {
-            listId: this.listIndex,
-          },
-        });
-      },
+    openSettings() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: Settings,
+        props: {
+          listId: this.listIndex,
+        },
+      });
+    },
   },
 };
 </script>

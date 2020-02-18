@@ -68,13 +68,11 @@
 import { mapState } from 'vuex';
 import themes from '@/themes';
 import positions from '@/positions';
-import Modal from '@/components/Modal';
 import WallpaperUpload from '@/components/WallpaperUpload';
 
 export default {
   components: {
     WallpaperUpload,
-    Modal,
   },
 
   props: {

@@ -4,12 +4,11 @@
       <i :class="viewIcon" />
     </b-button>
 
-    <modal
+    <!-- <modal
       ref="listAddModal"
       title="Filter and sort platforms"
     >
       <b-button class="primary small filter-button">
-
         <i class="fas fa-filter" :class="{ 'filter-active': filterField }" />
         <span class="indicator" v-if="ownedListsOnly" />
       </b-button>
@@ -61,19 +60,14 @@
           </b-button>
         </section>
       </div>
-    </modal>
+    </modal> -->
   </header>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import Modal from '@/components/Modal';
 
 export default {
-  components: {
-    Modal,
-  },
-
   data() {
     return {
       availableFilters: [

@@ -9,33 +9,31 @@
 
       <div/>
 
-      <div>
-        <modal
-          ref="addList"
-          :title="$t('settings.wallpaper.currentWallpaper')"
-          large
-          action-text="Remove wallpaper"
-          @action="removeWallpaper"
+      <!-- <modal
+        ref="addList"
+        :title="$t('settings.wallpaper.currentWallpaper')"
+        large
+        action-text="Remove wallpaper"
+        @action="removeWallpaper"
+      >
+        <img
+          v-if="wallpaperUrl"
+          :src="wallpaperUrl"
+          class="preview"
+          alt="Uploaded wallpaper"
+        >
+
+        <div
+          slot="content"
+          class="wallpaper-preview"
         >
           <img
             v-if="wallpaperUrl"
             :src="wallpaperUrl"
-            class="preview"
             alt="Uploaded wallpaper"
           >
-
-          <div
-            slot="content"
-            class="wallpaper-preview"
-          >
-            <img
-              v-if="wallpaperUrl"
-              :src="wallpaperUrl"
-              alt="Uploaded wallpaper"
-            >
-          </div>
-        </modal>
-      </div>
+        </div>
+      </modal> -->
     </template>
 
     <template v-else>
@@ -70,14 +68,14 @@
 </template>
 
 <script>
-import Modal from '@/components/Modal';
+// import Modal from '@/components/Modal';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { mapState } from 'vuex';
 
 export default {
   components: {
-    Modal,
+    // Modal,
   },
 
   data() {

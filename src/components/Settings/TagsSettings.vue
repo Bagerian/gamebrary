@@ -1,3 +1,4 @@
+<!-- TODO: replace tag with b-tags -->
 <template lang="html">
   <form class="modal-card" @submit.prevent="createTag">
     <header class="modal-card-head">
@@ -50,10 +51,27 @@
           <b-switch v-model="exclusive" />
         </div>
 
+        <b-button>
+          Save
+        </b-button>
+
       <div v-if="hasTags" class="tags">
         <!-- TODO: use computed properties for filtering out tags -->
         <section>
           <h3>All tags</h3>
+
+          <b-taglist>
+            <b-tag
+              v-for="(tag, name) in localTags"
+              v-if="!tag.platform"
+              closable
+              aria-close-label="Close tag"
+              :style="`background-color: ${tag.hex}; color: ${tag.tagTextColor}`"
+              @close="deleteTag(name)"
+            >
+              {{ name }}
+            </b-tag>
+          </b-taglist>
 
           <tag
             v-for="(tag, name) in localTags"

@@ -30,11 +30,13 @@
         @click.native="openDetails"
       />
 
-      <game-progress
+      <b-progress
         v-if="gameProgress"
-        small
-        :progress="gameProgress"
-        class="drag-filter"
+        type="is-success"
+        size="is-small"
+        format="percent"
+        :value="Number(gameProgress)"
+        show-value
         @click.native="openDetails"
       />
 
@@ -62,13 +64,11 @@
 </template>
 
 <script>
-import GameProgress from '@/components/GameDetail/GameProgress';
 import GameCardUtils from '@/components/GameCards/GameCard';
 import Tag from '@/components/Tag';
 
 export default {
   components: {
-    GameProgress,
     Tag,
   },
 

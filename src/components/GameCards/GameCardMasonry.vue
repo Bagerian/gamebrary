@@ -9,12 +9,11 @@
       @click="openDetails"
     >
 
-    <game-progress
-      v-if="showGameInfoOnCover && gameProgress"
-      small
-      :progress="gameProgress"
-      :view="list.view"
-      @click.native="openDetails"
+    <b-progress
+      v-if="gameProgress"
+      type="is-success"
+      size="is-small"
+      :value="Number(gameProgress)"
     />
 
     <span
@@ -29,14 +28,9 @@
 </template>
 
 <script>
-import GameProgress from '@/components/GameDetail/GameProgress';
 import GameCardUtils from '@/components/GameCards/GameCard';
 
 export default {
-  components: {
-    GameProgress,
-  },
-
   mixins: [GameCardUtils],
 };
 </script>
@@ -68,22 +62,6 @@ export default {
     }
   }
 
-  .game-progress {
-    width: calc(100% - #{$gp});
-    position: absolute;
-    bottom: $gp / 6;
-    left: $gp / 2;
-
-    + .release-date {
-      margin: 0;
-      position: absolute;
-      bottom: $gp * 1.5;
-      right: $gp / 2;
-      padding: $gp / 8 $gp / 6;
-      background: var(--list-background);
-    }
-  }
-
   .release-date {
     color: var(--accent-color);
     font-size: $font-size-xsmall;
@@ -104,5 +82,12 @@ export default {
       color: #a5a2a2;
     }
   }
+}
+
+.progress-wrapper {
+  position: absolute;
+  margin: 2px;
+  width: calc(100% - 4px);
+  bottom: 4px;
 }
 </style>

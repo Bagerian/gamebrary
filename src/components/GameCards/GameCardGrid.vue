@@ -6,13 +6,6 @@
       @click="openDetails"
     >
 
-    <game-progress
-      v-if="!showGameInfo && showGameInfoOnCover && gameProgress"
-      small
-      :progress="gameProgress"
-      @click.native="openDetails"
-    />
-
     <span
       v-if="!showGameInfo && showGameInfoOnCover && showReleaseDates && releaseDate"
       v-text="releaseDate"
@@ -32,6 +25,15 @@
           @click="openDetails"
         />
 
+        <b-progress
+          type="is-success"
+          size="is-small"
+          format="percent"
+          :value="Number(gameProgress)"
+          show-value
+          @click.native="openDetails"
+        />
+
         <div class="rating-release">
           <b-rate
             v-if="showGameRatings"
@@ -48,14 +50,6 @@
             class="release-date drag-filter"
           />
         </div>
-
-        <game-progress
-          v-if="gameProgress"
-          small
-          :progress="gameProgress"
-          class="drag-filter"
-          @click.native="openDetails"
-        />
 
         <i
           v-if="note"
@@ -83,13 +77,11 @@
 </template>
 
 <script>
-import GameProgress from '@/components/GameDetail/GameProgress';
 import GameCardUtils from '@/components/GameCards/GameCard';
 import Tag from '@/components/Tag';
 
 export default {
   components: {
-    GameProgress,
     Tag,
   },
 
@@ -129,35 +121,6 @@ export default {
     display: flex;
     align-self: center;
     cursor: pointer;
-
-    + .game-progress {
-      width: calc(100% - #{$gp});
-      position: absolute;
-      bottom: $gp / 6;
-      left: $gp / 2;
-
-      + .release-date {
-        margin: 0;
-        position: absolute;
-        bottom: $gp * 1.5;
-        right: $gp / 2;
-        padding: $gp / 6 $gp / 4;
-        background: var(--list-background);
-      }
-    }
-
-    + .release-date {
-      margin: 0;
-      position: absolute;
-      bottom: $gp / 2;
-      right: $gp / 2;
-      padding: $gp / 6 $gp / 4;
-      background: var(--list-background);
-    }
-  }
-
-  progress {
-    max-width: 100%;
   }
 
   .release-date {
@@ -228,12 +191,6 @@ export default {
       .game-rating {
         grid-column: 1;
         grid-row: 2;
-      }
-
-      .game-progress {
-        justify-self: end;
-        grid-column: 2;
-        grid-row: span 2;
       }
     }
   }

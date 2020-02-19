@@ -29,16 +29,19 @@
             <h1 class="title">{{ games[id].name }}</h1>
             <h2 class="subtitle">{{ platform.name }}</h2>
 
-            <game-progress
-              v-if="gameProgress"
-              :progress="gameProgress"
-            />
-
             <b-rate
               v-if="games[id].rating"
               :value="Math.round((games[id].rating / 20) * 2) / 2"
               disabled
               class="drag-filter"
+            />
+
+            <b-progress
+              v-if="gameProgress"
+              type="is-success"
+              format="percent"
+              :value="Number(gameProgress)"
+              show-value
             />
 
             <game-tags />
@@ -85,7 +88,6 @@
 import { mapState, mapGetters } from 'vuex';
 import GameScreenshots from '@/components/GameDetail/GameScreenshots';
 import VueMarkdown from 'vue-markdown';
-import GameProgress from '@/components/GameDetail/GameProgress';
 import GameActions from '@/components/GameDetail/GameActions';
 import GameTags from '@/components/GameDetail/GameTags';
 import GameLinks from '@/components/GameDetail/GameLinks';
@@ -105,7 +107,7 @@ export default {
     GameScreenshots,
     GameActions,
     VueMarkdown,
-    GameProgress,
+    // GameProgress,
     GameTags,
     GameVideos,
     GameDetails,

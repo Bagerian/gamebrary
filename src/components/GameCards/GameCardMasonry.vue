@@ -1,3 +1,7 @@
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <div
     v-if="gameId && games[gameId]"
@@ -23,7 +27,11 @@
     >
     </span>
 
-    <i class="fas fa-grip-vertical draggable-icon game-drag-handle" />
+    <b-button
+      size="is-small"
+      icon-left="grip-vertical"
+      class="is-light draggable-icon game-drag-handle"
+    />
   </div>
 </template>
 

@@ -1,3 +1,7 @@
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <div :class="['list', viewClass, { unique: unique && view !== 'masonry', dragging }]">
     <div class="list-header">
@@ -57,7 +61,7 @@
       />
     </draggable>
 
-    <div v-if="isEmpty" class="empty-list">
+    <div v-if="isEmpty" class="empty-list card">
       <i class="fas fa-hand-pointer fa-2x hand-drag" />
       <p><i class="fas fa-grip-vertical" /> Drag games here</p>
     </div>
@@ -426,12 +430,10 @@ export default {
     position: absolute;
     top: 0;
     margin-top: 62px;
-    height: 60px;
-    width: 130px;
-    left: 95px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: $gp;
   }
 
   .fa-grip-vertical {

@@ -1,6 +1,10 @@
 <!-- TODO: replace tag with b-tags -->
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
-  <form class="modal-card" @submit.prevent="createTag">
+  <div class="tags-settings modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">
         Tags
@@ -8,16 +12,17 @@
     </header>
 
     <section class="modal-card-body">
-        <h3>Add a tag</h3>
-        <div class="tag-input">
-          <b-input
-            ref="tagInput"
-            v-model="tagName"
-            required
-            maxlength="20"
-            :placeholder="$t('tags.inputPlaceholder')"
-            type="text"
-          />
+      <form @submit.prevent="createTag">
+          <b-field>
+            <b-input
+              ref="tagInput"
+              v-model="tagName"
+              required
+              maxlength="20"
+              :placeholder="$t('tags.inputPlaceholder')"
+              type="text"
+            />
+          </b-field>
 
           <swatches
             v-model="tagHex"
@@ -43,21 +48,24 @@
               :textHex="tagTextColor"
             />
           </div>
-        </div>
+          <b-button
+            :disabled="isDuplicate"
+            class="is-primary"
+            type="submit"
+            @click="createTag"
+          >
+            {{ $t('global.save') }}
+          </b-button>
+        </form>
 
-        <div class="exclusive-toggle">
-          Exclusive to {{ platform.name }}
+      <div class="exclusive-toggle">
+        Exclusive to {{ platform.name }}
 
-          <b-switch v-model="exclusive" />
-        </div>
+        <b-switch v-model="exclusive" />
+      </div>
 
-        <b-button>
-          Save
-        </b-button>
-
-      <div v-if="hasTags" class="tags">
-        <!-- TODO: use computed properties for filtering out tags -->
-        <section>
+      <div class="existing-tags card" v-if="hasTags">
+        <div class="level-left">
           <h3>All tags</h3>
 
           <b-taglist>
@@ -83,9 +91,9 @@
             :text-hex="tag.tagTextColor"
             @close="deleteTag(name)"
           />
-        </section>
+        </div>
 
-        <section>
+        <div class="level-right">
           <h3>{{ platform.name }} tags</h3>
 
           <tag
@@ -97,20 +105,14 @@
             :text-hex="tag.tagTextColor"
             @close="deleteTag(name)"
           />
-        </section>
+        </div>
       </div>
     </section>
 
     <footer class="modal-card-foot">
-      <b-button
-        :disabled="isDuplicate"
-        class="is-primary"
-        type="submit"
-      >
-        {{ $t('global.save') }}
-      </b-button>
+      ...
     </footer>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -228,73 +230,18 @@ export default {
 };
 </script>
 
-<style lang="scss" rel="stylesheet/scss">
-  @import "~styles/styles";
-
-</style>
-
 <style lang="scss" rel="stylesheet/scss" scoped>
   @import "~styles/styles";
-  //
-  // .tag-input {
-  //   display: grid;
-  //   grid-template-columns: 1fr 40px 40px 100px;
-  //   grid-gap: $gp;
-  // }
-  //
-  // h3 {
-  //   margin-bottom: $gp / 2;
-  // }
-  //
-  // input {
-  //   margin: 0;
-  // }
-  //
-  // .tag {
-  //   margin: 0 $gp / 2 $gp / 2 0;
-  // }
-  //
-  // .tags {
-  //   display: grid;
-  //   grid-gap: $gp / 2;
-  //
-  //   h3 {
-  //     margin-bottom: $gp / 2;
-  //   }
-  // }
-  //
-  // .exclusive-toggle {
-  //   display: flex;
-  //   align-items: center;
-  // }
-  //
-  // .preview {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //
-  //   flex-direction: column;
-  //
-  //   small {
-  //     font-size: 10px;
-  //     margin-bottom: $gp / 4;
-  //   }
-  //
-  //   .tag {
-  //     margin: 0;
-  //   }
-  // }
-  //
-  // .add-tag {
-  //   padding: $gp;
-  //   border: 1px dashed var(--modal-text-color);
-  //   border-radius: $gp;
-  //   margin-bottom: $gp;
-  // }
-  //
-  // .tag-actions {
-  //   display: flex;
-  //   margin-top: $gp;
-  //   justify-content: space-between;
-  // }
+
+  .tag-input {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+  }
+
+  .existing-tags {
+    padding: $gp;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+  }
 </style>

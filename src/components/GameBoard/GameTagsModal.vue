@@ -1,3 +1,7 @@
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <div class="modal-card">
     <header class="modal-card-head">
@@ -59,13 +63,8 @@
 
 <script>
 import { mapState } from 'vuex';
-import Tag from '@/components/Tag';
 
 export default {
-  components: {
-    Tag,
-  },
-
   props: {
     gameTagsId: {
       type: Number,

@@ -1,7 +1,11 @@
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <div v-if="gameId && games[gameId]" :class="gameCardClass">
 
-    <img :src="coverUrl" :alt="game.name" >
+    <img :src="coverUrl" :alt="game.name" />
 
     <div class="game-info">
       <a @click="openDetails" v-text="game.name" />
@@ -60,11 +64,6 @@ $gameCoverWidth: 80px;
     width: 100%;
     display: flex;
     flex-direction: column;
-
-    button {
-      margin-top: $gp / 2;
-      align-self: flex-start;
-    }
 
     a {
       color: var(--game-card-text-color);

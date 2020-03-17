@@ -1,4 +1,8 @@
 
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <div>
     <div class="github-buttons">

@@ -326,11 +326,11 @@ export default {
   @import "~styles/styles";
 
   #app {
-    display: flex;
-    flex-direction: column;
-    background: var(--body-background);
-    background-size: cover;
-    overflow-x: hidden;
+    // display: flex;
+    // flex-direction: column;
+    // background: var(--body-background);
+    // background-size: cover;
+    // overflow-x: hidden;
 
     &.no-border-radius {
       --border-radius: 0;

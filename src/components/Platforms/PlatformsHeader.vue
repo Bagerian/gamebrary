@@ -1,3 +1,7 @@
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <header>
     <b-button @click="toggleView" class="is-primary small">

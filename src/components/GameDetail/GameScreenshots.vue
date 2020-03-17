@@ -1,5 +1,9 @@
 <!-- TODO: center image on fullscreen -->
 <!-- TODO: look up props -->
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <section v-if="game.screenshots" class="game-screenshots">
     <h3 class="subtitle">Screenshots</h3>

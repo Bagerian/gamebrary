@@ -1,8 +1,15 @@
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <div v-if="gameId && games[gameId]" :class="gameCardClass">
     <div class="game-info">
       <a v-text="game.name" class="drag-filter" @click="openDetails"/>
-      <i class="fas fa-grip-vertical draggable-icon game-drag-handle" />
+
+      <b-button
+        size="is-small"
+        icon-left="grip-vertical"
+        class="is-light draggable-icon game-drag-handle"
+      />
 
       <span
         v-if="showReleaseDates && releaseDate"
@@ -54,13 +61,8 @@
 
 <script>
 import GameCardUtils from '@/components/GameCards/GameCard';
-import Tag from '@/components/Tag';
 
 export default {
-  components: {
-    Tag,
-  },
-
   mixins: [GameCardUtils],
 };
 </script>
@@ -95,23 +97,6 @@ export default {
       flex-direction: column;
       align-items: flex-start;
 
-      .game-tags {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        margin-top: $gp / 4;
-      }
-
-      .tag {
-        margin-right: $gp / 4;
-      }
-
-      i.tags {
-        position: absolute;
-        bottom: $gp * 1.5;
-        right: $gp / 4;
-      }
-
       .game-rating, a {
         display: inline-flex;
         font-weight: bold;
@@ -145,10 +130,6 @@ export default {
       &:hover {
         color: #a5a2a2;
       }
-    }
-
-    .game-tag {
-      margin-bottom: $gp / 3;
     }
   }
 

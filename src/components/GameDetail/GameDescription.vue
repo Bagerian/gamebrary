@@ -1,4 +1,8 @@
 
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <div class="game-description" @click="expand">
     <h3>Game description</h3>

@@ -1,4 +1,8 @@
 <!-- TODO: when file management is in place, allow to insert image from your files -->
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <div class="modal-card">
     <header class="modal-card-head">

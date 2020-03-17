@@ -1,3 +1,7 @@
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <div class="modal-card" style="width: auto">
     <header class="modal-card-head">
@@ -10,8 +14,7 @@
         Manage tags
       </b-button>
 
-      <!-- <tags-settings v-model="localSettings" /> -->
-      <game-board-settings v-model="localSettings" @save="save" />
+      <game-board-settings v-model="localSettings" v-if="localSettings" @save="save" />
 
       <div class="setting">
         <i class="fas fa-sign-out-alt" />

@@ -1,3 +1,7 @@
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <a :href="href" class="igdb-credit" target="_blank">
     <img :src="`/static/img/igdb-logo.svg`" >

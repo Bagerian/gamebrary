@@ -1,4 +1,8 @@
 <!-- TODO: abstract styles, only add card specific styles in each component -->
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <div v-if="gameId && games[gameId]" :class="gameCardClass">
     <img
@@ -15,7 +19,11 @@
         @click="openDetails"
       />
 
-      <i class="fas fa-grip-vertical draggable-icon game-drag-handle" />
+      <b-button
+        size="is-small"
+        icon-left="grip-vertical"
+        class="is-light draggable-icon game-drag-handle"
+      />
 
       <span
         v-if="showReleaseDates && releaseDate"

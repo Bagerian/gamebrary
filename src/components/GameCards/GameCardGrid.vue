@@ -1,3 +1,7 @@
+<!-- TODO: Rename -->
+<!-- TODO: CSS? -->
+<!-- TODO: HTML? -->
+<!-- TODO: imports -->
 <template lang="html">
   <div v-if="gameId && games[gameId]" :class="gameCardClass">
     <img
@@ -13,7 +17,11 @@
     >
     </span>
 
-    <i class="fas fa-grip-vertical draggable-icon game-drag-handle" />
+    <b-button
+      size="is-small"
+      icon-left="grip-vertical"
+      class="is-light draggable-icon game-drag-handle"
+    />
 
     <div
       v-if="showGameInfo"
@@ -58,33 +66,31 @@
           @click="openDetails"
         />
 
-        <i class="fas fa-grip-vertical draggable-icon game-drag-handle" />
+        <b-button
+          size="is-small"
+          icon-left="grip-vertical"
+          class="is-light draggable-icon game-drag-handle"
+        />
 
-        <div v-if="hasTags" class="game-tags drag-filter">
-          <tag
+        <b-taglist v-if="hasTags" class="drag-filter">
+          <b-tag
             v-for="({ games, hex, tagTextColor }, name) in tags"
             v-if="games.includes(game.id)"
             :key="name"
-            :label="name"
-            :hex="hex"
-            :text-hex="tagTextColor"
-            readonly
-            @action="openTags"
-          />
-      </div>
+            :style="`background-color: ${hex}; color: ${tagTextColor}`"
+            @click.native="openTags"
+          >
+            {{ name }}
+          </b-tag>
+        </b-taglist>
     </div>
   </div>
 </template>
 
 <script>
 import GameCardUtils from '@/components/GameCards/GameCard';
-import Tag from '@/components/Tag';
 
 export default {
-  components: {
-    Tag,
-  },
-
   mixins: [GameCardUtils],
 };
 </script>

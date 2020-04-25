@@ -18,4 +18,73 @@ $list-width: 300px;
 $tiny: "max-width: 425px";
 $small: "max-width: 780px";
 $medium: "max-width: 1024px";
-$desktop: "min-width: 781px";
+$border-radius: 4px;
+$box-padding: $gp;
+
+// Media queries
+$small: "max-width: 780px";
+$medium: "max-width: 1023px";
+$border-radius: 4px;
+// SCSS overrides here
+// $body-background-color: $black-bis;
+$gap: 16px;
+$body-font-size: 16px;
+$primary: #fc0;
+// $family-primary: 'Lato', sans-serif;
+// $body-background-color: #525252;
+// $body-size
+// $body-min-width
+// $body-rendering
+// $body-family
+// $body-overflow-x
+// $body-overflow-y
+// $body-color
+// $body-font-size
+// $body-weight
+// $body-line-height
+// $code-family
+// $code-padding
+// $code-weight
+// $code-size
+// $small-font-size
+// $hr-background-color
+// $hr-height
+// $hr-margin
+// $strong-color
+// $strong-weight
+// $pre-font-size
+// $pre-padding
+// $pre-code-font-size
+
+$colors: (
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert)//,
+    // "twitter": ($twitter, $twitter-invert)
+);
+// $black: ;
+// $black-bis: ;
+// $black-ter: ;
+// $grey-darker: ;
+// $grey-dark: ;
+// $grey: ;
+// $grey-light: ;
+// $grey-lighter: ;
+// $grey-lightest: ;
+// $white-ter: ;
+// $white-bis: ;
+// $white: ;
+// $orange: ;
+// $yellow: ;
+// $green: ;
+// $turquoise: ;
+// $cyan: ;
+// $blue: ;
+// $purple: ;
+// $red: ;

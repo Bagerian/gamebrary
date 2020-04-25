@@ -1,14 +1,20 @@
+// @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Vollkorn&display=swap');
+@import "~bulma/sass/utilities/_all";
+
+
 @import "_vars";
-@import "_themes";
-@import "_reset";
-@import "_utility";
+@import "_mixins";
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
 
-@import "_inputs";
-@import "_markdown";
-@import "_settings";
-@import "_badges";
+.container {
+    // min-height: calc(100vh - 244px);
+    // padding: 1rem 0;
+}
 
-.progress-wrapper {
-  width: 100%;
-  margin-bottom: 0 !important;
+
+.card {
+    border-radius: $radius;
+    margin-bottom: $gap;
 }

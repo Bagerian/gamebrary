@@ -399,10 +399,6 @@ export default {
           @media($tiny) {
             grid-template-columns: 1fr 1fr;
           }
-
-          @media($desktop) {
-            grid-template-columns: 1fr 1fr;
-          }
         }
       }
     }

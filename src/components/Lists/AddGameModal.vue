@@ -3,9 +3,10 @@
 <!-- TODO: HTML? -->
 <!-- TODO: imports -->
 <template lang="html">
-  <div class="modal-card">
+  <div>
     <header class="modal-card-head">
       <p class="modal-card-title">
+        Add game
       </p>
     </header>
 

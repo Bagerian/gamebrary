@@ -3,31 +3,35 @@
 <!-- TODO: HTML? -->
 <!-- TODO: imports -->
 <template lang="html">
-  <div class="modal-card" style="width: auto">
-    <header class="modal-card-head">
-        <p class="modal-card-title">
-          Board Settings
-        </p>
-    </header>
+  <div class="card">
+    <h1>Settings</h1>
+
     <section class="modal-card-body">
-      <b-button class="is-primary" @click="openTags">
-        Manage tags
-      </b-button>
+      <b-tabs type="is-boxed" vertical>
+        <b-tab-item label="Pictures" icon="google-photos">
+          <game-board-settings v-model="localSettings" v-if="localSettings" @save="save" />
+        </b-tab-item>
 
-      <game-board-settings v-model="localSettings" v-if="localSettings" @save="save" />
+        <b-tab-item label="Tags" icon="library-music">
+          <tags-settings />
+        </b-tab-item>
 
-      <div class="setting">
-        <i class="fas fa-sign-out-alt" />
-        {{ $t('settings.signOut') }}
-      </div>
+        <b-tab-item label="Themes" icon="library-music">
+          <tags-settings />
+        </b-tab-item>
+
+        <b-tab-item label="Themes" icon="library-music">
+          <tags-settings />
+        </b-tab-item>
+
+        <b-tab-item label="Advanced" icon="library-music">
+          <b-button @click="signOut">
+            {{ $t('settings.signOut') }}
+          </b-button>
+        </b-tab-item>
+      </b-tabs>
     </section>
-    <footer class="modal-card-foot">
-      <b-button @click="signOut">
-        {{ $t('settings.signOut') }}
-      </b-button>
-    </footer>
-</div>
-
+  </div>
     <!-- <modal
     :message="$t('settings.deleteAccount.message')"
     :title="$t('settings.deleteAccount.title')"
@@ -68,6 +72,10 @@ export default {
 
   data() {
     return {
+      expanded: false,
+      atRight: false,
+      size: null,
+      type: null,
       activeSection: null,
       activeComponent: null,
       language: null,
@@ -123,12 +131,12 @@ export default {
   },
 
   methods: {
-    openTags() {
-      this.$buefy.modal.open({
-        parent: this,
-        component: TagsSettings,
-      });
-    },
+    // openTags() {
+    //   this.$buefy.modal.open({
+    //     parent: this,
+    //     component: TagsSettings,
+    //   });
+    // },
 
     save() {
       // TODO: make async

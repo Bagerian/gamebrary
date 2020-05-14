@@ -19,10 +19,8 @@
         @click.native="openDetails"
       />
 
-      <b-button
-        class="is-primary is-small"
-        @click="addGame"
-      >
+
+      <b-button type="is-primary" icon-left="plus" @click="addGame">
         {{ $t('list.addGame') }}
       </b-button>
     </div>

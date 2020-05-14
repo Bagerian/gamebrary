@@ -18,9 +18,10 @@
     </span>
 
     <b-button
-      size="is-small"
       icon-left="grip-vertical"
-      class="is-light draggable-icon game-drag-handle"
+      size="is-small"
+      type="is-info"
+      class="draggable-icon game-drag-handle"
     />
 
     <div

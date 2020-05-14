@@ -325,10 +325,13 @@ export default {
 <style lang="scss" rel="stylesheet/scss" scoped>
   @import "~styles/styles";
 
+  body {
+    background: $body-background-color;
+  }
+
   #app {
     // display: flex;
     // flex-direction: column;
-    // background: var(--body-background);
     // background-size: cover;
     // overflow-x: hidden;
 

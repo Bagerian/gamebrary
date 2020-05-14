@@ -5,11 +5,24 @@
 <template lang="html">
   <div class="platform-list">
     <div
-      class="platform"
+      class="card"
       v-for="platform in platforms"
       :key="platform.id"
+      @click="changePlatform(platform)"
     >
-      <a
+    <pre>{{ platform }}</pre>
+    <!-- <a
+      class="image"
+      :style="`background-color: ${platform.hex || '#fff'}`"
+      @click="changePlatform(platform)"
+    >
+      <img
+        :src="`/static/img/platforms/logos/${platform.code}.svg`"
+        :alt="platform.name"
+      />
+    </a> -->
+
+      <!-- <a
         class="thumbnail"
         :style="`background-color: ${platform.hex || '#fff'}`"
         @click="changePlatform(platform)"
@@ -25,7 +38,13 @@
       <div class="platform-info">
         <h4>{{ platform.name }}</h4>
         {{ platform.releaseYear }}
-      </div>
+      </div> -->
+
+      <!-- <div class="platform-info">
+        <h4>{{ platform.name }}</h4>
+        {{ platform.releaseYear }}
+      </div> -->
+    <!-- </div> -->
     </div>
   </div>
 </template>
@@ -60,7 +79,7 @@ export default {
 
   .platform-list {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
 
     @media($small) {
       grid-template-columns: auto;
@@ -72,60 +91,5 @@ export default {
     display: grid;
     grid-template-columns: 200px auto;
     grid-gap: $gp;
-  }
-
-  .thumbnail {
-    padding: $gp;
-    border-radius: var(--border-radius);
-    justify-content: center;
-    text-align: center;
-    display: flex;
-    position: relative;
-    overflow: hidden;
-
-    &.has-lists {
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        border-color: transparent;
-        border-style: solid;
-      }
-
-      &::after {
-        border-width: $gp / 2;
-        border-right-color: #555;
-        border-top-color: #555;
-      }
-    }
-  }
-
-  .lists-indicator {
-    position: absolute;
-    top: -15px;
-    right: -20px;
-    width: 40px;
-    height: 30px;
-    transform: rotate(45deg);
-    background: red;
-    border-bottom: 3px solid var(--body-background);
-    background-color: #555;
-  }
-
-  img {
-      max-width: 100%;
-      align-self: center;
-      max-height: 50px;
-      border-radius: var(--border-radius);
-  }
-
-  .has-lists-badge {
-    position: absolute;
-    top: -11px;
-    right: -13.5px;
-    transform: rotate(45deg);
-    color: #555;
   }
 </style>

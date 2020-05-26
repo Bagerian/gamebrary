@@ -18,10 +18,7 @@
 </template>
 
 <script>
-import Masonry from 'masonry-layout';
 import { mapState } from 'vuex';
-
-let msnry = null;
 
 export default {
   props: {
@@ -35,13 +32,6 @@ export default {
   methods: {
     hasLists(platform) {
       return Boolean(this.gameLists[platform] && this.gameLists[platform].length);
-    },
-
-    initGrid() {
-      msnry = new Masonry('.platforms', {
-        itemSelector: '.platform',
-        gutter: 16,
-      });
     },
 
     changePlatform(platform) {

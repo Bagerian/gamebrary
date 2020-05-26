@@ -349,113 +349,113 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  // .list {
-  //   flex-shrink: 0;
-  //   cursor: default;
-  //   position: relative;
-  //   width: 300px;
-  //   margin-right: $gp;
-  //   max-height: calc(100vh - 100px);
-  //
-  //   &.unique {
-  //     @media($small) {
-  //       min-width: 300px;
-  //       width: calc(100vw - 80px);
-  //     }
-  //   }
-  //
-  //   .list-header {
-  //     padding: $gp / 2;
-  //     width: 100%;
-  //     display: flex;
-  //     justify-content: space-between;
-  //     align-items: center;
-  //   }
-  //
-  //   .list-name {
-  //     white-space: nowrap;
-  //     overflow: hidden;
-  //     text-overflow: ellipsis;
-  //     display: flex;
-  //     align-items: center;
-  //   }
-  //
-  //   .games {
-  //     display: grid;
-  //     height: 100%;
-  //     overflow: hidden;
-  //     max-height: calc(100vh - 200px);
-  //     min-height: 120px;
-  //     overflow-y: auto;
-  //     padding: 0 $gp / 2;
-  //     width: 100%;
-  //   }
-  //
-  //   &.grid {
-  //     .games {
-  //       padding: 0 $gp / 2;
-  //       grid-template-columns: 1fr 1fr;
-  //       grid-gap: $gp / 2;
-  //
-  //       // https://github.com/w3c/csswg-drafts/issues/129
-  //       &::after {
-  //         content: '';
-  //         display: block;
-  //         height: 1px;
-  //         margin-top: -1px;
-  //         width: 100%;
-  //         grid-column: span 2;
-  //       }
-  //     }
-  //
-  //     &.unique {
-  //       .games {
-  //         grid-template-columns: 1fr 1fr 1fr;
-  //
-  //         @media($tiny) {
-  //           grid-template-columns: 1fr 1fr;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-  //
-  // .list-settings {
-  //   padding: $gp;
-  // }
-  //
-  // .game-masonry {
-  //   height: 100%;
-  //   display: flex;
-  //   align-items: center;
-  //   overflow: hidden;
-  //   max-height: calc(100vh - 154px);
-  //   min-height: 80px;
-  //   overflow-y: auto;
-  //   padding: 4px;
-  //   width: 100%;
-  // }
-  //
-  // .empty-list {
-  //   color: var(--progress-secondary-color);
-  //   opacity: 0.8;
-  //   position: absolute;
-  //   top: 0;
-  //   margin-top: 62px;
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   padding: $gp;
-  // }
-  //
-  // .fa-grip-vertical {
-  //   opacity: 0.5;
-  //   margin-right: $gp / 2;
-  // }
-  //
-  // .hand-drag {
-  //   position: absolute;
-  //   left: 0;
-  //   top: 22px;
-  // }
+  .list {
+    flex-shrink: 0;
+    cursor: default;
+    position: relative;
+    width: 300px;
+    margin-right: 1rem;
+    max-height: calc(100vh - 100px);
+
+    &.unique {
+      @media(max-width: 780px) {
+        min-width: 300px;
+        width: calc(100vw - 80px);
+      }
+    }
+
+    .list-header {
+      padding: .5rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .list-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+    }
+
+    .games {
+      display: grid;
+      height: 100%;
+      overflow: hidden;
+      max-height: calc(100vh - 200px);
+      min-height: 120px;
+      overflow-y: auto;
+      padding: 0 .5rem;
+      width: 100%;
+    }
+
+    &.grid {
+      .games {
+        padding: 0 .5rem;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: .5rem;
+
+        // https://github.com/w3c/csswg-drafts/issues/129
+        &::after {
+          content: '';
+          display: block;
+          height: 1px;
+          margin-top: -1px;
+          width: 100%;
+          grid-column: span 2;
+        }
+      }
+
+      &.unique {
+        .games {
+          grid-template-columns: 1fr 1fr 1fr;
+
+          // @media($tiny) {
+          //   grid-template-columns: 1fr 1fr;
+          // }
+        }
+      }
+    }
+  }
+
+  .list-settings {
+    padding: 1rem;
+  }
+
+  .game-masonry {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    max-height: calc(100vh - 154px);
+    min-height: 80px;
+    overflow-y: auto;
+    padding: 4px;
+    width: 100%;
+  }
+
+  .empty-list {
+    color: var(--progress-secondary-color);
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    margin-top: 62px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .fa-grip-vertical {
+    opacity: 0.5;
+    margin-right: .5rem;
+  }
+
+  .hand-drag {
+    position: absolute;
+    left: 0;
+    top: 22px;
+  }
 </style>

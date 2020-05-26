@@ -52,31 +52,29 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  .sort-icon {
-    display: inline-grid;
-    grid-gap: 1px;
-    grid-template: 1fr 1fr / 1fr 1fr;
-    align-items: center;
-    justify-items: center;
-
-    .arrow,
-    .single-icon {
-      grid-row: span 2;
-    }
-
-    .sort-type {
-      font-size: $font-size / 2;
-    }
-
-    .single-icon {
-      align-self: start;
-    }
-
-    .bottom-icon {
-      grid-column: 2;
-      grid-row: 2;
-    }
-  }
+  // .sort-icon {
+  //   display: inline-grid;
+  //   grid-gap: 1px;
+  //   grid-template: 1fr 1fr / 1fr 1fr;
+  //   align-items: center;
+  //   justify-items: center;
+  //
+  //   .arrow,
+  //   .single-icon {
+  //     grid-row: span 2;
+  //   }
+  //
+  //   .sort-type {
+  //     font-size: $font-size / 2;
+  //   }
+  //
+  //   .single-icon {
+  //     align-self: start;
+  //   }
+  //
+  //   .bottom-icon {
+  //     grid-column: 2;
+  //     grid-row: 2;
+  //   }
+  // }
 </style>

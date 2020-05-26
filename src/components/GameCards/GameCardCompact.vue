@@ -81,99 +81,96 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  .card {
-    background: var(--game-card-background);
-    margin-bottom: $gp / 2;
-    position: relative;
-    display: grid;
-    grid-template-columns: 50px auto;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-
-    img {
-      width: 50px;
-      height: auto;
-      display: flex;
-      cursor: pointer;
-    }
-
-    &.card-placeholder {
-      background: #e5e5e5;
-      outline: 1px dashed #a5a2a2;
-      opacity: 0.3;
-
-      img {
-        filter: grayscale(1);
-      }
-
-      .game-card-options {
-        display: none;
-      }
-    }
-
-    .game-info {
-      padding: $gp / 2 $gp;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-
-      .game-tags {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        margin-top: $gp / 4;
-      }
-
-      .tag {
-        margin-right: $gp / 4;
-      }
-
-      i.tags {
-        position: absolute;
-        bottom: $gp * 1.5;
-        right: $gp / 4;
-      }
-
-      .release-date {
-        color: var(--accent-color);
-        margin: $gp / 4 0;
-      }
-
-      &:hover {
-        a {
-          text-decoration: underline;
-        }
-      }
-
-      a {
-        cursor: pointer;
-        margin-right: $gp / 2;
-        color: var(--game-card-text-color);
-      }
-    }
-
-    .draggable-icon {
-      @include drag-cursor;
-      position: absolute;
-      color: #e5e5e5;
-      right: $gp / 3;
-      top: $gp / 3;
-
-      &:hover {
-        color: #a5a2a2;
-      }
-    }
-
-    .game-tag {
-      margin-bottom: $gp / 3;
-    }
-  }
-
-  .note {
-    color: var(--note-color);
-  }
+  // .card {
+  //   background: var(--game-card-background);
+  //   margin-bottom: $gp / 2;
+  //   position: relative;
+  //   display: grid;
+  //   grid-template-columns: 50px auto;
+  //   border-radius: var(--border-radius);
+  //   overflow: hidden;
+  //
+  //   img {
+  //     width: 50px;
+  //     height: auto;
+  //     display: flex;
+  //     cursor: pointer;
+  //   }
+  //
+  //   &.card-placeholder {
+  //     background: #e5e5e5;
+  //     outline: 1px dashed #a5a2a2;
+  //     opacity: 0.3;
+  //
+  //     img {
+  //       filter: grayscale(1);
+  //     }
+  //
+  //     .game-card-options {
+  //       display: none;
+  //     }
+  //   }
+  //
+  //   .game-info {
+  //     padding: $gp / 2 $gp;
+  //     width: 100%;
+  //     display: flex;
+  //     flex-direction: column;
+  //     align-items: flex-start;
+  //
+  //     .game-tags {
+  //       display: flex;
+  //       flex-wrap: wrap;
+  //       align-items: center;
+  //       margin-top: $gp / 4;
+  //     }
+  //
+  //     .tag {
+  //       margin-right: $gp / 4;
+  //     }
+  //
+  //     i.tags {
+  //       position: absolute;
+  //       bottom: $gp * 1.5;
+  //       right: $gp / 4;
+  //     }
+  //
+  //     .release-date {
+  //       color: var(--accent-color);
+  //       margin: $gp / 4 0;
+  //     }
+  //
+  //     &:hover {
+  //       a {
+  //         text-decoration: underline;
+  //       }
+  //     }
+  //
+  //     a {
+  //       cursor: pointer;
+  //       margin-right: $gp / 2;
+  //       color: var(--game-card-text-color);
+  //     }
+  //   }
+  //
+  //   .draggable-icon {
+  //     @include drag-cursor;
+  //     position: absolute;
+  //     color: #e5e5e5;
+  //     right: $gp / 3;
+  //     top: $gp / 3;
+  //
+  //     &:hover {
+  //       color: #a5a2a2;
+  //     }
+  //   }
+  //
+  //   .game-tag {
+  //     margin-bottom: $gp / 3;
+  //   }
+  // }
+  //
+  // .note {
+  //   color: var(--note-color);
+  // }
 </style>
-

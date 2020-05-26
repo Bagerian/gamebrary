@@ -32,18 +32,53 @@
         </b-field>
       </form>
 
-      <b-message type="is-warning is-small" v-if="gamesInList.length > 0">
-        <b-tooltip
-          :label="gamesInListNames"
-          position="is-bottom"
-          multilined
-          size="is-small"
-        >
-          <p>{{ `${gamesInListMessage} ${$t('gameSearch.alreadyInList')}` }}</p>
-        </b-tooltip>
-      </b-message>
+      <article class="panel is-primary">
+        <div class="panel-block">
+          <p class="control has-icons-left">
+            <input class="input is-primary" type="text" placeholder="Search">
+            <span class="icon is-left">
+              <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+          </p>
 
-      <div
+          <b-message type="is-warning is-small" v-if="gamesInList.length > 0">
+            <b-tooltip
+              :label="gamesInListNames"
+              position="is-bottom"
+              multilined
+              size="is-small"
+            >
+              <p>{{ `${gamesInListMessage} ${$t('gameSearch.alreadyInList')}` }}</p>
+            </b-tooltip>
+          </b-message>
+        </div>
+        <a class="panel-block is-active">
+          <span class="panel-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+          </span>
+          bulma
+        </a>
+        <a class="panel-block">
+          <span class="panel-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+          </span>
+          marksheet
+        </a>
+        <a class="panel-block">
+          <span class="panel-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+          </span>
+          minireset.css
+        </a>
+        <a class="panel-block">
+          <span class="panel-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+          </span>
+          jgthms.github.io
+        </a>
+      </article>
+
+      <!-- <div
         v-if="filteredResults.length > 0"
         ref="searchResults"
       >
@@ -55,7 +90,7 @@
           search-result
           @added="added"
         />
-      </div>
+      </div> -->
 
       <span
         v-if="!noResults"
@@ -184,11 +219,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  form {
-    margin-bottom: $gp;
-  }
-</style>

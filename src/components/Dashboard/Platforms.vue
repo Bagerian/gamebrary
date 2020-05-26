@@ -4,11 +4,8 @@
 <!-- TODO: imports -->
 <template lang="html">
   <div class="platforms-page">
-    <platforms-header />
-
-    <component
-      :is="platformsComponent"
-      :platforms="sortedPlatforms"
+    <platforms-grid
+      :platforms="filteredPlatforms"
     />
 
     <platforms-footer />
@@ -18,18 +15,13 @@
 <script>
 import platforms from '@/platforms';
 import PlatformsFooter from '@/components/Platforms/PlatformsFooter';
-import PlatformsHeader from '@/components/Platforms/PlatformsHeader';
 import PlatformsGrid from '@/components/Platforms/PlatformsGrid';
-import PlatformsList from '@/components/Platforms/PlatformsList';
-import { sortBy } from 'lodash';
 import { mapState } from 'vuex';
 
 export default {
   components: {
     PlatformsFooter,
-    PlatformsHeader,
     PlatformsGrid,
-    PlatformsList,
   },
 
   data() {
@@ -86,40 +78,9 @@ export default {
         ? availableLists.filter(({ type }) => type === this.platformsFilterField)
         : availableLists;
     },
-
-    sortedPlatforms() {
-      const sortedPlatforms = this.platformsSortField
-        ? sortBy(this.filteredPlatforms, this.platformsSortField)
-        : this.filteredPlatforms;
-
-      return this.platformsSortField === 'releaseYear'
-        ? sortedPlatforms.reverse()
-        : sortedPlatforms;
-    },
-
-    // filteredPlatforms() {
-    //   const availableLists = this.ownedListsOnly
-    //     ? this.platforms.filter(({ code }) => this.gameLists[code])
-    //     : this.platforms;
-    //
-    // if (msnry) {
-    //   msnry.reloadItems();
-    //   msnry.layout();
-    // }
-    //
-    //   return this.settings && this.settings.sortListsAlphabetically
-    //     ? sortBy(availableLists, 'name')
-    //     : availableLists;
-    // },
   },
 };
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  .platforms-page {
-    min-height: calc(100vh - #{$navHeight});
-    padding: 0 $gp $gp / 2;
-  }
 </style>

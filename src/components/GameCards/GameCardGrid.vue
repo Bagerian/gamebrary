@@ -97,129 +97,127 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@import "~styles/styles";
-
-.card {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  cursor: pointer;
-
-  &.card-placeholder {
-    background: #e5e5e5;
-    outline: 1px dashed #a5a2a2;
-    opacity: 0.3;
-
-    img {
-      filter: grayscale(1);
-    }
-
-    .game-card-options {
-      display: none;
-    }
-  }
-
-  img {
-    width: 100%;
-    height: 185px;
-    object-fit: cover;
-    display: flex;
-    align-self: center;
-    cursor: pointer;
-  }
-
-  .release-date {
-    color: var(--accent-color);
-    font-weight: bold;
-    justify-self: end;
-    margin: $gp / 4 0;
-    border-radius: var(--border-radius);
-  }
-
-  .game-info {
-    padding: $gp / 2;
-    width: 100%;
-    display: flex;
-    border-bottom-left-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
-    flex-direction: column;
-    background: var(--game-card-background);
-    align-items: flex-start;
-
-    .game-tags {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: $gp / 4;
-    }
-
-    .tag {
-      margin-right: $gp / 4;
-    }
-
-    i.tags {
-      position: absolute;
-      bottom: $gp * 1.5;
-      right: $gp / 4;
-    }
-
-    .rating-release {
-      width: 100%;
-      display: grid;
-      grid-auto-flow: column;
-    }
-
-    &:hover {
-      a {
-        text-decoration: underline;
-      }
-    }
-
-    a {
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      cursor: pointer;
-      margin-right: $gp / 2;
-      color: var(--game-card-text-color);
-    }
-
-    .title-progress {
-      display: grid;
-      grid-template: auto auto / auto auto;
-
-      a {
-        grid-column: 1;
-      }
-
-      .game-rating {
-        grid-column: 1;
-        grid-row: 2;
-      }
-    }
-  }
-
-  .draggable-icon {
-    @include drag-cursor;
-    position: absolute;
-    color: #e5e5e5;
-    right: $gp / 3;
-    top: $gp / 3;
-
-    &:hover {
-      color: #a5a2a2;
-    }
-  }
-
-  .game-tag {
-    margin-bottom: $gp / 3;
-  }
-}
-
-.note {
-  color: var(--note-color);
-}
+// .card {
+//   display: flex;
+//   flex-direction: column;
+//   position: relative;
+//   border-radius: var(--border-radius);
+//   overflow: hidden;
+//   cursor: pointer;
+//
+//   &.card-placeholder {
+//     background: #e5e5e5;
+//     outline: 1px dashed #a5a2a2;
+//     opacity: 0.3;
+//
+//     img {
+//       filter: grayscale(1);
+//     }
+//
+//     .game-card-options {
+//       display: none;
+//     }
+//   }
+//
+//   img {
+//     width: 100%;
+//     height: 185px;
+//     object-fit: cover;
+//     display: flex;
+//     align-self: center;
+//     cursor: pointer;
+//   }
+//
+//   .release-date {
+//     color: var(--accent-color);
+//     font-weight: bold;
+//     justify-self: end;
+//     margin: $gp / 4 0;
+//     border-radius: var(--border-radius);
+//   }
+//
+//   .game-info {
+//     padding: $gp / 2;
+//     width: 100%;
+//     display: flex;
+//     border-bottom-left-radius: var(--border-radius);
+//     border-bottom-right-radius: var(--border-radius);
+//     flex-direction: column;
+//     background: var(--game-card-background);
+//     align-items: flex-start;
+//
+//     .game-tags {
+//       display: flex;
+//       flex-wrap: wrap;
+//       align-items: center;
+//       margin-top: $gp / 4;
+//     }
+//
+//     .tag {
+//       margin-right: $gp / 4;
+//     }
+//
+//     i.tags {
+//       position: absolute;
+//       bottom: $gp * 1.5;
+//       right: $gp / 4;
+//     }
+//
+//     .rating-release {
+//       width: 100%;
+//       display: grid;
+//       grid-auto-flow: column;
+//     }
+//
+//     &:hover {
+//       a {
+//         text-decoration: underline;
+//       }
+//     }
+//
+//     a {
+//       display: block;
+//       white-space: nowrap;
+//       overflow: hidden;
+//       text-overflow: ellipsis;
+//       cursor: pointer;
+//       margin-right: $gp / 2;
+//       color: var(--game-card-text-color);
+//     }
+//
+//     .title-progress {
+//       display: grid;
+//       grid-template: auto auto / auto auto;
+//
+//       a {
+//         grid-column: 1;
+//       }
+//
+//       .game-rating {
+//         grid-column: 1;
+//         grid-row: 2;
+//       }
+//     }
+//   }
+//
+//   .draggable-icon {
+//     @include drag-cursor;
+//     position: absolute;
+//     color: #e5e5e5;
+//     right: $gp / 3;
+//     top: $gp / 3;
+//
+//     &:hover {
+//       color: #a5a2a2;
+//     }
+//   }
+//
+//   .game-tag {
+//     margin-bottom: $gp / 3;
+//   }
+// }
+//
+// .note {
+//   color: var(--note-color);
+// }
 </style>

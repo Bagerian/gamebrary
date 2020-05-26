@@ -44,36 +44,33 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@import "~styles/styles";
-
-.game-description {
-  margin: $gp 0;
-}
-
-p {
-  line-height: 1.4rem;
-  font-size: 16px;
-  letter-spacing: .01em;
-
-  &.collapsed {
-    margin-bottom: $gp / 2;
-
-    @media($small) {
-      overflow : hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 6;
-      -webkit-box-orient: vertical;
-    }
-  }
-}
-
-.read-more {
-  display: none;
-
-  @media($small) {
-    display: inline;
-  }
-}
+// .game-description {
+//   margin: $gp 0;
+// }
+//
+// p {
+//   line-height: 1.4rem;
+//   font-size: 16px;
+//   letter-spacing: .01em;
+//
+//   &.collapsed {
+//     margin-bottom: $gp / 2;
+//
+//     @media($small) {
+//       overflow : hidden;
+//       text-overflow: ellipsis;
+//       display: -webkit-box;
+//       -webkit-line-clamp: 6;
+//       -webkit-box-orient: vertical;
+//     }
+//   }
+// }
+//
+// .read-more {
+//   display: none;
+//
+//   @media($small) {
+//     display: inline;
+//   }
+// }
 </style>
-

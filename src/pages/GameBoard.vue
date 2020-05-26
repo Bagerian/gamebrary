@@ -69,7 +69,7 @@ export default {
     if (this.platform) {
       this.load();
     } else {
-      this.$router.push({ name: 'platforms' });
+      this.$router.push({ name: 'dashboard' });
     }
   },
 
@@ -141,35 +141,33 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@import '~styles/styles';
-
 .game-board {
   user-select: none;
   display: flex;
   align-items: flex-start;
-  height: calc(100vh - 52px);
-  padding: 0 $gp;
+  // height: calc(100vh - 52px);
+  padding: 0 16px;
   box-sizing: border-box;
   overflow-x: auto;
   overflow-x: overlay;
   display: flex;
 
-  @media($small) {
-    &:not(.dragging) {
-      scroll-snap-type: mandatory;
-      scroll-snap-points-x: repeat(300px);
-      scroll-snap-type: x mandatory;
-      scroll-padding: $gp;
-
-      .list {
-        scroll-snap-align: center;
-      }
-    }
-
-    .bottom & {
-      padding: $gp $gp 0;
-    }
-  }
+  // @media($small) {
+  //   &:not(.dragging) {
+  //     scroll-snap-type: mandatory;
+  //     scroll-snap-points-x: repeat(300px);
+  //     scroll-snap-type: x mandatory;
+  //     scroll-padding: 16px;
+  //
+  //     .list {
+  //       scroll-snap-align: center;
+  //     }
+  //   }
+  //
+  //   .bottom & {
+  //     padding: $gp $gp 0;
+  //   }
+  // }
 }
 
 .list-placeholder {

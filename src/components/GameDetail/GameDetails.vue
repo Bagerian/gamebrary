@@ -78,22 +78,20 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  .review-box {
-    text-align: left;
-    display: grid;
-    margin: 0 auto;
-    grid-gap: $gp;
-    padding: $gp 0;
-    align-items: center;
-
-    strong {
-      color: var(--accent-color);
-    }
-
-    section {
-      margin-bottom: $gp / 3;
-    }
-  }
+  // .review-box {
+  //   text-align: left;
+  //   display: grid;
+  //   margin: 0 auto;
+  //   grid-gap: $gp;
+  //   padding: $gp 0;
+  //   align-items: center;
+  //
+  //   strong {
+  //     color: var(--accent-color);
+  //   }
+  //
+  //   section {
+  //     margin-bottom: $gp / 3;
+  //   }
+  // }
 </style>

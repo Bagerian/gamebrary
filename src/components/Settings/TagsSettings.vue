@@ -231,17 +231,15 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  .tag-input {
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr;
-  }
-
-  .existing-tags {
-    padding: $gp;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: flex-start;
-  }
+  // .tag-input {
+  //   display: grid;
+  //   grid-template-columns: 3fr 1fr 1fr;
+  // }
+  //
+  // .existing-tags {
+  //   padding: $gp;
+  //   display: grid;
+  //   grid-template-columns: 1fr 1fr;
+  //   align-items: flex-start;
+  // }
 </style>

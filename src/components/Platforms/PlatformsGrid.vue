@@ -1,7 +1,3 @@
-<!-- TODO: Rename -->
-<!-- TODO: CSS? -->
-<!-- TODO: HTML? -->
-<!-- TODO: imports -->
 <template lang="html">
   <div class="platforms">
     <div
@@ -34,20 +30,6 @@ export default {
 
   computed: {
     ...mapState(['gameLists', 'settings']),
-  },
-
-
-  watch: {
-    platforms() {
-      this.$nextTick(() => {
-        msnry.reloadItems();
-        msnry.layout();
-      });
-    },
-  },
-
-  mounted() {
-    this.initGrid();
   },
 
   methods: {
@@ -89,69 +71,32 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-  .platform {
-    padding: $gp;
-    display: flex;
-    margin-bottom: $gp;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    width: 180px;
-    height: 100px;
+.platforms {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1rem;
 
-    &.pc {
-      img {
-        width: 60px;
-      }
-    }
-
-    &.clickable {
-      cursor: pointer;
-    }
-
-    @media($small) {
-      padding: $gp / 2;
-      width: 100%;
-      height: 60px;
-    }
-
-    img {
-      width: 80%;
-      height: auto;
-
-      @media($small) {
-        width: auto;
-        height: 70px;
-        max-height: 60%;
-      }
-    }
-
-    .game-count {
-      padding-top: $gp / 3;
-      font-weight: bold;
-      font-size: 12px;
-      background: var(--primary-background);
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding: 0 $gp / 4;
-      color: var(--primary-text-color);
-      font-size: 10px;
-      border-bottom-left-radius: var(--border-radius);
-    }
+  @media(max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .lists-indicator {
-    position: absolute;
-    top: -15px;
-    right: -20px;
-    width: 40px;
-    height: 30px;
-    transform: rotate(45deg);
-    background: red;
-    border-bottom: 3px solid var(--body-background);
-    background-color: #555;
+  @media(max-width: 780px) {
+    grid-template-columns: 1fr;
   }
+}
+
+img {
+  max-width: 200px;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.platform {
+  height: 80px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>

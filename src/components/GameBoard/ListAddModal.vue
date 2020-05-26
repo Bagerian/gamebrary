@@ -122,16 +122,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" rel="stylesheet/scss" scoped>
-  @import "src/styles/styles.scss";
-
-  .add-list-button {
-    margin-right: $gp;
-  }
-
-  small {
-    color: var(--warning-color);
-    margin: 0 $gp;
-  }
-</style>

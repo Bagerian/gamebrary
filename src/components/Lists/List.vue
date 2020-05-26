@@ -1,69 +1,87 @@
-<!-- TODO: Rename -->
-<!-- TODO: CSS? -->
-<!-- TODO: HTML? -->
-<!-- TODO: imports -->
 <template lang="html">
-  <div :class="['list', viewClass, { unique: unique && view !== 'masonry', dragging }]">
-    <div class="list-header">
-      <span class="list-name">
-        <sort-icon
-          v-if="autoSortEnabled"
-          :sort-order="list[listIndex].sortOrder"
-          title="List sorted automatically"
-        />
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-title">
+        List name
+      </div>
 
-        <h2 class="is-small">{{ list[listIndex].name }}</h2>
-
-        <span
-          v-if="showGameCount"
-        >
-          ({{ gameList.length }})
+      <b-button >
+        <span class="icon">
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
         </span>
-      </span>
+      </b-button>
 
-      <div>
+      <b-dropdown
+        class="card-header-icon"
+        aria-role="list"
+        position="is-bottom-left"
+        :mobile-modal="false"
+      >
         <b-button
-          class="is-primary"
-          icon-right="plus"
-          @click="addGame"
+          class="is-light"
+          icon-right="ellipsis-h"
+          slot="trigger"
         />
 
-        <b-dropdown aria-role="list" position="is-bottom-left" :mobile-modal="false">
-          <b-button
-            class="is-light"
-            icon-right="ellipsis-h"
-            slot="trigger"
+        <b-dropdown-item aria-role="listitem" @click="openListSettings">
+          Settings
+        </b-dropdown-item>
+      </b-dropdown>
+
+      <!-- <div class="list-header">
+        <span class="list-name">
+          <sort-icon
+            v-if="autoSortEnabled"
+            :sort-order="list[listIndex].sortOrder"
+            title="List sorted automatically"
           />
 
-          <b-dropdown-item aria-role="listitem" @click="openListSettings">
-            Settings
-          </b-dropdown-item>
-        </b-dropdown>
-      </div>
+          <h2 class="is-small">{{ list[listIndex].name }}</h2>
+
+          <span
+            v-if="showGameCount"
+          >
+            ({{ gameList.length }})
+          </span>
+        </span>
+
+        <div>
+          <b-button
+            class="is-primary"
+            icon-right="plus"
+            @click="addGame"
+          />
+        </div>
+      </div> -->
     </div>
 
-    <draggable
-      :class="gamesClass"
-      :list="gameList"
-      :id="listIndex"
-      :move="validateMove"
-      v-bind="gameDraggableOptions"
-      @end="dragEnd"
-      @start="dragStart"
-    >
-      <component
-        v-for="game in sortedGames"
-        :is="gameCardComponent"
-        :key="`masonry-${game}`"
-        :id="game"
-        :game-id="game"
-        :list-id="listIndex"
-      />
-    </draggable>
+    <div class="card-content">
+      <div :class="['list', viewClass, { unique: unique && view !== 'masonry', dragging }]">
 
-    <div v-if="isEmpty" class="empty-list card">
-      <i class="fas fa-hand-pointer fa-2x hand-drag" />
-      <p><i class="fas fa-grip-vertical" /> Drag games here</p>
+        <draggable
+          :class="gamesClass"
+          :list="gameList"
+          :id="listIndex"
+          :move="validateMove"
+          v-bind="gameDraggableOptions"
+          @end="dragEnd"
+          @start="dragStart"
+        >
+          <component
+            v-for="game in sortedGames"
+            :is="gameCardComponent"
+            :key="`masonry-${game}`"
+            :id="game"
+            :game-id="game"
+            :list-id="listIndex"
+          />
+        </draggable>
+
+        <div v-if="isEmpty" class="empty-list card">
+          <i class="fas fa-hand-pointer fa-2x hand-drag" />
+          <p><i class="fas fa-grip-vertical" /> Drag games here</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -331,115 +349,113 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  .list {
-    flex-shrink: 0;
-    cursor: default;
-    position: relative;
-    width: 300px;
-    margin-right: $gp;
-    max-height: calc(100vh - 100px);
-
-    &.unique {
-      @media($small) {
-        min-width: 300px;
-        width: calc(100vw - 80px);
-      }
-    }
-
-    .list-header {
-      padding: $gp / 2;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .list-name {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: flex;
-      align-items: center;
-    }
-
-    .games {
-      display: grid;
-      height: 100%;
-      overflow: hidden;
-      max-height: calc(100vh - 200px);
-      min-height: 120px;
-      overflow-y: auto;
-      padding: 0 $gp / 2;
-      width: 100%;
-    }
-
-    &.grid {
-      .games {
-        padding: 0 $gp / 2;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: $gp / 2;
-
-        // https://github.com/w3c/csswg-drafts/issues/129
-        &::after {
-          content: '';
-          display: block;
-          height: 1px;
-          margin-top: -1px;
-          width: 100%;
-          grid-column: span 2;
-        }
-      }
-
-      &.unique {
-        .games {
-          grid-template-columns: 1fr 1fr 1fr;
-
-          @media($tiny) {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
-      }
-    }
-  }
-
-  .list-settings {
-    padding: $gp;
-  }
-
-  .game-masonry {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    max-height: calc(100vh - 154px);
-    min-height: 80px;
-    overflow-y: auto;
-    padding: 4px;
-    width: 100%;
-  }
-
-  .empty-list {
-    color: var(--progress-secondary-color);
-    opacity: 0.8;
-    position: absolute;
-    top: 0;
-    margin-top: 62px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: $gp;
-  }
-
-  .fa-grip-vertical {
-    opacity: 0.5;
-    margin-right: $gp / 2;
-  }
-
-  .hand-drag {
-    position: absolute;
-    left: 0;
-    top: 22px;
-  }
+  // .list {
+  //   flex-shrink: 0;
+  //   cursor: default;
+  //   position: relative;
+  //   width: 300px;
+  //   margin-right: $gp;
+  //   max-height: calc(100vh - 100px);
+  //
+  //   &.unique {
+  //     @media($small) {
+  //       min-width: 300px;
+  //       width: calc(100vw - 80px);
+  //     }
+  //   }
+  //
+  //   .list-header {
+  //     padding: $gp / 2;
+  //     width: 100%;
+  //     display: flex;
+  //     justify-content: space-between;
+  //     align-items: center;
+  //   }
+  //
+  //   .list-name {
+  //     white-space: nowrap;
+  //     overflow: hidden;
+  //     text-overflow: ellipsis;
+  //     display: flex;
+  //     align-items: center;
+  //   }
+  //
+  //   .games {
+  //     display: grid;
+  //     height: 100%;
+  //     overflow: hidden;
+  //     max-height: calc(100vh - 200px);
+  //     min-height: 120px;
+  //     overflow-y: auto;
+  //     padding: 0 $gp / 2;
+  //     width: 100%;
+  //   }
+  //
+  //   &.grid {
+  //     .games {
+  //       padding: 0 $gp / 2;
+  //       grid-template-columns: 1fr 1fr;
+  //       grid-gap: $gp / 2;
+  //
+  //       // https://github.com/w3c/csswg-drafts/issues/129
+  //       &::after {
+  //         content: '';
+  //         display: block;
+  //         height: 1px;
+  //         margin-top: -1px;
+  //         width: 100%;
+  //         grid-column: span 2;
+  //       }
+  //     }
+  //
+  //     &.unique {
+  //       .games {
+  //         grid-template-columns: 1fr 1fr 1fr;
+  //
+  //         @media($tiny) {
+  //           grid-template-columns: 1fr 1fr;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+  //
+  // .list-settings {
+  //   padding: $gp;
+  // }
+  //
+  // .game-masonry {
+  //   height: 100%;
+  //   display: flex;
+  //   align-items: center;
+  //   overflow: hidden;
+  //   max-height: calc(100vh - 154px);
+  //   min-height: 80px;
+  //   overflow-y: auto;
+  //   padding: 4px;
+  //   width: 100%;
+  // }
+  //
+  // .empty-list {
+  //   color: var(--progress-secondary-color);
+  //   opacity: 0.8;
+  //   position: absolute;
+  //   top: 0;
+  //   margin-top: 62px;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   padding: $gp;
+  // }
+  //
+  // .fa-grip-vertical {
+  //   opacity: 0.5;
+  //   margin-right: $gp / 2;
+  // }
+  //
+  // .hand-drag {
+  //   position: absolute;
+  //   left: 0;
+  //   top: 22px;
+  // }
 </style>

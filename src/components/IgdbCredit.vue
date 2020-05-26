@@ -29,18 +29,16 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@import "~styles/styles";
-
-.igdb-credit {
-  color: var(--primary-text-color);
-  border-radius: var(--border-radius);
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  font-size: 10px;
-
-  img {
-    height: 34px;
-  }
-}
+// .igdb-credit {
+//   color: var(--primary-text-color);
+//   border-radius: var(--border-radius);
+//   display: flex;
+//   align-items: center;
+//   text-decoration: none;
+//   font-size: 10px;
+//
+//   img {
+//     height: 34px;
+//   }
+// }
 </style>

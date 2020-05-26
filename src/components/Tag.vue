@@ -54,52 +54,50 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  .tag {
-    border-radius: 100px;
-    box-shadow: 0 0px 1px #a5a2a2;
-    padding: 0 $gp / 2 0 2px;
-    min-height: 18px;
-    font-size: $font-size-xsmall;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #555555;
-    cursor: pointer;
-    margin: 0 2px 2px 0;
-
-    &.readonly {
-      padding: 0 $gp / 2;
-    }
-
-    &.light { color: #fff; }
-    &.dark { color: #fff; }
-  }
-
-  .close {
-    height: 14px;
-    width: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100%;
-    margin-right: 4px;
-  }
-
-  .light .close,
-  .dark .close {
-    &:hover {
-      color: var(--danger-text-color);
-      background-color: var(--danger-background);
-    }
-  }
-
-  .light .close {
-    background-color: rgba(85, 85, 85, .5);
-  }
-
-  .dark .close {
-    background-color: rgba(229, 229, 229, .5);
-  }
+  // .tag {
+  //   border-radius: 100px;
+  //   box-shadow: 0 0px 1px #a5a2a2;
+  //   padding: 0 $gp / 2 0 2px;
+  //   min-height: 18px;
+  //   font-size: $font-size-xsmall;
+  //   display: inline-flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   color: #555555;
+  //   cursor: pointer;
+  //   margin: 0 2px 2px 0;
+  //
+  //   &.readonly {
+  //     padding: 0 $gp / 2;
+  //   }
+  //
+  //   &.light { color: #fff; }
+  //   &.dark { color: #fff; }
+  // }
+  //
+  // .close {
+  //   height: 14px;
+  //   width: 14px;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   border-radius: 100%;
+  //   margin-right: 4px;
+  // }
+  //
+  // .light .close,
+  // .dark .close {
+  //   &:hover {
+  //     color: var(--danger-text-color);
+  //     background-color: var(--danger-background);
+  //   }
+  // }
+  //
+  // .light .close {
+  //   background-color: rgba(85, 85, 85, .5);
+  // }
+  //
+  // .dark .close {
+  //   background-color: rgba(229, 229, 229, .5);
+  // }
 </style>

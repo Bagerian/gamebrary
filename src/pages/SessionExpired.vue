@@ -54,23 +54,21 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@import "~styles/styles";
-
-.session-expired {
-  color: #555555;
-  min-height: calc(100vh - #{$navHeight});
-  padding: 0 $gp;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.actions {
-  display: grid;
-  margin-top: $gp;
-  grid-template-columns: auto auto;
-  grid-gap: $gp;
-  text-align: center;
-  align-items: center;
-}
+// .session-expired {
+//   color: #555555;
+//   min-height: calc(100vh - #{$navHeight});
+//   padding: 0 $gp;
+//   display: flex;
+//   align-items: center;
+//   flex-direction: column;
+// }
+//
+// .actions {
+//   display: grid;
+//   margin-top: $gp;
+//   grid-template-columns: auto auto;
+//   grid-gap: $gp;
+//   text-align: center;
+//   align-items: center;
+// }
 </style>

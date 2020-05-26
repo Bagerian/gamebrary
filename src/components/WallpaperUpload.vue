@@ -155,42 +155,40 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  img.preview {
-    max-width: 100px;
-    cursor: pointer;
-    height: auto;
-    border: 1px solid transparent;
-    border-radius: var(--border-radius);
-
-    &:hover {
-      border-color: var(--accent-color);
-    }
-  }
-
-  .current-wallpaper {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: $gp / 2;
-    margin-right: $gp;
-  }
-
-  .file-input {
-    display: none;
-  }
-
-  .wallpaper-preview {
-
-    img {
-      width: 100%;
-    }
-  }
-
-  .remove-wallpaper {
-    position: absolute;
-    right: 36px;
-    margin-top: 4px;
-    width: 20px;
-  }
+  // img.preview {
+  //   max-width: 100px;
+  //   cursor: pointer;
+  //   height: auto;
+  //   border: 1px solid transparent;
+  //   border-radius: var(--border-radius);
+  //
+  //   &:hover {
+  //     border-color: var(--accent-color);
+  //   }
+  // }
+  //
+  // .current-wallpaper {
+  //   display: grid;
+  //   grid-template-columns: auto auto;
+  //   grid-gap: $gp / 2;
+  //   margin-right: $gp;
+  // }
+  //
+  // .file-input {
+  //   display: none;
+  // }
+  //
+  // .wallpaper-preview {
+  //
+  //   img {
+  //     width: 100%;
+  //   }
+  // }
+  //
+  // .remove-wallpaper {
+  //   position: absolute;
+  //   right: 36px;
+  //   margin-top: 4px;
+  //   width: 20px;
+  // }
 </style>

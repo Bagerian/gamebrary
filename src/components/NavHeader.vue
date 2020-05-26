@@ -3,28 +3,42 @@
 <!-- TODO: HTML? -->
 <!-- TODO: imports -->
 <template lang="html">
-  <nav>
-    <router-link
-      :to="{ path: '/platforms' }"
-      tag="img"
-      class="logo"
-      src="/static/gamebrary-logo.png"
-    />
+  <b-navbar transparent>
+      <template slot="brand">
+          <b-navbar-item tag="router-link" :to="{ name: 'dashboard' }">
+              <img
+                  src="/static/gamebrary-logo.png"
+                  alt="Gamebrary"
+              >
+          </b-navbar-item>
+      </template>
+      <!-- <template slot="start">
+          <b-navbar-item href="#">
+              Home
+          </b-navbar-item>
+          <b-navbar-item href="#">
+              Documentation
+          </b-navbar-item>
+          <b-navbar-dropdown label="Info">
+              <b-navbar-item href="#">
+                  About
+              </b-navbar-item>
+              <b-navbar-item href="#">
+                  Contact
+              </b-navbar-item>
+          </b-navbar-dropdown>
+      </template> -->
 
-    <!-- <router-link
-      :to="{ name: 'settings' }"
-      v-if="user"
-      tag="button"
-      class="button is-primary"
-    >
-      <i class="fas fa-cog" />
-    </router-link> -->
-    <b-button
-      class="is-primary"
-      icon-right="cog"
-      @click="openSettings"
-    />
-  </nav>
+      <template slot="end">
+          <b-navbar-item>
+              <b-button
+                class="is-primary"
+                icon-right="cog"
+                @click="openSettings"
+              />
+          </b-navbar-item>
+      </template>
+  </b-navbar>
 </template>
 
 <script>
@@ -81,16 +95,7 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: $gp / 2;
-
-    .logo {
-      height: 30px;
-    }
+  .navbar {
+    background-color: transparent !important;
   }
 </style>

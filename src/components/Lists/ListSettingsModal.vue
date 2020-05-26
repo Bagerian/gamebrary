@@ -3,7 +3,7 @@
 <!-- TODO: HTML? -->
 <!-- TODO: imports -->
 <template lang="html">
-  <div class="modal-card">
+  <div>
     <header class="modal-card-head">
       <p class="modal-card-title">{{ $t('list.settings') }}</p>
     </header>
@@ -286,25 +286,23 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  section {
-    margin-bottom: $gp * 2;
-
-    &.disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-  }
-
-  h4 {
-    margin-bottom: $gp / 2;
-  }
-
-  footer {
-    border-top: 1px solid var(--modal-text-color);
-    padding-top: $gp * 2;
-    display: flex;
-    justify-content: space-between;
-  }
+  // section {
+  //   margin-bottom: $gp * 2;
+  //
+  //   &.disabled {
+  //     opacity: 0.5;
+  //     pointer-events: none;
+  //   }
+  // }
+  //
+  // h4 {
+  //   margin-bottom: $gp / 2;
+  // }
+  //
+  // footer {
+  //   border-top: 1px solid var(--modal-text-color);
+  //   padding-top: $gp * 2;
+  //   display: flex;
+  //   justify-content: space-between;
+  // }
 </style>

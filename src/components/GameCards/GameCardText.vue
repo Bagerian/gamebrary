@@ -68,73 +68,70 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  $gameCoverWidth: 80px;
-
-  .card {
-    background: var(--game-card-background);
-    margin-bottom: $gp / 2;
-    position: relative;
-    border-radius: var(--border-radius);
-    min-height: 50px;
-    overflow: hidden;
-
-    &.card-placeholder {
-      background: #e5e5e5;
-      outline: 1px dashed #a5a2a2;
-      opacity: 0.3;
-
-      .game-card-options {
-        display: none;
-      }
-    }
-
-    .game-info {
-      padding: $gp / 3 $gp / 2;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-
-      .game-rating, a {
-        display: inline-flex;
-        font-weight: bold;
-      }
-
-      .release-date {
-        color: var(--accent-color);
-        margin: $gp / 4 0;
-      }
-
-      &:hover {
-        a {
-          text-decoration: underline;
-        }
-      }
-
-      a {
-        cursor: pointer;
-        margin-right: $gp / 2;
-        color: var(--game-card-text-color);
-      }
-    }
-
-    .draggable-icon {
-      @include drag-cursor;
-      position: absolute;
-      color: #e5e5e5;
-      right: $gp / 3;
-      top: $gp / 3;
-
-      &:hover {
-        color: #a5a2a2;
-      }
-    }
-  }
-
-  .note {
-    color: var(--note-color);
-  }
+  // $gameCoverWidth: 80px;
+  //
+  // .card {
+  //   background: var(--game-card-background);
+  //   margin-bottom: $gp / 2;
+  //   position: relative;
+  //   border-radius: var(--border-radius);
+  //   min-height: 50px;
+  //   overflow: hidden;
+  //
+  //   &.card-placeholder {
+  //     background: #e5e5e5;
+  //     outline: 1px dashed #a5a2a2;
+  //     opacity: 0.3;
+  //
+  //     .game-card-options {
+  //       display: none;
+  //     }
+  //   }
+  //
+  //   .game-info {
+  //     padding: $gp / 3 $gp / 2;
+  //     width: 100%;
+  //     display: flex;
+  //     flex-direction: column;
+  //     align-items: flex-start;
+  //
+  //     .game-rating, a {
+  //       display: inline-flex;
+  //       font-weight: bold;
+  //     }
+  //
+  //     .release-date {
+  //       color: var(--accent-color);
+  //       margin: $gp / 4 0;
+  //     }
+  //
+  //     &:hover {
+  //       a {
+  //         text-decoration: underline;
+  //       }
+  //     }
+  //
+  //     a {
+  //       cursor: pointer;
+  //       margin-right: $gp / 2;
+  //       color: var(--game-card-text-color);
+  //     }
+  //   }
+  //
+  //   .draggable-icon {
+  //     @include drag-cursor;
+  //     position: absolute;
+  //     color: #e5e5e5;
+  //     right: $gp / 3;
+  //     top: $gp / 3;
+  //
+  //     &:hover {
+  //       color: #a5a2a2;
+  //     }
+  //   }
+  // }
+  //
+  // .note {
+  //   color: var(--note-color);
+  // }
 </style>
-

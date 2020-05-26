@@ -4,12 +4,6 @@
 <!-- TODO: imports -->
 <template lang="html">
   <div>
-    <header class="modal-card-head">
-      <p class="modal-card-title">
-        Game detail
-      </p>
-    </header>
-
     <section class="modal-card-body">
       <div class="game">
         <header>
@@ -184,37 +178,35 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@import '~styles/styles';
+// .game {
+//   display: grid;
+//   grid-template-columns: 180px auto;
+//   grid-gap: $gap;
+//   margin-top: $gap;
+//
+//   @media ($small) {
+//     grid-template-columns: auto;
+//   }
+// }
 
-.game {
-  display: grid;
-  grid-template-columns: 180px auto;
-  grid-gap: $gp;
-  margin-top: $gp;
+// header {
+//   @media ($small) {
+//     text-align: center;
+//   }
+// }
 
-  @media ($small) {
-    grid-template-columns: auto;
-  }
-}
+// .game-cover {
+//   border-radius: var(--border-radius);
+// }
 
-header {
-  @media ($small) {
-    text-align: center;
-  }
-}
+// .game-title {
+//   @media($small) {
+//     text-align: center;
+//     width: calc(100vw - #{$gp * 2});
+//   }
+// }
 
-.game-cover {
-  border-radius: var(--border-radius);
-}
-
-.game-title {
-  @media($small) {
-    text-align: center;
-    width: calc(100vw - #{$gp * 2});
-  }
-}
-
-.game-placeholder {
-  margin-top: $gp;
-}
+// .game-placeholder {
+//   margin-top: $gp;
+// }
 </style>

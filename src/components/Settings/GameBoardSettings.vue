@@ -138,7 +138,7 @@ export default {
 
       this.$store.dispatch('SAVE_LIST_NO_MERGE', this.gameLists)
         .then(() => {
-          this.$router.push({ name: 'platforms' });
+          this.$router.push({ name: 'dashboard' });
         })
         .catch(() => {
           this.$buefy.toast.open({ message: 'Authentication error', type: 'is-danger' });

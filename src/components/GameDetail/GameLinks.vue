@@ -77,19 +77,17 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  .links {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 30px);
-    margin-top: $gp / 2;
-
-    a {
-      height: 40px;
-      font-size: 20px;
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-    }
-  }
+  // .links {
+  //   display: grid;
+  //   grid-template-columns: repeat(auto-fill, 30px);
+  //   margin-top: $gp / 2;
+  //
+  //   a {
+  //     height: 40px;
+  //     font-size: 20px;
+  //     display: flex;
+  //     flex-direction: column;
+  //     text-decoration: none;
+  //   }
+  // }
 </style>

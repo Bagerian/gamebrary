@@ -31,13 +31,11 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@import "~styles/styles";
-
-footer {
-  padding: $gp / 2 0;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  color: var(--header-text-color);
-}
+// footer {
+//   padding: $gp / 2 0;
+//   justify-content: center;
+//   display: flex;
+//   align-items: center;
+//   color: var(--header-text-color);
+// }
 </style>

@@ -61,93 +61,91 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  @import "~styles/styles";
-
-  .game-detail-placeholder {
-    display: flex;
-    justify-content: center;
-    background: var(--modal-background);
-    min-height: calc(100vh - #{$navHeight});
-  }
-
-  .game-hero {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    height: 400px;
-    z-index: 2;
-
-    @media($small) {
-      display: none;
-    }
-  }
-
-  .game-cover {
-    border: 5px solid #a5a2a2;
-    background-size: contain;
-    width: 100%;
-    height: auto;
-
-    @media($small) {
-      border: 3px solid #a5a2a2;
-      height: auto;
-      width: auto;
-      min-width: auto;
-      max-width: 100%;
-    }
-  }
-
-  .game-detail-container {
-    -webkit-box-shadow: 0 0 2px 0 #a5a2a2;
-    box-shadow: 0 0 2px 0 #a5a2a2;
-    width: $container-width;
-    max-width: 100%;
-    z-index: 2;
-    margin: $gp * 3;
-    padding: $gp 0;
-    border-radius: var(--border-radius);
-
-    @media($small) {
-      margin: 0;
-      padding-top: $gp * 3;
-      border-radius: 0;
-    }
-  }
-
-  .game-detail {
-    display: grid;
-    grid-template-columns: 180px auto;
-    grid-gap: $gp * 2;
-    margin: 0 $gp;
-
-    @media($small) {
-      grid-template-columns: auto;
-    }
-  }
-
-  .game-cover {
-    --placeholder-image-width: 175px;
-    --placeholder-image-height: 220px;
-
-    @media($small) {
-      --placeholder-image-width: 240px;
-      --placeholder-image-height: 300px;
-      width: 240px;
-      margin: 0 auto;
-    }
-  }
-
-  .game-title {
-    --placeholder-text-height: 30px;
-    width: 50%;
-
-    @media($small) {
-      width: 50%;
-      margin: 0 auto;
-    }
-  }
-
-  .game-rating {
-    margin-bottom: $gp;
-  }
+  // .game-detail-placeholder {
+  //   display: flex;
+  //   justify-content: center;
+  //   background: var(--modal-background);
+  //   min-height: calc(100vh - #{$navHeight});
+  // }
+  //
+  // .game-hero {
+  //   position: absolute;
+  //   width: 100%;
+  //   left: 0;
+  //   height: 400px;
+  //   z-index: 2;
+  //
+  //   @media($small) {
+  //     display: none;
+  //   }
+  // }
+  //
+  // .game-cover {
+  //   border: 5px solid #a5a2a2;
+  //   background-size: contain;
+  //   width: 100%;
+  //   height: auto;
+  //
+  //   @media($small) {
+  //     border: 3px solid #a5a2a2;
+  //     height: auto;
+  //     width: auto;
+  //     min-width: auto;
+  //     max-width: 100%;
+  //   }
+  // }
+  //
+  // .game-detail-container {
+  //   -webkit-box-shadow: 0 0 2px 0 #a5a2a2;
+  //   box-shadow: 0 0 2px 0 #a5a2a2;
+  //   width: $container-width;
+  //   max-width: 100%;
+  //   z-index: 2;
+  //   margin: $gp * 3;
+  //   padding: $gp 0;
+  //   border-radius: var(--border-radius);
+  //
+  //   @media($small) {
+  //     margin: 0;
+  //     padding-top: $gp * 3;
+  //     border-radius: 0;
+  //   }
+  // }
+  //
+  // .game-detail {
+  //   display: grid;
+  //   grid-template-columns: 180px auto;
+  //   grid-gap: $gp * 2;
+  //   margin: 0 $gp;
+  //
+  //   @media($small) {
+  //     grid-template-columns: auto;
+  //   }
+  // }
+  //
+  // .game-cover {
+  //   --placeholder-image-width: 175px;
+  //   --placeholder-image-height: 220px;
+  //
+  //   @media($small) {
+  //     --placeholder-image-width: 240px;
+  //     --placeholder-image-height: 300px;
+  //     width: 240px;
+  //     margin: 0 auto;
+  //   }
+  // }
+  //
+  // .game-title {
+  //   --placeholder-text-height: 30px;
+  //   width: 50%;
+  //
+  //   @media($small) {
+  //     width: 50%;
+  //     margin: 0 auto;
+  //   }
+  // }
+  //
+  // .game-rating {
+  //   margin-bottom: $gp;
+  // }
 </style>

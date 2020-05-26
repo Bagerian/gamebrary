@@ -157,17 +157,12 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@import '~styles/styles';
-
 .game-actions {
+  background: #ccf;
   display: grid;
   grid-template-columns: repeat(4, 44px);
-  grid-gap: $gp / 2;
-  margin-top: $gp;
+  grid-gap: 8px;
+  margin-top: 16px;
   text-align: left;
-
-  @media($small) {
-    justify-content: center;
-  }
 }
 </style>

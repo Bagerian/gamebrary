@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import GameBoard from '@/pages/GameBoard';
 import SessionExpired from '@/pages/SessionExpired';
-import Platforms from '@/pages/Platforms';
+import Dashboard from '@/pages/Dashboard';
 import Boards from '@/pages/Boards';
 import Board from '@/pages/Board';
 import Settings from '@/pages/Settings';
@@ -12,19 +12,11 @@ Vue.use(Router);
 
 const routes = [
   {
-    name: 'platforms',
+    name: 'dashboard',
     path: '/',
-    component: Platforms,
+    component: Dashboard,
     meta: {
-      title: 'Platforms',
-    },
-  },
-  {
-    name: 'platforms',
-    path: '/platforms',
-    component: Platforms,
-    meta: {
-      title: 'Platforms',
+      title: 'Dashboard',
     },
   },
   {

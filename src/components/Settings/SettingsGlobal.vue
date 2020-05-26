@@ -45,14 +45,12 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@import "~styles/styles";
-
-.reloading {
-  width: 100%;
-  text-align: center;
-}
-
-select {
-  margin: 0;
-}
+// .reloading {
+//   width: 100%;
+//   text-align: center;
+// }
+//
+// select {
+//   margin: 0;
+// }
 </style>

@@ -60,7 +60,7 @@ export default {
           ({ platform }) => this.platform.id === platform,
         );
 
-      let daysUntilRelease = releaseDate.date
+      let daysUntilRelease = releaseDate && releaseDate.date
         ? Math.ceil(moment.unix(releaseDate.date).diff(moment(), 'days', true))
         : this.$t('releaseDates.ToBeAnnounced');
 
